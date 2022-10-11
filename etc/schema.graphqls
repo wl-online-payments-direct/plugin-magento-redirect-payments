@@ -1,0 +1,49 @@
+type Query {
+    processRPResult(paymentId: String!, mac: String!): ProcessPaymentResultOutput @resolver(class: "\\Worldline\\RedirectPayment\\GraphQl\\Resolver\\RequestResult") @doc(description: "Process hosted checkout response.")
+}
+
+type ProcessPaymentResultOutput {
+    result: String
+    orderIncrementId: String
+}
+
+input PaymentMethodInput {
+    worldline_redirect_payment: WorldlineRPInput
+    worldline_redirect_payment_vault: WorldlineVaultInput
+}
+
+input WorldlineRPInput {
+    selected_payment_product: Int @doc(description:"Selected payment product id.")
+}
+
+input WorldlineVaultInput {
+    public_hash: String!
+}
+
+type StoreConfig @doc(description: "The type contains information about a store config") {
+    worldline_redirect_payment_pwa_route: String @doc(description: "Worldline RP Custom Return URL")
+    worldline_redirect_payment_allowspecific: Boolean @doc(description: "RP: Payment from Applicable Countries")
+    worldline_redirect_payment_specificcountry: String @doc(description: "RP: Payment from Specific Countries")
+    worldline_redirect_payment_product_ids: PaymentProductIdsOutput @resolver(class: "\\Worldline\\RedirectPayment\\GraphQl\\Resolver\\PaymentProductIds") @doc(description: "All payment products ids.")
+}
+
+type Mutation {
+    processRPRedirectRequest(input: ProcessRequestInput): ProcessPaymentRequestOutput @resolver(class: "\\Worldline\\RedirectPayment\\GraphQl\\Resolver\\RequestRedirect") @doc(description: "Process hosted checkout redirect request.")
+}
+
+input ProcessRequestInput @doc(description: "Defines the input to run the processHCRedirectRequest mutation") {
+    cart_id: String! @doc(description: "The unique ID of a `Cart` object.")
+    payment_method: PaymentMethodHCRedirectInput! @doc(description: "The payment method data.")
+}
+
+input PaymentMethodRPRedirectInput {
+    code: String! @doc(description: "The internal name for the payment method.")
+}
+
+type ProcessPaymentRequestOutput {
+    redirect_url: String
+}
+
+type PaymentProductIdsOutput {
+    product_ids: String
+}
