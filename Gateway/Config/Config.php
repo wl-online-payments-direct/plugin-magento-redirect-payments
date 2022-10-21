@@ -20,6 +20,7 @@ class Config extends PaymentGatewayConfig
     public const AUTHORIZE_CAPTURE = 'authorize_capture';
     public const TEMPLATE_ID = 'template_id';
     public const PWA_ROUTE = 'pwa_route';
+    public const KEY_CART_LINES = 'cart_lines';
 
     public const TITLE = "title";
     public const SORT = "sort_order";
@@ -96,5 +97,10 @@ class Config extends PaymentGatewayConfig
     public function getPaymentProductSortOrder(int $payProductId): int
     {
         return (int)$this->scopeConfig->getValue(self::REDIRECT_PAYMENT_PATH . $payProductId . '/' . self::SORT);
+    }
+
+    public function isCartLines(?int $storeId = null): bool
+    {
+        return (bool) $this->getValue(self::KEY_CART_LINES, $storeId);
     }
 }

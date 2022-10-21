@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace Worldline\RedirectPayment\Service\Creator\Request;
 
+use Magento\Framework\Event\ManagerInterface;
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInput;
 use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputFactory;
 use Worldline\RedirectPayment\Gateway\Config\Config;
+use Worldline\RedirectPayment\UI\ConfigProvider;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
 class CardPaymentMethodSpecificInputDataBuilder
@@ -28,14 +30,21 @@ class CardPaymentMethodSpecificInputDataBuilder
      */
     private $paymentTokenManagement;
 
+    /**
+     * @var ManagerInterface
+     */
+    private $eventManager;
+
     public function __construct(
         Config $config,
         CardPaymentMethodSpecificInputFactory $cardPaymentMethodSpecificInputFactory,
-        PaymentTokenManagementInterface $paymentTokenManagement
+        PaymentTokenManagementInterface $paymentTokenManagement,
+        ManagerInterface $eventManager
     ) {
         $this->config = $config;
         $this->cardPaymentMethodSpecificInputFactory = $cardPaymentMethodSpecificInputFactory;
         $this->paymentTokenManagement = $paymentTokenManagement;
+        $this->eventManager = $eventManager;
     }
 
     public function build(CartInterface $quote): CardPaymentMethodSpecificInput
@@ -51,6 +60,9 @@ class CardPaymentMethodSpecificInputDataBuilder
         if ($token = $this->getToken($quote)) {
             $cardPaymentMethodSpecificInput->setToken($token);
         }
+
+        $args = ['quote' => $quote, 'card_payment_method_specific_input' => $cardPaymentMethodSpecificInput];
+        $this->eventManager->dispatch(ConfigProvider::CODE . '_card_payment_method_specific_input_builder', $args);
 
         return $cardPaymentMethodSpecificInput;
     }

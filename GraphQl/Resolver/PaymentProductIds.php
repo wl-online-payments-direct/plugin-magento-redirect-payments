@@ -21,6 +21,15 @@ class PaymentProductIds implements ResolverInterface
         $this->jsonSerializer = $jsonSerializer;
     }
 
+    /**
+     * @param Field $field
+     * @param $context
+     * @param ResolveInfo $info
+     * @param array|null $value
+     * @param array|null $args
+     * @return array
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null): array
     {
         $payProductIds = array_keys(PaymentProductsProvider::PAYMENT_PRODUCTS);

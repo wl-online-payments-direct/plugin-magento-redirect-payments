@@ -17,6 +17,9 @@ use Worldline\HostedCheckout\Service\Creator\Request;
 use Worldline\RedirectPayment\Service\Creator\RequestBuilder;
 use Worldline\PaymentCore\Model\DataAssigner\DataAssignerInterface;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class RedirectManagement implements RedirectManagementInterface
 {
     public const PAYMENT_PRODUCT_ID = 'selected_payment_product';
@@ -128,6 +131,7 @@ class RedirectManagement implements RedirectManagementInterface
         $payment = $quote->getPayment();
 
         $additionalData = $paymentMethod->getAdditionalData();
+        $additionalData = array_merge((array)$paymentMethod->getAdditionalInformation(), (array)$additionalData);
         $additionalData['agent'] = $this->request->getHeader('accept');
         $additionalData['user-agent'] = $this->request->getHeader('user-agent');
 
