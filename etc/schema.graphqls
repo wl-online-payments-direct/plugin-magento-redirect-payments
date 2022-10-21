@@ -9,15 +9,27 @@ type ProcessPaymentResultOutput {
 
 input PaymentMethodInput {
     worldline_redirect_payment: WorldlineRPInput
-    worldline_redirect_payment_vault: WorldlineVaultInput
+    worldline_redirect_payment_vault: WorldlineRPVaultInput
 }
 
 input WorldlineRPInput {
     selected_payment_product: Int @doc(description:"Selected payment product id.")
+    color_depth: String
+    java_enabled: Boolean
+    locale: String
+    screen_height: String
+    screen_width: String
+    timezone_offset_utc_minutes: String
 }
 
-input WorldlineVaultInput {
+input WorldlineRPVaultInput {
     public_hash: String!
+    color_depth: String
+    java_enabled: Boolean
+    locale: String
+    screen_height: String
+    screen_width: String
+    timezone_offset_utc_minutes: String
 }
 
 type StoreConfig @doc(description: "The type contains information about a store config") {

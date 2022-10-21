@@ -19,6 +19,7 @@ use Worldline\PaymentCore\Model\VaultValidation;
 use Worldline\RedirectPayment\UI\ConfigProvider;
 
 /**
+ * @SuppressWarnings(PHPMD.ExcessiveParameterList)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Vault extends MagentoVault

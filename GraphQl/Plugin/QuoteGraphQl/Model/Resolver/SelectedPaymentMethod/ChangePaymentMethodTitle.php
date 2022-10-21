@@ -13,6 +13,18 @@ use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
 class ChangePaymentMethodTitle
 {
+    /**
+     * @param SelectedPaymentMethod $subject
+     * @param array $result
+     * @param Field $field
+     * @param $context
+     * @param ResolveInfo $info
+     * @param array|null $value
+     * @param array|null $args
+     * @return array
+     * @throws LocalizedException
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function afterResolve(
         SelectedPaymentMethod $subject,
         array $result,

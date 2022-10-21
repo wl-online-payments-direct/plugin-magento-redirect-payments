@@ -34,6 +34,7 @@
                 <order_status>processing</order_status>
                 <group>worldline_group</group>
                 <vault>1</vault>
+                <cart_lines>1</cart_lines>
             </worldline_redirect_payment>
             <worldline_redirect_payment_vault>
                 <model>Worldline\RedirectPayment\Model\Method\Vault\Virtual</model>
@@ -108,58 +109,78 @@
             </worldline_redirect_payment_125>
             <worldline_redirect_payment_3301>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
-                <title>Klarna</title>
+                <title>Klarna Pay Now</title>
                 <sort_order>140</sort_order>
             </worldline_redirect_payment_3301>
+            <worldline_redirect_payment_3302>
+                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <title>Klarna Pay Later</title>
+                <sort_order>150</sort_order>
+            </worldline_redirect_payment_3302>
+            <worldline_redirect_payment_3303>
+                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <title>Klarna Financing</title>
+                <sort_order>160</sort_order>
+            </worldline_redirect_payment_3303>
+            <worldline_redirect_payment_3304>
+                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <title>Klarna Bank Transfer</title>
+                <sort_order>170</sort_order>
+            </worldline_redirect_payment_3304>
+            <worldline_redirect_payment_3305>
+                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <title>Klarna Direct Debit</title>
+                <sort_order>180</sort_order>
+            </worldline_redirect_payment_3305>
             <worldline_redirect_payment_117>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>Maestro</title>
-                <sort_order>150</sort_order>
+                <sort_order>190</sort_order>
             </worldline_redirect_payment_117>
             <worldline_redirect_payment_3>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>Mastercard</title>
-                <sort_order>160</sort_order>
+                <sort_order>200</sort_order>
             </worldline_redirect_payment_3>
             <worldline_redirect_payment_5402>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>Mealvouchers</title>
-                <sort_order>170</sort_order>
+                <sort_order>210</sort_order>
             </worldline_redirect_payment_5402>
             <worldline_redirect_payment_5500>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>Multibanco</title>
-                <sort_order>180</sort_order>
+                <sort_order>220</sort_order>
             </worldline_redirect_payment_5500>
             <worldline_redirect_payment_5110>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>Oney 3x-4x</title>
-                <sort_order>190</sort_order>
+                <sort_order>230</sort_order>
             </worldline_redirect_payment_5110>
             <worldline_redirect_payment_5125>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>Oney Financement Long</title>
-                <sort_order>200</sort_order>
+                <sort_order>240</sort_order>
             </worldline_redirect_payment_5125>
             <worldline_redirect_payment_840>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>Paypal</title>
-                <sort_order>210</sort_order>
+                <sort_order>250</sort_order>
             </worldline_redirect_payment_840>
             <worldline_redirect_payment_771>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>SEPA Direct Debit</title>
-                <sort_order>220</sort_order>
+                <sort_order>260</sort_order>
             </worldline_redirect_payment_771>
             <worldline_redirect_payment_1>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>Visa</title>
-                <sort_order>230</sort_order>
+                <sort_order>270</sort_order>
             </worldline_redirect_payment_1>
             <worldline_redirect_payment_863>
                 <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <title>WeChat Pay</title>
-                <sort_order>240</sort_order>
+                <sort_order>280</sort_order>
             </worldline_redirect_payment_863>
         </payment>
     </default>

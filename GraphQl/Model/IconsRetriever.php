@@ -18,6 +18,13 @@ class IconsRetriever implements IconsRetrieverInterface
         $this->iconProvider = $iconProvider;
     }
 
+    /**
+     * @param string $code
+     * @param string $originalCode
+     * @param int $storeId
+     * @return array[]
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function getIcons(string $code, string $originalCode, int $storeId): array
     {
         $offset = strrpos($originalCode, '_') + 1;

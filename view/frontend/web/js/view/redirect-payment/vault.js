@@ -81,8 +81,9 @@ define([
          */
         getData: function () {
             let data = this._super();
-            data.additional_data = deviceData.getData();
-            data.additional_data.public_hash = this.public_hash;
+            let additionalData = deviceData.getData();
+            additionalData.public_hash = this.public_hash;
+            data.additional_data = additionalData;
 
             return data;
         }

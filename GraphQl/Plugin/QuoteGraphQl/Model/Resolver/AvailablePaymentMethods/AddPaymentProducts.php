@@ -31,6 +31,17 @@ class AddPaymentProducts
         $this->paymentProductsConfig = $paymentProductsConfig;
     }
 
+    /**
+     * @param AvailablePaymentMethods $subject
+     * @param array $result
+     * @param Field $field
+     * @param $context
+     * @param ResolveInfo $info
+     * @param array|null $value
+     * @param array|null $args
+     * @return array
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function afterResolve(
         AvailablePaymentMethods $subject,
         array $result,

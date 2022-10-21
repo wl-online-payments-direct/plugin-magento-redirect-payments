@@ -169,11 +169,9 @@ define([
          */
         getData: function () {
             let data = this._super();
-
-            data.additional_data = deviceData.getData();
-            data.additional_data = {
-                'selected_payment_product': this.payProduct
-            };
+            let additionalData = deviceData.getData();
+            additionalData.selected_payment_product = this.payProduct;
+            data.additional_data = additionalData;
 
             this.vaultEnabler.visitAdditionalData(data);
 
