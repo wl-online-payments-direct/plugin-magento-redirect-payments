@@ -12,6 +12,7 @@ use Magento\Quote\Api\Data\CartInterface;
 use Magento\Quote\Api\Data\PaymentInterface;
 use Magento\Quote\Model\QuoteIdMaskFactory;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
+use Worldline\HostedCheckout\Gateway\Request\PaymentDataBuilder;
 use Worldline\RedirectPayment\Api\RedirectManagementInterface;
 use Worldline\HostedCheckout\Service\Creator\Request;
 use Worldline\RedirectPayment\Service\Creator\RequestBuilder;
@@ -147,7 +148,7 @@ class RedirectManagement implements RedirectManagementInterface
         $request = $this->createRequestBuilder->build($quote);
         $response = $this->createRequest->create($request, (int)$quote->getStoreId());
         $payment->setAdditionalInformation('return_id', $response->getRETURNMAC());
-        $payment->setAdditionalInformation('hosted_checkout_id', $response->getHostedCheckoutId());
+        $payment->setAdditionalInformation(PaymentDataBuilder::HOSTED_CHECKOUT_ID, $response->getHostedCheckoutId());
 
         $this->cartRepository->save($quote);
 

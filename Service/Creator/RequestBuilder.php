@@ -76,7 +76,7 @@ class RequestBuilder
      */
     public function build(CartInterface $quote): CreateHostedCheckoutRequest
     {
-        $payProducts = $this->payProductsProvider->getPaymentProducts();
+        $payProducts = $this->payProductsProvider->getPaymentProducts((int)$quote->getStoreId());
         $payProductId = (int)$quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
         $payMethod = null;
         if (array_key_exists($payProductId, $payProducts)) {

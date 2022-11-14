@@ -7,6 +7,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\QuoteGraphQl\Model\Resolver\AvailablePaymentMethods;
+use Worldline\PaymentCore\Model\Ui\PaymentIconsProvider;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Model\ResourceModel\PaymentProductsConfig;
 use Worldline\RedirectPayment\UI\ConfigProvider;
@@ -23,12 +24,19 @@ class AddPaymentProducts
      */
     private $paymentProductsConfig;
 
+    /**
+     * @var PaymentIconsProvider
+     */
+    private $paymentIconsProvider;
+
     public function __construct(
         Config $config,
-        PaymentProductsConfig $paymentProductsConfig
+        PaymentProductsConfig $paymentProductsConfig,
+        PaymentIconsProvider $paymentIconsProvider
     ) {
         $this->config = $config;
         $this->paymentProductsConfig = $paymentProductsConfig;
+        $this->paymentIconsProvider = $paymentIconsProvider;
     }
 
     /**
@@ -63,18 +71,24 @@ class AddPaymentProducts
         if ($isRedirectPaymentExist) {
             $store = $context->getExtensionAttributes()->getStore();
             $scope = $store->getCode();
+            $storeId = (int)$store->getId();
             $websiteId = $scope === ScopeConfigInterface::SCOPE_TYPE_DEFAULT ? 0 : (int)$store->getWebsiteId();
-            $result = $this->addPaymentProducts($result, $websiteId);
+            $result = $this->addPaymentProducts($result, $websiteId, $storeId);
             $result = $this->sortPaymentMethods($result);
         }
 
         return $result;
     }
 
-    private function addPaymentProducts(array $result, int $websiteId): array
+    private function addPaymentProducts(array $result, int $websiteId, int $storeId): array
     {
         $activePayProductIds = $this->paymentProductsConfig->getActivePayProductIds($websiteId);
         foreach ($activePayProductIds as $payProductId) {
+            $icon = $this->paymentIconsProvider->getIconById($payProductId, $storeId);
+            if (empty($icon)) {
+                continue;
+            }
+
             $title = $this->config->getPaymentProductTitle($payProductId);
             $sortOrder = $this->config->getPaymentProductSortOrder($payProductId);
             $result[] = [

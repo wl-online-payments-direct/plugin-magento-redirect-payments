@@ -34,8 +34,8 @@ class IconsRetriever implements IconsRetrieverInterface
 
         return [
             [
-                IconsRetrieverInterface::ICON_TITLE => $icon['title'],
-                IconsRetrieverInterface::ICON_URL => $icon['url']
+                IconsRetrieverInterface::ICON_TITLE => $icon['title'] ?? '',
+                IconsRetrieverInterface::ICON_URL => $icon['url'] ?? '',
             ]
         ];
     }

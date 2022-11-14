@@ -1,6 +1,11 @@
-# Worldline Redirect Payment
+# Worldline Online Payments
+
+## Redirect Payment (Single payment buttons)
 
 Change log:
+
+1.1.0
+- General improvements and bug fixes
 
 1.0.1
 - PWA improvements and support
