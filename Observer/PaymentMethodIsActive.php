@@ -29,10 +29,6 @@ class PaymentMethodIsActive implements ObserverInterface
         $this->availableMethodChecker = $availableMethodChecker;
     }
 
-    /**
-     * @param Observer $observer
-     * @return void
-     */
     public function execute(Observer $observer): void
     {
         /** @var \Magento\Payment\Model\Method\Adapter $methodInstance */
@@ -40,6 +36,7 @@ class PaymentMethodIsActive implements ObserverInterface
         $quote = $observer->getQuote();
         if ($methodInstance === null
             || $quote === null
+            || !$observer->getResult()->getIsAvailable()
             || $methodInstance->getCode() !== ConfigProvider::CODE
             || !$this->config->isActive()
         ) {

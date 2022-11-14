@@ -21,6 +21,7 @@ class Config extends PaymentGatewayConfig
     public const TEMPLATE_ID = 'template_id';
     public const PWA_ROUTE = 'pwa_route';
     public const KEY_CART_LINES = 'cart_lines';
+    public const SKIP_3D = 'skip_3d';
 
     public const TITLE = "title";
     public const SORT = "sort_order";
@@ -102,5 +103,10 @@ class Config extends PaymentGatewayConfig
     public function isCartLines(?int $storeId = null): bool
     {
         return (bool) $this->getValue(self::KEY_CART_LINES, $storeId);
+    }
+
+    public function hasSkipAuthentication(?int $storeId = null): bool
+    {
+        return (bool) $this->getValue(self::SKIP_3D, $storeId);
     }
 }

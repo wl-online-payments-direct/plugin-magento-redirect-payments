@@ -94,6 +94,10 @@ class ConfigProvider implements ConfigProviderInterface
         $activePayProductIds = $this->paymentProductsConfig->getActivePayProductIds($websiteId);
         foreach ($activePayProductIds as $payProductId) {
             $icon = $this->paymentIconsProvider->getIconById($payProductId, $storeId);
+            if (empty($icon)) {
+                continue;
+            }
+
             $title = $this->config->getPaymentProductTitle($payProductId);
             $payProducts[self::CODE . '_' . $payProductId] = [
                 'sortOrder' => $this->config->getPaymentProductSortOrder($payProductId),
