@@ -4,6 +4,10 @@
 
 Change log:
 
+1.2.0
+- Improve the "waiting" page
+- Add the "pending" page
+
 1.1.0
 - General improvements and bug fixes
 
