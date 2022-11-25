@@ -3,6 +3,8 @@
 ## Redirect Payment (Single payment buttons)
 
 Change log:
+1.2.1
+- Improve work for multi website instances
 
 1.2.0
 - Improve the "waiting" page
