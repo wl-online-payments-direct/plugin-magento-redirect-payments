@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\RedirectPayment\UI;
+namespace Worldline\RedirectPayment\Ui;
 
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
@@ -40,7 +40,7 @@ class TokenUiComponentProvider implements TokenUiComponentProviderInterface
         return $this->componentFactory->create(
             [
                 'config' => [
-                    'code' => ConfigProvider::VAULT_CODE,
+                    'code' => $paymentToken->getPaymentMethodCode() . '_vault',
                     TokenUiComponentProviderInterface::COMPONENT_DETAILS => $jsonDetails,
                     'public_hash' => $paymentToken->getPublicHash()
                 ],

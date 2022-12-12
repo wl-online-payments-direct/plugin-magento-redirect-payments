@@ -17,7 +17,6 @@
                                                             <item name="children" xsi:type="array">
                                                                 <item name="worldline-redirect-payment-payment" xsi:type="array">
                                                                     <item name="component" xsi:type="string">Worldline_RedirectPayment/js/view/redirect-payment/worldline-payment</item>
-                                                                    <item name="paymentProducts" xsi:type="array"/>
                                                                     <item name="methods" xsi:type="array">
                                                                         <item name="worldline_redirect_payment" xsi:type="array">
                                                                             <item name="isBillingAddressRequired" xsi:type="boolean">true</item>

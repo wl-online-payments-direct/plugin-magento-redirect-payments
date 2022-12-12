@@ -9,7 +9,8 @@ define([
     'Magento_Vault/js/view/payment/vault-enabler',
     'Magento_Checkout/js/model/full-screen-loader',
     'Worldline_PaymentCore/js/model/device-data',
-    'Worldline_RedirectPayment/js/view/redirect-payment/redirect'
+    'Worldline_RedirectPayment/js/view/redirect-payment/redirect',
+    'Magento_Checkout/js/model/payment/additional-validators'
 ], function (
     ko,
     $,
@@ -21,16 +22,14 @@ define([
     VaultEnabler,
     fullScreenLoader,
     deviceData,
-    placeOrderAction
+    placeOrderAction,
+    additionalValidators
 ) {
     'use strict';
 
     return Component.extend({
         defaults: {
-            template: 'Worldline_RedirectPayment/payment/worldlinerp',
-            imports: {
-                paymentProducts: 'index = worldline-redirect-payment-payment:paymentProducts'
-            }
+            template: 'Worldline_RedirectPayment/payment/worldlinerp'
         },
 
         /**
@@ -42,64 +41,6 @@ define([
             this.vaultEnabler.setPaymentCode(this.getVaultCode());
 
             return this;
-        },
-
-        /**
-         * @returns {String}
-         */
-        getTitle: function () {
-            return this.title;
-        },
-
-        /**
-         * @returns {String}
-         */
-        getId: function () {
-            return this.index;
-        },
-
-        /**
-         * @returns {String}
-         */
-        getCode: function () {
-            return this.code;
-        },
-
-        /**
-         * @returns {String}
-         */
-        getUrl: function () {
-            return this.url;
-        },
-
-        /** @inheritdoc */
-        selectPaymentMethod: function () {
-            selectPaymentMethod(
-                {
-                    method: this.getId()
-                }
-            );
-            checkoutData.setSelectedPaymentMethod(this.getId());
-
-            return true;
-        },
-
-        /**
-         * Return state of place order button.
-         *
-         * @return {Boolean}
-         */
-        isButtonActive: function () {
-            return this.isActive() && this.isPlaceOrderActionAllowed();
-        },
-
-        /**
-         * Check if payment is active.
-         *
-         * @return {Boolean}
-         */
-        isActive: function () {
-            return this.isChecked() === this.getId();
         },
 
         /**
@@ -117,12 +58,13 @@ define([
         },
 
         /**
-         * Get list of available CC types
-         *
-         * @returns {Object}
+         * Get payment icon
+         * @returns {Boolean}
          */
-        getAvailableTypes: function () {
-            return [];
+        getIcon: function () {
+            return window.checkoutConfig.payment[this.getCode()].icon ?
+                window.checkoutConfig.payment[this.getCode()].icon
+                : false;
         },
 
         /** @inheritdoc */
@@ -134,7 +76,8 @@ define([
             }
 
             if (!this.validate() ||
-                this.isPlaceOrderActionAllowed() !== true
+                (this.isPlaceOrderActionAllowed() !== true) ||
+                !additionalValidators.validate()
             ) {
                 return false;
             }
@@ -169,9 +112,7 @@ define([
          */
         getData: function () {
             let data = this._super();
-            let additionalData = deviceData.getData();
-            additionalData.selected_payment_product = this.payProduct;
-            data.additional_data = additionalData;
+            data.additional_data = deviceData.getData();
 
             this.vaultEnabler.visitAdditionalData(data);
 

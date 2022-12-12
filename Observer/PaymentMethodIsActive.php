@@ -6,7 +6,7 @@ namespace Worldline\RedirectPayment\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Worldline\RedirectPayment\Gateway\Config\Config;
-use Worldline\RedirectPayment\UI\ConfigProvider;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\PaymentCore\Model\AvailableMethodChecker;
 
 class PaymentMethodIsActive implements ObserverInterface
@@ -36,9 +36,9 @@ class PaymentMethodIsActive implements ObserverInterface
         $quote = $observer->getQuote();
         if ($methodInstance === null
             || $quote === null
-            || !$observer->getResult()->getIsAvailable()
-            || $methodInstance->getCode() !== ConfigProvider::CODE
             || !$this->config->isActive()
+            || !$observer->getResult()->getIsAvailable()
+            || strpos($methodInstance->getCode(), ConfigProvider::CODE) === false
         ) {
             return;
         }

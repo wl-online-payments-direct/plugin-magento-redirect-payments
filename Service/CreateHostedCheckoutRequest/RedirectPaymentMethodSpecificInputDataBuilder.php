@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\RedirectPayment\Service\Creator\Request;
+namespace Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest;
 
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\RedirectPaymentMethodSpecificInput;
 use OnlinePayments\Sdk\Domain\RedirectPaymentMethodSpecificInputFactory;
 use Worldline\RedirectPayment\Gateway\Config\Config;
-use Worldline\RedirectPayment\UI\ConfigProvider;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
 class RedirectPaymentMethodSpecificInputDataBuilder

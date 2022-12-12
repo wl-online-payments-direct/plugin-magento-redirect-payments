@@ -6,7 +6,7 @@ namespace Worldline\RedirectPayment\GraphQl\Model;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
 use Magento\QuoteGraphQl\Model\Cart\Payment\AdditionalDataProviderInterface;
-use Worldline\RedirectPayment\UI\ConfigProvider;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
 class AdditionalDataProvider implements AdditionalDataProviderInterface

@@ -3,6 +3,14 @@
 ## Redirect Payment (Single payment buttons)
 
 Change log:
+
+1.3.0
+- Improve configuration settings
+- Option added to enforce Strong Customer Authentication for every 3DS request
+- Add new payment product Oney
+- General code improvements and bug fixes
+- Improvements and support for 2.3.x magento versions
+
 1.2.1
 - Improve work for multi website instances
 

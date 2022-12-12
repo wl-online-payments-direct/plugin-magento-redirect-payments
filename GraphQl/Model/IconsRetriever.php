@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Worldline\RedirectPayment\GraphQl\Model;
 
-use Worldline\PaymentCore\Model\Ui\PaymentIconsProvider;
 use Worldline\PaymentCore\GraphQl\Model\PaymentIcons\IconsRetrieverInterface;
+use Worldline\PaymentCore\Ui\PaymentIconsProvider;
 
 class IconsRetriever implements IconsRetrieverInterface
 {

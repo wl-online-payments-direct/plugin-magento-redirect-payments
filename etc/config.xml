@@ -8,8 +8,6 @@
                 <active>0</active>
                 <!-- `<title>` field value needs for GraphQl queries -->
                 <title>Pay with Worldline Online Payments (Select Solution)</title>
-                <allowspecific>0</allowspecific>
-                <allow_specific_currency>0</allow_specific_currency>
                 <allow_specific_customer_group>0</allow_specific_customer_group>
                 <debug>0</debug>
                 <sort_order>30</sort_order>
@@ -44,144 +42,239 @@
                 <group>worldline_group</group>
             </worldline_redirect_payment_vault>
             <worldline_redirect_payment_861>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterAlipay\Virtual</model>
                 <title>Alipay</title>
                 <sort_order>10</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_861>
             <worldline_redirect_payment_2>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterAmericanExpress\Virtual</model>
                 <title>American Express</title>
                 <sort_order>20</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_2>
+            <worldline_redirect_payment_2_vault>
+                <model>Worldline\RedirectPayment\Model\Method\Vault\AmericanExpress\Virtual</model>
+                <group>worldline_group</group>
+            </worldline_redirect_payment_2_vault>
             <worldline_redirect_payment_302>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterApplePay\Virtual</model>
                 <title>Apple Pay</title>
                 <sort_order>30</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_302>
             <worldline_redirect_payment_3012>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterBancontact\Virtual</model>
                 <title>Bancontact</title>
                 <sort_order>40</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3012>
+            <worldline_redirect_payment_3012_vault>
+                <model>Worldline\RedirectPayment\Model\Method\Vault\Bancontact\Virtual</model>
+                <group>worldline_group</group>
+            </worldline_redirect_payment_3012_vault>
             <worldline_redirect_payment_5001>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterBizum\Virtual</model>
                 <title>Bizum</title>
                 <sort_order>50</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5001>
             <worldline_redirect_payment_130>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterCarteBancaire\Virtual</model>
                 <title>Carte Bancaire</title>
                 <sort_order>60</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_130>
+            <worldline_redirect_payment_130_vault>
+                <model>Worldline\RedirectPayment\Model\Method\Vault\CarteBancaire\Virtual</model>
+                <group>worldline_group</group>
+            </worldline_redirect_payment_130_vault>
             <worldline_redirect_payment_5100>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterCpay\Virtual</model>
                 <title>Cpay</title>
                 <sort_order>70</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5100>
             <worldline_redirect_payment_132>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterDinersClub\Virtual</model>
                 <title>Diners Club</title>
                 <sort_order>80</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_132>
+            <worldline_redirect_payment_132_vault>
+                <model>Worldline\RedirectPayment\Model\Method\Vault\DinersClub\Virtual</model>
+                <group>worldline_group</group>
+            </worldline_redirect_payment_132_vault>
             <worldline_redirect_payment_320>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterGooglePay\Virtual</model>
                 <title>Google Pay</title>
                 <sort_order>90</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_320>
             <worldline_redirect_payment_809>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapteriDEAL\Virtual</model>
                 <title>iDEAL</title>
                 <sort_order>100</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_809>
             <worldline_redirect_payment_3112>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterIllicado\Virtual</model>
                 <title>Illicado</title>
                 <sort_order>110</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3112>
             <worldline_redirect_payment_5700>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterIntersolve\Virtual</model>
                 <title>Intersolve</title>
                 <sort_order>120</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5700>
             <worldline_redirect_payment_125>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterJCB\Virtual</model>
                 <title>JCB</title>
                 <sort_order>130</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_125>
+            <worldline_redirect_payment_125_vault>
+                <model>Worldline\RedirectPayment\Model\Method\Vault\JCB\Virtual</model>
+                <group>worldline_group</group>
+            </worldline_redirect_payment_125_vault>
             <worldline_redirect_payment_3301>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterKlarnaPayNow\Virtual</model>
                 <title>Klarna Pay Now</title>
                 <sort_order>140</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3301>
             <worldline_redirect_payment_3302>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterKlarnaPayLater\Virtual</model>
                 <title>Klarna Pay Later</title>
                 <sort_order>150</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3302>
             <worldline_redirect_payment_3303>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterKlarnaFinancing\Virtual</model>
                 <title>Klarna Financing</title>
                 <sort_order>160</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3303>
             <worldline_redirect_payment_3304>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterKlarnaBankTransfer\Virtual</model>
                 <title>Klarna Bank Transfer</title>
                 <sort_order>170</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3304>
             <worldline_redirect_payment_3305>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterKlarnaDirectDebit\Virtual</model>
                 <title>Klarna Direct Debit</title>
                 <sort_order>180</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3305>
             <worldline_redirect_payment_117>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterMaestro\Virtual</model>
                 <title>Maestro</title>
                 <sort_order>190</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_117>
+            <worldline_redirect_payment_117_vault>
+                <model>Worldline\RedirectPayment\Model\Method\Vault\Maestro\Virtual</model>
+                <group>worldline_group</group>
+            </worldline_redirect_payment_117_vault>
             <worldline_redirect_payment_3>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterMastercard\Virtual</model>
                 <title>Mastercard</title>
                 <sort_order>200</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3>
+            <worldline_redirect_payment_3_vault>
+                <model>Worldline\RedirectPayment\Model\Method\Vault\Mastercard\Virtual</model>
+                <group>worldline_group</group>
+            </worldline_redirect_payment_3_vault>
             <worldline_redirect_payment_5402>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterMealvouchers\Virtual</model>
                 <title>Mealvouchers</title>
                 <sort_order>210</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5402>
             <worldline_redirect_payment_5500>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterMultibanco\Virtual</model>
                 <title>Multibanco</title>
                 <sort_order>220</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5500>
             <worldline_redirect_payment_5110>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterOney3x4x\Virtual</model>
                 <title>Oney 3x-4x</title>
                 <sort_order>230</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5110>
             <worldline_redirect_payment_5125>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterOneyFinancementLong\Virtual</model>
                 <title>Oney Financement Long</title>
                 <sort_order>240</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5125>
-            <worldline_redirect_payment_840>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
-                <title>Paypal</title>
+            <worldline_redirect_payment_5600>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterOneyBrandedGiftCard\Virtual</model>
+                <title>OneyBrandedGiftCard</title>
                 <sort_order>250</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
+            </worldline_redirect_payment_5600>
+            <worldline_redirect_payment_840>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterPaypal\Virtual</model>
+                <title>Paypal</title>
+                <sort_order>260</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_840>
             <worldline_redirect_payment_771>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterSepaDirectDebit\Virtual</model>
                 <title>SEPA Direct Debit</title>
-                <sort_order>260</sort_order>
+                <sort_order>270</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_771>
             <worldline_redirect_payment_1>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterVisa\Virtual</model>
                 <title>Visa</title>
-                <sort_order>270</sort_order>
-            </worldline_redirect_payment_1>
-            <worldline_redirect_payment_863>
-                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
-                <title>WeChat Pay</title>
                 <sort_order>280</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
+            </worldline_redirect_payment_1>
+            <worldline_redirect_payment_1_vault>
+                <model>Worldline\RedirectPayment\Model\Method\Vault\Visa\Virtual</model>
+                <group>worldline_group</group>
+            </worldline_redirect_payment_1_vault>
+            <worldline_redirect_payment_863>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterWeChatPay\Virtual</model>
+                <title>WeChat Pay</title>
+                <sort_order>290</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_863>
         </payment>
     </default>

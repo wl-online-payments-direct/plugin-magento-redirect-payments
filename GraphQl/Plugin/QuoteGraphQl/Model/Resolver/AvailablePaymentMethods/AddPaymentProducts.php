@@ -7,10 +7,10 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\QuoteGraphQl\Model\Resolver\AvailablePaymentMethods;
-use Worldline\PaymentCore\Model\Ui\PaymentIconsProvider;
+use Worldline\PaymentCore\Ui\PaymentIconsProvider;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Model\ResourceModel\PaymentProductsConfig;
-use Worldline\RedirectPayment\UI\ConfigProvider;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
 
 class AddPaymentProducts
 {

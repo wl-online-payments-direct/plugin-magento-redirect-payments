@@ -7,8 +7,8 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\QuoteGraphQl\Model\Resolver\SelectedPaymentMethod;
-use Worldline\PaymentCore\Model\Ui\PaymentProductsProvider;
-use Worldline\RedirectPayment\UI\ConfigProvider;
+use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
 class ChangePaymentMethodTitle
@@ -50,7 +50,7 @@ class ChangePaymentMethodTitle
             && $payment->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID)
         ) {
             $payProductId = $payment->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
-            $result['title'] = PaymentProductsProvider::PAYMENT_PRODUCTS[$payProductId]['label'];
+            $result['title'] = PaymentProductsDetailsInterface::PAYMENT_PRODUCTS[$payProductId]['label'];
         }
 
         return $result;

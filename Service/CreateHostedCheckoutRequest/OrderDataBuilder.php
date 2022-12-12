@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\RedirectPayment\Service\Creator\Request;
+namespace Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest;
 
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\Order;
 use OnlinePayments\Sdk\Domain\OrderFactory;
+use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\AmountDataBuilder;
+use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\CustomerDataBuilder;
+use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ReferenceDataBuilder;
+use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShippingAddressDataBuilder;
+use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\Order\ShoppingCartDataBuilder;
 use Worldline\RedirectPayment\Gateway\Config\Config;
-use Worldline\HostedCheckout\Service\Creator\Request\Order\AmountDataBuilder;
-use Worldline\HostedCheckout\Service\Creator\Request\Order\CustomerDataBuilder;
-use Worldline\HostedCheckout\Service\Creator\Request\Order\ReferenceDataBuilder;
-use Worldline\HostedCheckout\Service\Creator\Request\Order\ShippingAddressDataBuilder;
-use Worldline\HostedCheckout\Service\Creator\Request\Order\ShoppingCartDataBuilder;
 
 class OrderDataBuilder
 {

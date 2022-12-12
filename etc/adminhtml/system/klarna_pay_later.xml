@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="redirect_payment_3302" translate="label" type="text" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Klarna Pay Later</label>
+        <depends>
+            <field id="active">1</field>
+        </depends>
+        <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
+            <label>Enable Payment</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+            <label>Title</label>
+            <validate>required-entry</validate>
+            <config_path>payment/worldline_redirect_payment_3302/title</config_path>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+        </field>
+        <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
+            <label>Sort</label>
+            <validate>validate-digits validate-zero-or-greater</validate>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+            <config_path>payment/worldline_redirect_payment_3302/sort_order</config_path>
+        </field>
+        <field id="allowspecific" translate="label" type="allowspecific" sortOrder="40" showInDefault="1" showInWebsite="1" canRestore="1">
+            <label>Payment from Applicable Countries</label>
+            <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+            <config_path>payment/worldline_redirect_payment_3302/allowspecific</config_path>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+        </field>
+        <field id="specificcountry" translate="label" type="multiselect" sortOrder="50" showInDefault="1" showInWebsite="1">
+            <label>Payment from Specific Countries</label>
+            <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+            <can_be_empty>1</can_be_empty>
+            <config_path>payment/worldline_redirect_payment_3302/specificcountry</config_path>
+            <depends>
+                <field id="active">1</field>
+                <field id="allowspecific">1</field>
+            </depends>
+        </field>
+        <field id="allow_specific_currency" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" canRestore="1">
+            <label>Payment from Applicable Currencies</label>
+            <source_model>Worldline\PaymentCore\Model\Config\Source\AllSpecificCurrencies</source_model>
+            <config_path>payment/worldline_redirect_payment_3302/allow_specific_currency</config_path>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+        </field>
+        <field id="currency" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1">
+            <label>Payment from Specific Currencies</label>
+            <source_model>Magento\Config\Model\Config\Source\Locale\Currency\All</source_model>
+            <can_be_empty>1</can_be_empty>
+            <config_path>payment/worldline_redirect_payment_3302/currency</config_path>
+            <depends>
+                <field id="active">1</field>
+                <field id="allow_specific_currency">1</field>
+            </depends>
+        </field>
+        <field id="min_order_total" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1">
+            <label>Minimum Order Total</label>
+            <validate>validate-number validate-zero-or-greater</validate>
+            <config_path>payment/worldline_redirect_payment_3302/min_order_total</config_path>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+        </field>
+        <field id="max_order_total" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1">
+            <label>Maximum Order Total</label>
+            <validate>validate-number validate-zero-or-greater</validate>
+            <config_path>payment/worldline_redirect_payment_3302/max_order_total</config_path>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+        </field>
+    </group>
+</include>

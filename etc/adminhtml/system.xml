@@ -32,43 +32,7 @@
                         <field id="vault">1</field>
                     </depends>
                 </field>
-                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="50" showInDefault="1" showInWebsite="1" canRestore="1">
-                    <label>Payment from Applicable Countries</label>
-                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
-                    <config_path>payment/worldline_redirect_payment/allowspecific</config_path>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                </field>
-                <field id="specificcountry" translate="label" type="multiselect" sortOrder="60" showInDefault="1" showInWebsite="1">
-                    <label>Payment from Specific Countries</label>
-                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
-                    <can_be_empty>1</can_be_empty>
-                    <depends>
-                        <field id="active">1</field>
-                        <field id="allowspecific">1</field>
-                    </depends>
-                    <config_path>payment/worldline_redirect_payment/specificcountry</config_path>
-                </field>
-                <field id="allow_specific_currency" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" canRestore="1">
-                    <label>Payment from Applicable Currencies</label>
-                    <source_model>Worldline\PaymentCore\Model\Config\Source\AllSpecificCurrencies</source_model>
-                    <config_path>payment/worldline_redirect_payment/allow_specific_currency</config_path>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                </field>
-                <field id="currency" translate="label" type="multiselect" sortOrder="80" showInDefault="1" canRestore="1">
-                    <label>Payment from Specific Currencies</label>
-                    <source_model>Magento\Config\Model\Config\Source\Locale\Currency\All</source_model>
-                    <validate>required-entry</validate>
-                    <depends>
-                        <field id="active">1</field>
-                        <field id="allow_specific_currency">1</field>
-                    </depends>
-                    <config_path>payment/worldline_redirect_payment/currency</config_path>
-                </field>
-                <field id="allow_specific_customer_group" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" canRestore="1">
+                <field id="allow_specific_customer_group" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" canRestore="1">
                     <label>Payment from Applicable Customer Groups</label>
                     <source_model>Worldline\PaymentCore\Model\Config\Source\AllSpecificCustomerGroups</source_model>
                     <config_path>payment/worldline_redirect_payment/allow_specific_customer_group</config_path>
@@ -76,7 +40,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="customer_group" translate="label" type="multiselect" sortOrder="100" showInDefault="1" showInWebsite="1">
+                <field id="customer_group" translate="label" type="multiselect" sortOrder="50" showInDefault="1" showInWebsite="1">
                     <label>Payment from Specific Customer Groups</label>
                     <source_model>Magento\Customer\Model\Customer\Source\GroupSourceInterface</source_model>
                     <validate>required-entry</validate>
@@ -86,7 +50,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/customer_group</config_path>
                 </field>
-                <field id="template_id" type="text" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="template_id" type="text" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>HTML Template ID</label>
                     <validate>validate-html-template-id</validate>
                     <config_path>payment/worldline_redirect_payment/template_id</config_path>
@@ -94,23 +58,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="min_order_total" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1">
-                    <label>Minimum Order Total</label>
-                    <validate>validate-number validate-zero-or-greater</validate>
-                    <config_path>payment/worldline_redirect_payment/min_order_total</config_path>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                </field>
-                <field id="max_order_total" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1">
-                    <label>Maximum Order Total</label>
-                    <validate>validate-number validate-zero-or-greater</validate>
-                    <config_path>payment/worldline_redirect_payment/max_order_total</config_path>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                </field>
-                <field id="debug" translate="label" type="select" sortOrder="140" showInDefault="1" showInWebsite="1">
+                <field id="debug" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1">
                     <label>Debug</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
@@ -118,7 +66,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/debug</config_path>
                 </field>
-                <field id="sort_order" type="text" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1">
+                <field id="sort_order" type="text" translate="label" sortOrder="80" showInDefault="1" showInWebsite="1">
                     <label>Sort</label>
                     <validate>validate-digits validate-zero-or-greater</validate>
                     <depends>
@@ -126,7 +74,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/sort_order</config_path>
                 </field>
-                <field id="payment_action" type="select" translate="label" sortOrder="160" showInDefault="1" showInWebsite="1">
+                <field id="payment_action" type="select" translate="label" sortOrder="90" showInDefault="1" showInWebsite="1">
                     <label>Payment Action</label>
                     <source_model>Worldline\PaymentCore\Model\Config\Source\PaymentActionOptions</source_model>
                     <depends>
@@ -134,7 +82,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/payment_action</config_path>
                 </field>
-                <field id="authorization_mode" type="select" translate="label" sortOrder="170" showInDefault="1" showInWebsite="1">
+                <field id="authorization_mode" type="select" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1">
                     <label>Authorization Mode</label>
                     <source_model>Worldline\PaymentCore\Model\Config\Source\AuthorizationModeOptions</source_model>
                     <depends>
@@ -143,7 +91,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/authorization_mode</config_path>
                 </field>
-                <field id="order_status" type="select" translate="label" sortOrder="180" showInDefault="1" showInWebsite="1">
+                <field id="order_status" type="select" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1">
                     <label>Default Order Status</label>
                     <source_model>Worldline\PaymentCore\Model\Config\Source\OrderStatusOptions</source_model>
                     <depends>
@@ -151,7 +99,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/order_status</config_path>
                 </field>
-                <field id="pwa_route" translate="label comment" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="pwa_route" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Custom Return URL</label>
                     <config_path>payment/worldline_redirect_payment/pwa_route</config_path>
                     <comment><![CDATA[Should be set only if you use PWA Studio or any other 3rd party frontend.]]></comment>
@@ -159,7 +107,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="cart_lines" translate="label tooltip" type="select" sortOrder="200" showInDefault="1" showInWebsite="1">
+                <field id="cart_lines" translate="label tooltip" type="select" sortOrder="130" showInDefault="1" showInWebsite="1">
                     <label>Submit Customer Cart Items Data to Worldline</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <config_path>payment/worldline_redirect_payment/cart_lines</config_path>
@@ -167,7 +115,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="skip_3d" translate="label tooltip" type="select" sortOrder="210" showInDefault="1" showInWebsite="1">
+                <field id="skip_3d" translate="label tooltip" type="select" sortOrder="140" showInDefault="1" showInWebsite="1">
                     <label>Skip 3DSecure Authentication</label>
                     <tooltip>This option should not be turned off if the merchant is based in a EU country</tooltip>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -176,734 +124,44 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <group id="redirect_payment_861" translate="label" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Alipay</label>
+                <field id="authentication_trigger" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1">
+                    <label>Trigger an authentication for every payment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/worldline_redirect_payment/authentication_trigger</config_path>
                     <depends>
                         <field id="active">1</field>
+                        <field id="skip_3d">0</field>
                     </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_861/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_861/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_2" translate="label" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>American Express</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_2/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_2/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_302" translate="label" type="text" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Apple Pay</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_302/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_302/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_3012" translate="label" type="text" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Bancontact</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_3012/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_3012/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_5001" translate="label" type="text" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Bizum</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_5001/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_5001/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_130" translate="label" type="text" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Carte Bancaire</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_130/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_130/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_5100" translate="label" type="text" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Cpay</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_5100/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_5100/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_132" translate="label" type="text" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Diners Club</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_132/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_132/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_320" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Google Pay</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_320/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_320/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_809" translate="label" type="text" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>iDEAL</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_809/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_809/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_3112" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Illicado</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_3112/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_3112/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_5700" translate="label" type="text" sortOrder="330" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Intersolve</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_5700/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_5700/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_125" translate="label" type="text" sortOrder="340" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>JCB</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_125/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_125/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_3301" translate="label" type="text" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Klarna Pay Now</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_3301/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_3301/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_3302" translate="label" type="text" sortOrder="360" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Klarna Pay Later</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_3302/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_3302/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_3303" translate="label" type="text" sortOrder="370" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Klarna Financing</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_3303/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_3303/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_3304" translate="label" type="text" sortOrder="380" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Klarna Bank Transfer</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_3304/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_3304/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_3305" translate="label" type="text" sortOrder="390" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Klarna Direct Debit</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_3305/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_3305/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_117" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Maestro</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_117/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_117/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_3" translate="label" type="text" sortOrder="410" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Mastercard</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_3/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_3/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_5402" translate="label" type="text" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Mealvouchers</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_5402/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_5402/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_5500" translate="label" type="text" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Multibanco</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_5500/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_5500/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_5110" translate="label" type="text" sortOrder="440" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Oney 3x-4x</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_5110/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_5110/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_5125" translate="label" type="text" sortOrder="450" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Oney Financement Long</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_5125/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_5125/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_840" translate="label" type="text" sortOrder="460" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Paypal</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_840/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_840/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_771" translate="label" type="text" sortOrder="470" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>SEPA Direct Debit</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_771/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_771/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_1" translate="label" type="text" sortOrder="480" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Visa</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_1/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_1/sort_order</config_path>
-                    </field>
-                </group>
-                <group id="redirect_payment_863" translate="label" type="text" sortOrder="490" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>WeChat Pay</label>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
-                        <label>Enable Payment</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    </field>
-                    <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                        <label>Title</label>
-                        <validate>required-entry</validate>
-                        <config_path>payment/worldline_redirect_payment_863/title</config_path>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                    </field>
-                    <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
-                        <label>Sort</label>
-                        <validate>validate-digits validate-zero-or-greater</validate>
-                        <depends>
-                            <field id="active">1</field>
-                        </depends>
-                        <config_path>payment/worldline_redirect_payment_863/sort_order</config_path>
-                    </field>
-                </group>
+                </field>
+                <include path="Worldline_RedirectPayment::system/alipay.xml"/>
+                <include path="Worldline_RedirectPayment::system/american_express.xml"/>
+                <include path="Worldline_RedirectPayment::system/apple_pay.xml"/>
+                <include path="Worldline_RedirectPayment::system/bancontact.xml"/>
+                <include path="Worldline_RedirectPayment::system/bizum.xml"/>
+                <include path="Worldline_RedirectPayment::system/carte_bancaire.xml"/>
+                <include path="Worldline_RedirectPayment::system/cpay.xml"/>
+                <include path="Worldline_RedirectPayment::system/diners_club.xml"/>
+                <include path="Worldline_RedirectPayment::system/google_pay.xml"/>
+                <include path="Worldline_RedirectPayment::system/ideal.xml"/>
+                <include path="Worldline_RedirectPayment::system/illicado.xml"/>
+                <include path="Worldline_RedirectPayment::system/intersolve.xml"/>
+                <include path="Worldline_RedirectPayment::system/jcb.xml"/>
+                <include path="Worldline_RedirectPayment::system/klarna_pay_now.xml"/>
+                <include path="Worldline_RedirectPayment::system/klarna_pay_later.xml"/>
+                <include path="Worldline_RedirectPayment::system/klarna_financing.xml"/>
+                <include path="Worldline_RedirectPayment::system/klarna_bank_transfer.xml"/>
+                <include path="Worldline_RedirectPayment::system/klarna_direct_debit.xml"/>
+                <include path="Worldline_RedirectPayment::system/maestro.xml"/>
+                <include path="Worldline_RedirectPayment::system/mastercard.xml"/>
+                <include path="Worldline_RedirectPayment::system/mealvouchers.xml"/>
+                <include path="Worldline_RedirectPayment::system/multibanco.xml"/>
+                <include path="Worldline_RedirectPayment::system/oney3x-4x.xml"/>
+                <include path="Worldline_RedirectPayment::system/oney_financement_long.xml"/>
+                <include path="Worldline_RedirectPayment::system/oneybrandedgiftcard.xml"/>
+                <include path="Worldline_RedirectPayment::system/paypal.xml"/>
+                <include path="Worldline_RedirectPayment::system/sepa_direct_debit.xml"/>
+                <include path="Worldline_RedirectPayment::system/visa.xml"/>
+                <include path="Worldline_RedirectPayment::system/wechat_pay.xml"/>
             </group>
         </section>
     </system>

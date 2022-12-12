@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\RedirectPayment\Service\Creator\Request;
+namespace Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest;
 
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\MobilePaymentMethodSpecificInput;
