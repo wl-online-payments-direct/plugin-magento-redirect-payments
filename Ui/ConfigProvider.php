@@ -1,14 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\RedirectPayment\UI;
+namespace Worldline\RedirectPayment\Ui;
 
-use Exception;
 use Magento\Checkout\Model\ConfigProviderInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
-use Worldline\PaymentCore\Model\Ui\PaymentIconsProvider;
+use Worldline\PaymentCore\Ui\PaymentIconsProvider;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Model\ResourceModel\PaymentProductsConfig;
 
@@ -40,79 +39,56 @@ class ConfigProvider implements ConfigProviderInterface
     /**
      * @var PaymentIconsProvider
      */
-    private $paymentIconsProvider;
+    private $iconProvider;
 
     public function __construct(
         LoggerInterface $logger,
         Config $config,
         StoreManagerInterface $storeManager,
         PaymentProductsConfig $paymentProductsConfig,
-        PaymentIconsProvider $paymentIconsProvider
+        PaymentIconsProvider $iconProvider
     ) {
         $this->logger = $logger;
         $this->config = $config;
         $this->storeManager = $storeManager;
         $this->paymentProductsConfig = $paymentProductsConfig;
-        $this->paymentIconsProvider = $paymentIconsProvider;
+        $this->iconProvider = $iconProvider;
     }
 
-    /**
-     * @return array
-     */
     public function getConfig(): array
     {
         try {
-            $paymentProducts = [];
             $store = $this->storeManager->getStore();
             $storeId = (int)$store->getId();
 
-            $isActive = $this->config->isActive($storeId);
-            if ($isActive) {
-                $scope = $store->getCode();
-                $websiteId = $scope === ScopeConfigInterface::SCOPE_TYPE_DEFAULT ? 0 : (int)$store->getWebsiteId();
-                $paymentProducts = $this->getSortedPaymentProducts($websiteId, $storeId);
+            if (!$this->config->isActive($storeId)) {
+                return [];
             }
 
             return [
-                'payment' => [
-                    self::CODE => [
-                        'payment_products' => $paymentProducts,
-                        'isActive' => $isActive,
-                        'vaultCode' => self::VAULT_CODE
-                    ]
-                ]
+                'payment' => $this->getActivePaymentProducts((int)$store->getWebsiteId(), $storeId)
             ];
-        } catch (Exception $e) {
+        } catch (NoSuchEntityException $e) {
             $this->logger->critical($e);
             return [];
         }
     }
 
-    private function getSortedPaymentProducts(int $websiteId, int $storeId): array
+    private function getActivePaymentProducts(int $websiteId, int $storeId): array
     {
         $payProducts = [];
         $activePayProductIds = $this->paymentProductsConfig->getActivePayProductIds($websiteId);
         foreach ($activePayProductIds as $payProductId) {
-            $icon = $this->paymentIconsProvider->getIconById($payProductId, $storeId);
-            if (empty($icon)) {
+            if (!$icon = $this->iconProvider->getIconById($payProductId, $storeId)) {
                 continue;
             }
 
-            $title = $this->config->getPaymentProductTitle($payProductId);
             $payProducts[self::CODE . '_' . $payProductId] = [
-                'sortOrder' => $this->config->getPaymentProductSortOrder($payProductId),
-                'config' => [
-                    'code' => self::CODE,
-                    'title' => $title,
-                    'payProduct' => $payProductId,
-                    'url' => $icon['url']
-                ],
+                'isActive' => true,
+                'vaultCode' => self::VAULT_CODE,
+                'icon' => $icon
             ];
         }
-
-        uasort($payProducts, function ($a, $b) {
-            return $a['sortOrder'] <=> $b['sortOrder'];
-        });
 
         return $payProducts;
     }

@@ -13,10 +13,10 @@ use Magento\Quote\Api\Data\PaymentInterface;
 use Magento\Quote\Model\QuoteIdMaskFactory;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Worldline\HostedCheckout\Gateway\Request\PaymentDataBuilder;
-use Worldline\RedirectPayment\Api\RedirectManagementInterface;
-use Worldline\HostedCheckout\Service\Creator\Request;
-use Worldline\RedirectPayment\Service\Creator\RequestBuilder;
+use Worldline\HostedCheckout\Service\HostedCheckout\CreateHostedCheckoutService;
 use Worldline\PaymentCore\Model\DataAssigner\DataAssignerInterface;
+use Worldline\RedirectPayment\Api\RedirectManagementInterface;
+use Worldline\RedirectPayment\Service\HostedCheckout\CreateHostedCheckoutRequestBuilder;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -31,12 +31,12 @@ class RedirectManagement implements RedirectManagementInterface
     private $cartRepository;
 
     /**
-     * @var Request
+     * @var CreateHostedCheckoutService
      */
     private $createRequest;
 
     /**
-     * @var RequestBuilder
+     * @var CreateHostedCheckoutRequestBuilder
      */
     private $createRequestBuilder;
 
@@ -62,8 +62,8 @@ class RedirectManagement implements RedirectManagementInterface
 
     public function __construct(
         CartRepositoryInterface $cartRepository,
-        Request $createRequest,
-        RequestBuilder $createRequestBuilder,
+        CreateHostedCheckoutService $createRequest,
+        CreateHostedCheckoutRequestBuilder $createRequestBuilder,
         QuoteIdMaskFactory $quoteIdMaskFactory,
         RequestInterface $request,
         PaymentInformationManagementInterface $paymentInformationManagement,
@@ -146,7 +146,7 @@ class RedirectManagement implements RedirectManagementInterface
         $this->setPaymentProductId($quote, $paymentMethod);
 
         $request = $this->createRequestBuilder->build($quote);
-        $response = $this->createRequest->create($request, (int)$quote->getStoreId());
+        $response = $this->createRequest->execute($request, (int)$quote->getStoreId());
         $payment->setAdditionalInformation('return_id', $response->getRETURNMAC());
         $payment->setAdditionalInformation(PaymentDataBuilder::HOSTED_CHECKOUT_ID, $response->getHostedCheckoutId());
 
@@ -168,9 +168,14 @@ class RedirectManagement implements RedirectManagementInterface
     private function setPaymentProductId(CartInterface $quote, PaymentInterface $paymentMethod): void
     {
         $payment = $quote->getPayment();
-        $payProductId = $paymentMethod->getAdditionalData()['selected_payment_product'] ?? false;
-        if ($payProductId) {
-            $payment->setAdditionalInformation(self::PAYMENT_PRODUCT_ID, (int)$payProductId);
-        }
+        $methodName = $paymentMethod->getMethod();
+        $payment->setAdditionalInformation(self::PAYMENT_PRODUCT_ID, $this->extractProductId($methodName));
+    }
+
+    private function extractProductId(string $paymentMethod): int
+    {
+        $offset = strrpos($paymentMethod, '_') + 1;
+
+        return (int)substr($paymentMethod, $offset);
     }
 }

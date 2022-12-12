@@ -5,7 +5,6 @@ namespace Worldline\RedirectPayment\Vault;
 
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\ObjectManagerInterface;
-use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Payment\Gateway\Command;
 use Magento\Payment\Gateway\Config\ValueHandlerPoolInterface;
 use Magento\Payment\Gateway\ConfigFactoryInterface;
@@ -16,7 +15,7 @@ use Magento\Sales\Api\Data\OrderPaymentExtensionInterfaceFactory;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use Magento\Vault\Model\Method\Vault as MagentoVault;
 use Worldline\PaymentCore\Model\VaultValidation;
-use Worldline\RedirectPayment\UI\ConfigProvider;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
 
 /**
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)
@@ -40,8 +39,7 @@ class Vault extends MagentoVault
         PaymentTokenManagementInterface $tokenManagement,
         OrderPaymentExtensionInterfaceFactory $paymentExtensionFactory,
         VaultValidation $vaultValidation,
-        string $code,
-        Json $jsonSerializer = null
+        string $code
     ) {
         parent::__construct(
             $config,
@@ -53,8 +51,7 @@ class Vault extends MagentoVault
             $commandManagerPool,
             $tokenManagement,
             $paymentExtensionFactory,
-            $code,
-            $jsonSerializer
+            $code
         );
         $this->vaultValidation = $vaultValidation;
     }
@@ -73,7 +70,8 @@ class Vault extends MagentoVault
             return false;
         }
 
-        if (!$this->vaultValidation->customerHasTokensValidation($quote, ConfigProvider::CODE)) {
+        $paymentCode = str_replace('_vault', '', $this->getCode());
+        if (!$this->vaultValidation->customerHasTokensValidation($quote, $paymentCode)) {
             return false;
         }
 

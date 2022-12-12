@@ -7,7 +7,7 @@ use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Framework\Serialize\Serializer\Json;
-use Worldline\PaymentCore\Model\Ui\PaymentProductsProvider;
+use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 
 class PaymentProductIds implements ResolverInterface
 {
@@ -32,7 +32,7 @@ class PaymentProductIds implements ResolverInterface
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null): array
     {
-        $payProductIds = array_keys(PaymentProductsProvider::PAYMENT_PRODUCTS);
+        $payProductIds = array_keys(PaymentProductsDetailsInterface::PAYMENT_PRODUCTS);
 
         return [
             'product_ids' => $this->jsonSerializer->serialize($payProductIds)

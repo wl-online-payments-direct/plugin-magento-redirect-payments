@@ -22,6 +22,7 @@ class Config extends PaymentGatewayConfig
     public const PWA_ROUTE = 'pwa_route';
     public const KEY_CART_LINES = 'cart_lines';
     public const SKIP_3D = 'skip_3d';
+    public const AUTHENTICATION_TRIGGER = 'authentication_trigger';
 
     public const TITLE = "title";
     public const SORT = "sort_order";
@@ -108,5 +109,10 @@ class Config extends PaymentGatewayConfig
     public function hasSkipAuthentication(?int $storeId = null): bool
     {
         return (bool) $this->getValue(self::SKIP_3D, $storeId);
+    }
+
+    public function isTriggerAnAuthentication(?int $storeId = null): bool
+    {
+        return (bool) $this->getValue(self::AUTHENTICATION_TRIGGER, $storeId);
     }
 }

@@ -4,7 +4,7 @@
     <type name="Magento\Checkout\Model\CompositeConfigProvider">
         <arguments>
             <argument name="configProviders" xsi:type="array">
-                <item name="worldline_redirect_payment_config_provider" xsi:type="object">Worldline\RedirectPayment\UI\ConfigProvider</item>
+                <item name="worldline_redirect_payment_config_provider" xsi:type="object">Worldline\RedirectPayment\Ui\ConfigProvider</item>
             </argument>
         </arguments>
     </type>
@@ -12,7 +12,15 @@
     <type name="Magento\Vault\Model\Ui\TokensConfigProvider">
         <arguments>
             <argument name="tokenUiComponentProviders" xsi:type="array">
-                <item name="worldline_redirect_payment" xsi:type="object">Worldline\RedirectPayment\UI\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_1" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_2" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_3" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_117" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_125" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_130" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_132" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_3012" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
             </argument>
         </arguments>
     </type>

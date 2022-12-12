@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Worldline\RedirectPayment\Service\Creator;
+namespace Worldline\RedirectPayment\Service\HostedCheckout;
 
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequest;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequestFactory;
-use Worldline\PaymentCore\Model\Ui\PaymentProductsProvider;
-use Worldline\RedirectPayment\Service\Creator\Request\CardPaymentMethodSpecificInputDataBuilder;
-use Worldline\RedirectPayment\Service\Creator\Request\MobilePaymentMethodSpecificInputDataBuilder;
-use Worldline\RedirectPayment\Service\Creator\Request\OrderDataBuilder;
-use Worldline\RedirectPayment\Service\Creator\Request\RedirectPaymentMethodSpecificInputDataBuilder;
-use Worldline\RedirectPayment\Service\Creator\Request\SpecificInputDataBuilder;
+use Worldline\PaymentCore\Ui\PaymentProductsProvider;
+use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\CardPaymentMethodSpecificInputDataBuilder;
+use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\MobilePaymentMethodSpecificInputDataBuilder;
+use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
+use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\RedirectPaymentMethodSpecificInputDataBuilder;
+use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
-class RequestBuilder
+class CreateHostedCheckoutRequestBuilder
 {
     /**
      * @var CreateHostedCheckoutRequestFactory
