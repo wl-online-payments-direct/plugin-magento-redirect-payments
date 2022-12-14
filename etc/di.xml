@@ -349,6 +349,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerVisa\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerVisa\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerVisa\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerVisa\Virtual</item>
             </argument>
@@ -402,6 +403,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerAmericanExpress\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerAmericanExpress\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerAmericanExpress\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerAmericanExpress\Virtual</item>
             </argument>
@@ -455,6 +457,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMastercard\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMastercard\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMastercard\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMastercard\Virtual</item>
             </argument>
@@ -508,6 +511,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMaestro\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMaestro\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMaestro\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMaestro\Virtual</item>
             </argument>
@@ -561,6 +565,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerJCB\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerJCB\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerJCB\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerJCB\Virtual</item>
             </argument>
@@ -614,6 +619,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerCarteBancaire\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerCarteBancaire\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerCarteBancaire\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerCarteBancaire\Virtual</item>
             </argument>
@@ -667,6 +673,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerDinersClub\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerDinersClub\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerDinersClub\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerDinersClub\Virtual</item>
             </argument>
@@ -720,6 +727,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerApplePay\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerApplePay\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerApplePay\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerApplePay\Virtual</item>
             </argument>
@@ -767,6 +775,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerGooglePay\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerGooglePay\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerGooglePay\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerGooglePay\Virtual</item>
             </argument>
@@ -814,6 +823,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerSepaDirectDebit\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerSepaDirectDebit\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerSepaDirectDebit\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerSepaDirectDebit\Virtual</item>
             </argument>
@@ -861,6 +871,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandleriDEAL\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandleriDEAL\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandleriDEAL\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandleriDEAL\Virtual</item>
             </argument>
@@ -908,6 +919,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPaypal\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPaypal\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPaypal\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPaypal\Virtual</item>
             </argument>
@@ -955,6 +967,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerAlipay\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerAlipay\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerAlipay\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerAlipay\Virtual</item>
             </argument>
@@ -1002,6 +1015,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerWeChatPay\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerWeChatPay\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerWeChatPay\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerWeChatPay\Virtual</item>
             </argument>
@@ -1049,6 +1063,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBancontact\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBancontact\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBancontact\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBancontact\Virtual</item>
             </argument>
@@ -1102,6 +1117,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerIllicado\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerIllicado\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerIllicado\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerIllicado\Virtual</item>
             </argument>
@@ -1149,6 +1165,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaPayNow\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaPayNow\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaPayNow\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaPayNow\Virtual</item>
             </argument>
@@ -1196,6 +1213,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaPayLater\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaPayLater\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaPayLater\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaPayLater\Virtual</item>
             </argument>
@@ -1243,6 +1261,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaFinancing\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaFinancing\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaFinancing\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaFinancing\Virtual</item>
             </argument>
@@ -1290,6 +1309,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaBankTransfer\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaBankTransfer\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaBankTransfer\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaBankTransfer\Virtual</item>
             </argument>
@@ -1337,6 +1357,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaDirectDebit\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaDirectDebit\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaDirectDebit\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerKlarnaDirectDebit\Virtual</item>
             </argument>
@@ -1384,6 +1405,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBizum\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBizum\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBizum\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBizum\Virtual</item>
             </argument>
@@ -1431,6 +1453,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerCpay\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerCpay\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerCpay\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerCpay\Virtual</item>
             </argument>
@@ -1478,6 +1501,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOney3x4x\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOney3x4x\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOney3x4x\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOney3x4x\Virtual</item>
             </argument>
@@ -1525,6 +1549,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOneyFinancementLong\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOneyFinancementLong\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOneyFinancementLong\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOneyFinancementLong\Virtual</item>
             </argument>
@@ -1572,6 +1597,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMealvouchers\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMealvouchers\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMealvouchers\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMealvouchers\Virtual</item>
             </argument>
@@ -1619,6 +1645,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMultibanco\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMultibanco\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMultibanco\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerMultibanco\Virtual</item>
             </argument>
@@ -1666,6 +1693,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOneyBrandedGiftCard\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOneyBrandedGiftCard\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOneyBrandedGiftCard\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerOneyBrandedGiftCard\Virtual</item>
             </argument>
@@ -1713,6 +1741,7 @@
         <arguments>
             <argument name="handlers" xsi:type="array">
                 <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerIntersolve\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerIntersolve\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerIntersolve\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerIntersolve\Virtual</item>
             </argument>

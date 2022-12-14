@@ -1,6 +1,5 @@
 "Required parameter ""code"" for ""payment_method"" is missing.","Required parameter ""code"" for ""payment_method"" is missing."
 "No public_hash provided","No public_hash provided"
-"""model"" value should be specified","""model"" value should be specified"
 "Required parameter ""cart_id"" is missing.","Required parameter ""cart_id"" is missing."
 "Place Order","Place Order"
 "Redirect Payment","Redirect Payment"
@@ -11,7 +10,6 @@
 "Payment from Specific Customer Groups","Payment from Specific Customer Groups"
 "HTML Template ID","HTML Template ID"
 Debug,Debug
-Sort,Sort
 "Payment Action","Payment Action"
 "Authorization Mode","Authorization Mode"
 "Default Order Status","Default Order Status"
@@ -23,6 +21,7 @@ Sort,Sort
 "Trigger an authentication for every payment","Trigger an authentication for every payment"
 Alipay,Alipay
 Title,Title
+Sort,Sort
 "Payment from Applicable Countries","Payment from Applicable Countries"
 "Payment from Specific Countries","Payment from Specific Countries"
 "Payment from Applicable Currencies","Payment from Applicable Currencies"

@@ -4,6 +4,10 @@
 
 Change log:
 
+1.3.1
+- Bug fixes
+- GraphQl improvements and support
+
 1.3.0
 - Improve configuration settings
 - Option added to enforce Strong Customer Authentication for every 3DS request

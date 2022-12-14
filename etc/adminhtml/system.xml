@@ -66,15 +66,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/debug</config_path>
                 </field>
-                <field id="sort_order" type="text" translate="label" sortOrder="80" showInDefault="1" showInWebsite="1">
-                    <label>Sort</label>
-                    <validate>validate-digits validate-zero-or-greater</validate>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                    <config_path>payment/worldline_redirect_payment/sort_order</config_path>
-                </field>
-                <field id="payment_action" type="select" translate="label" sortOrder="90" showInDefault="1" showInWebsite="1">
+                <field id="payment_action" type="select" translate="label" sortOrder="80" showInDefault="1" showInWebsite="1">
                     <label>Payment Action</label>
                     <source_model>Worldline\PaymentCore\Model\Config\Source\PaymentActionOptions</source_model>
                     <depends>
@@ -82,7 +74,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/payment_action</config_path>
                 </field>
-                <field id="authorization_mode" type="select" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1">
+                <field id="authorization_mode" type="select" translate="label" sortOrder="90" showInDefault="1" showInWebsite="1">
                     <label>Authorization Mode</label>
                     <source_model>Worldline\PaymentCore\Model\Config\Source\AuthorizationModeOptions</source_model>
                     <depends>
@@ -91,7 +83,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/authorization_mode</config_path>
                 </field>
-                <field id="order_status" type="select" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1">
+                <field id="order_status" type="select" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1">
                     <label>Default Order Status</label>
                     <source_model>Worldline\PaymentCore\Model\Config\Source\OrderStatusOptions</source_model>
                     <depends>
@@ -99,7 +91,7 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/order_status</config_path>
                 </field>
-                <field id="pwa_route" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="pwa_route" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Custom Return URL</label>
                     <config_path>payment/worldline_redirect_payment/pwa_route</config_path>
                     <comment><![CDATA[Should be set only if you use PWA Studio or any other 3rd party frontend.]]></comment>
@@ -107,7 +99,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="cart_lines" translate="label tooltip" type="select" sortOrder="130" showInDefault="1" showInWebsite="1">
+                <field id="cart_lines" translate="label tooltip" type="select" sortOrder="120" showInDefault="1" showInWebsite="1">
                     <label>Submit Customer Cart Items Data to Worldline</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <config_path>payment/worldline_redirect_payment/cart_lines</config_path>
@@ -115,7 +107,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="skip_3d" translate="label tooltip" type="select" sortOrder="140" showInDefault="1" showInWebsite="1">
+                <field id="skip_3d" translate="label tooltip" type="select" sortOrder="130" showInDefault="1" showInWebsite="1">
                     <label>Skip 3DSecure Authentication</label>
                     <tooltip>This option should not be turned off if the merchant is based in a EU country</tooltip>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -124,7 +116,7 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
-                <field id="authentication_trigger" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1">
+                <field id="authentication_trigger" translate="label" type="select" sortOrder="140" showInDefault="1" showInWebsite="1">
                     <label>Trigger an authentication for every payment</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <config_path>payment/worldline_redirect_payment/authentication_trigger</config_path>
