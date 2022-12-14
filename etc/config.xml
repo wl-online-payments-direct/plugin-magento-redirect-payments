@@ -10,7 +10,6 @@
                 <title>Pay with Worldline Online Payments (Select Solution)</title>
                 <allow_specific_customer_group>0</allow_specific_customer_group>
                 <debug>0</debug>
-                <sort_order>30</sort_order>
                 <payment_action>authorize_capture</payment_action>
                 <is_gateway>1</is_gateway>
                 <can_use_checkout>1</can_use_checkout>

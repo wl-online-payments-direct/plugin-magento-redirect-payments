@@ -8,6 +8,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\State;
 use Magento\Framework\UrlInterface;
 use Magento\Payment\Gateway\Config\Config as PaymentGatewayConfig;
+use Magento\Store\Model\ScopeInterface;
 
 class Config extends PaymentGatewayConfig
 {
@@ -27,6 +28,7 @@ class Config extends PaymentGatewayConfig
     public const TITLE = "title";
     public const SORT = "sort_order";
     public const REDIRECT_PAYMENT_PATH = "payment/worldline_redirect_payment_";
+    public const REDIRECT_PAYMENT_PRODUCT_PATH = "worldline_payment/redirect_payment/redirect_payment_";
 
     /**
      * @var UrlInterface
@@ -91,14 +93,31 @@ class Config extends PaymentGatewayConfig
         return $this->urlBuilder->getUrl('wl_hostedcheckout/returns/returnUrl');
     }
 
-    public function getPaymentProductTitle(int $payProductId): string
+    public function isPaymentProductActive(int $payProductId, ?int $storeId = null): bool
     {
-        return (string)$this->scopeConfig->getValue(self::REDIRECT_PAYMENT_PATH . $payProductId . '/' . self::TITLE);
+        return (bool)$this->scopeConfig->isSetFlag(
+            self::REDIRECT_PAYMENT_PRODUCT_PATH . $payProductId . '/' . self::KEY_ACTIVE,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
     }
 
-    public function getPaymentProductSortOrder(int $payProductId): int
+    public function getPaymentProductTitle(int $payProductId, ?int $storeId = null): string
     {
-        return (int)$this->scopeConfig->getValue(self::REDIRECT_PAYMENT_PATH . $payProductId . '/' . self::SORT);
+        return (string)$this->scopeConfig->getValue(
+            self::REDIRECT_PAYMENT_PATH . $payProductId . '/' . self::TITLE,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
+    }
+
+    public function getPaymentProductSortOrder(int $payProductId, ?int $storeId = null): int
+    {
+        return (int)$this->scopeConfig->getValue(
+            self::REDIRECT_PAYMENT_PATH . $payProductId . '/' . self::SORT,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
     }
 
     public function isCartLines(?int $storeId = null): bool
