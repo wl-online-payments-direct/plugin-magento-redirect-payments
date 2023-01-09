@@ -18,7 +18,10 @@ Debug,Debug
 "Submit Customer Cart Items Data to Worldline","Submit Customer Cart Items Data to Worldline"
 "Skip 3DSecure Authentication","Skip 3DSecure Authentication"
 "This option should not be turned off if the merchant is based in a EU country","This option should not be turned off if the merchant is based in a EU country"
-"Trigger an authentication for every payment","Trigger an authentication for every payment"
+"Trigger an Authentication for Every Payment","Trigger an Authentication for Every Payment"
+"Enabling this option will make sure the customer performs a “Strong Customer Authentication” and hence enforces a “challenge” 3DS flow.","Enabling this option will make sure the customer performs a “Strong Customer Authentication” and hence enforces a “challenge” 3DS flow."
+"Request 3DS Exemption","Request 3DS Exemption"
+"If the setting is enabled and the sum of the order is below 30 euros, the customer won’t be asked to go through 3DS auth.","If the setting is enabled and the sum of the order is below 30 euros, the customer won’t be asked to go through 3DS auth."
 Alipay,Alipay
 Title,Title
 Sort,Sort

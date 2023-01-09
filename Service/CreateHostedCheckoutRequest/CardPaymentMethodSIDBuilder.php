@@ -9,15 +9,12 @@ use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInput;
 use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputFactory;
-use OnlinePayments\Sdk\Domain\RedirectionData;
-use OnlinePayments\Sdk\Domain\RedirectionDataFactory;
-use OnlinePayments\Sdk\Domain\ThreeDSecure;
-use OnlinePayments\Sdk\Domain\ThreeDSecureFactory;
+use Worldline\PaymentCore\Service\CreateRequest\ThreeDSecureDataBuilder;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
-class CardPaymentMethodSpecificInputDataBuilder
+class CardPaymentMethodSIDBuilder
 {
     /**
      * @var Config
@@ -35,34 +32,34 @@ class CardPaymentMethodSpecificInputDataBuilder
     private $paymentTokenManagement;
 
     /**
-     * @var ThreeDSecureFactory
-     */
-    private $threeDSecureFactory;
-
-    /**
-     * @var RedirectionDataFactory
-     */
-    private $redirectionDataFactory;
-
-    /**
      * @var ManagerInterface
      */
     private $eventManager;
+
+    /**
+     * @var ThreeDSecureDataBuilder
+     */
+    private $threeDSecureDataBuilder;
+
+    /**
+     * @var int[]
+     */
+    private $alwaysSaleProductIds;
 
     public function __construct(
         Config $config,
         CardPaymentMethodSpecificInputFactory $cardPaymentMethodSpecificInputFactory,
         PaymentTokenManagementInterface $paymentTokenManagement,
-        ThreeDSecureFactory $threeDSecureFactory,
-        RedirectionDataFactory $redirectionDataFactory,
-        ManagerInterface $eventManager
+        ManagerInterface $eventManager,
+        ThreeDSecureDataBuilder $threeDSecureDataBuilder,
+        array $alwaysSaleProductIds = []
     ) {
         $this->config = $config;
         $this->cardPaymentMethodSpecificInputFactory = $cardPaymentMethodSpecificInputFactory;
         $this->paymentTokenManagement = $paymentTokenManagement;
-        $this->threeDSecureFactory = $threeDSecureFactory;
-        $this->redirectionDataFactory = $redirectionDataFactory;
         $this->eventManager = $eventManager;
+        $this->threeDSecureDataBuilder = $threeDSecureDataBuilder;
+        $this->alwaysSaleProductIds = $alwaysSaleProductIds;
     }
 
     public function build(CartInterface $quote): CardPaymentMethodSpecificInput
@@ -70,14 +67,17 @@ class CardPaymentMethodSpecificInputDataBuilder
         $storeId = (int)$quote->getStoreId();
         /** @var CardPaymentMethodSpecificInput $cardPaymentMethodSpecificInput */
         $cardPaymentMethodSpecificInput = $this->cardPaymentMethodSpecificInputFactory->create();
-        $cardPaymentMethodSpecificInput->setAuthorizationMode($this->config->getAuthorizationMode($storeId));
-
-        $cardPaymentMethodSpecificInput->setThreeDSecure($this->getThreeDSecure($storeId));
 
         $payProductId = $quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
         if ($payProductId) {
             $cardPaymentMethodSpecificInput->setPaymentProductId((int)$payProductId);
         }
+
+        $cardPaymentMethodSpecificInput->setAuthorizationMode(
+            $this->getAuthorizationMode((int) $payProductId, $storeId)
+        );
+
+        $cardPaymentMethodSpecificInput->setThreeDSecure($this->threeDSecureDataBuilder->build($quote));
 
         if ($token = $this->getToken($quote)) {
             $cardPaymentMethodSpecificInput->setToken($token);
@@ -89,21 +89,13 @@ class CardPaymentMethodSpecificInputDataBuilder
         return $cardPaymentMethodSpecificInput;
     }
 
-    private function getThreeDSecure(int $storeId): ThreeDSecure
+    private function getAuthorizationMode(int $payProductId, int $storeId): string
     {
-        /** @var ThreeDSecure $threeDSecure */
-        $threeDSecure = $this->threeDSecureFactory->create();
-        $isSkipAuthentication = $this->config->hasSkipAuthentication($storeId);
-        $threeDSecure->setSkipAuthentication($isSkipAuthentication);
-        if (!$isSkipAuthentication && $this->config->isTriggerAnAuthentication($storeId)) {
-            $threeDSecure->setChallengeIndicator('challenge-required');
+        if (in_array($payProductId, $this->alwaysSaleProductIds)) {
+            return Config::AUTHORIZATION_MODE_SALE;
         }
-        /** @var RedirectionData $redirectionData */
-        $redirectionData = $this->redirectionDataFactory->create();
-        $redirectionData->setReturnUrl($this->config->getReturnUrl());
-        $threeDSecure->setRedirectionData($redirectionData);
 
-        return $threeDSecure;
+        return $this->config->getAuthorizationMode($storeId);
     }
 
     private function getToken(CartInterface $quote): ?string

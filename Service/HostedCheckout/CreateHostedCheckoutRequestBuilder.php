@@ -7,10 +7,10 @@ namespace Worldline\RedirectPayment\Service\HostedCheckout;
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequest;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequestFactory;
+use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
 use Worldline\PaymentCore\Ui\PaymentProductsProvider;
-use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\CardPaymentMethodSpecificInputDataBuilder;
+use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\CardPaymentMethodSIDBuilder;
 use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\MobilePaymentMethodSpecificInputDataBuilder;
-use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
 use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\RedirectPaymentMethodSpecificInputDataBuilder;
 use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
@@ -43,9 +43,9 @@ class CreateHostedCheckoutRequestBuilder
     private $redirectPaymentMethodSpecificInputDataBuilder;
 
     /**
-     * @var CardPaymentMethodSpecificInputDataBuilder
+     * @var CardPaymentMethodSIDBuilder
      */
-    private $cardPaymentMethodSpecificInputDataBuilder;
+    private $cardPaymentMethodSIDBuilder;
 
     /**
      * @var MobilePaymentMethodSpecificInputDataBuilder
@@ -58,15 +58,15 @@ class CreateHostedCheckoutRequestBuilder
         PaymentProductsProvider $payProductsProvider,
         SpecificInputDataBuilder $specificInputDataBuilder,
         RedirectPaymentMethodSpecificInputDataBuilder $redirectPaymentMethodSpecificInputDataBuilder,
-        CardPaymentMethodSpecificInputDataBuilder $cardPaymentMethodSpecificInputDataBuilder,
-        CardPaymentMethodSpecificInputDataBuilder $mobilePaymentMethodSpecificInputDataBuilder
+        CardPaymentMethodSIDBuilder $cardPaymentMethodSIDBuilder,
+        MobilePaymentMethodSpecificInputDataBuilder $mobilePaymentMethodSpecificInputDataBuilder
     ) {
         $this->createHostedCheckoutRequestFactory = $createHostedCheckoutRequestFactory;
         $this->orderDataBuilder = $orderDataBuilder;
         $this->payProductsProvider = $payProductsProvider;
         $this->specificInputDataBuilder = $specificInputDataBuilder;
         $this->redirectPaymentMethodSpecificInputDataBuilder = $redirectPaymentMethodSpecificInputDataBuilder;
-        $this->cardPaymentMethodSpecificInputDataBuilder = $cardPaymentMethodSpecificInputDataBuilder;
+        $this->cardPaymentMethodSIDBuilder = $cardPaymentMethodSIDBuilder;
         $this->mobilePaymentMethodSpecificInputDataBuilder = $mobilePaymentMethodSpecificInputDataBuilder;
     }
 
@@ -94,7 +94,7 @@ class CreateHostedCheckoutRequestBuilder
 
         if ($payMethod == null || $payMethod === 'card') {
             $createHostedCheckoutRequest->setCardPaymentMethodSpecificInput(
-                $this->cardPaymentMethodSpecificInputDataBuilder->build($quote)
+                $this->cardPaymentMethodSIDBuilder->build($quote)
             );
         }
 

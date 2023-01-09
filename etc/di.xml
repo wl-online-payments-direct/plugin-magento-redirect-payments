@@ -27,20 +27,47 @@
         </arguments>
     </type>
 
-    <type name="Worldline\PaymentCore\Model\PaymentStatusCode\StatusCodePool">
-        <arguments>
-            <argument name="statusCodeRetrievers" xsi:type="array">
-                <item name="worldline_redirect_payment" xsi:type="object">Worldline\HostedCheckout\Model\StatusCodeRetriever</item>
-                <item name="worldline_redirect_payment_vault" xsi:type="object">Worldline\HostedCheckout\Model\StatusCodeRetriever</item>
-            </argument>
-        </arguments>
-    </type>
-
     <type name="Worldline\PaymentCore\Model\ResourceModel\PendingOrderProvider">
         <arguments>
             <argument name="allowedPaymentMethods" xsi:type="array">
                 <item name="worldline_redirect_payment" xsi:type="const">Worldline\RedirectPayment\Ui\ConfigProvider::CODE</item>
                 <item name="worldline_redirect_payment_vault" xsi:type="const">Worldline\RedirectPayment\Ui\ConfigProvider::VAULT_CODE</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Worldline\HostedCheckout\Observer\StorePayment">
+        <arguments>
+            <argument name="paymentMethods" xsi:type="array">
+                <item name="redirect_payments" xsi:type="const">Worldline\RedirectPayment\Ui\ConfigProvider::CODE</item>
+                <item name="redirect_payments_vault" xsi:type="const">Worldline\RedirectPayment\Ui\ConfigProvider::VAULT_CODE</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\CardPaymentMethodSpecificInputDataBuilder">
+        <arguments>
+            <argument name="alwaysSaleProductIds" xsi:type="array">
+                <item name="bancontact" xsi:type="const">Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface::BANCONTACT_PRODUCT_ID</item>
+                <item name="intersolve" xsi:type="const">Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface::INTERSOLVE_PRODUCT_ID</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="worldline_redirect_payment" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\Config</item>
+                <item name="worldline_redirect_payment_vault" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\Config</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Worldline\PaymentCore\Service\CreateRequest\ThreeDSecureDataBuilder">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="worldline_redirect_payment" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\Config</item>
+                <item name="worldline_redirect_payment_vault" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\Config</item>
             </argument>
         </arguments>
     </type>
