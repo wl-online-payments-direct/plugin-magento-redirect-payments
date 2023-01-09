@@ -67,13 +67,11 @@ class ConfigProvider implements ConfigProviderInterface
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     */
     private function getActivePaymentProducts(int $storeId): array
     {
         $payProducts = [];
-        foreach (PaymentProductsDetailsInterface::PAYMENT_PRODUCTS as $payProductId => $payProductDetails) {
+        $paymentProductIds = array_keys(PaymentProductsDetailsInterface::PAYMENT_PRODUCTS);
+        foreach ($paymentProductIds as $payProductId) {
             if (!$this->config->isPaymentProductActive($payProductId, $storeId)
                 || !$this->iconProvider->getIconById($payProductId, $storeId)
             ) {

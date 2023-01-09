@@ -24,6 +24,7 @@ class Config extends PaymentGatewayConfig
     public const KEY_CART_LINES = 'cart_lines';
     public const SKIP_3D = 'skip_3d';
     public const AUTHENTICATION_TRIGGER = 'authentication_trigger';
+    public const THREE_D_EXEMPTION = '3d_exemption';
 
     public const TITLE = "title";
     public const SORT = "sort_order";
@@ -133,5 +134,10 @@ class Config extends PaymentGatewayConfig
     public function isTriggerAnAuthentication(?int $storeId = null): bool
     {
         return (bool) $this->getValue(self::AUTHENTICATION_TRIGGER, $storeId);
+    }
+
+    public function isThreeDExemptionEnabled(?int $storeId = null): bool
+    {
+        return (bool) $this->getValue(self::THREE_D_EXEMPTION, $storeId);
     }
 }

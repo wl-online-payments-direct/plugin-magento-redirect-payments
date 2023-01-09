@@ -4,6 +4,10 @@
 
 Change log:
 
+1.4.0
+- Add a feature to request 3DS exemption for transactions below 30 EUR.
+- General code improvements and bug fixes.
+
 1.3.1
 - Bug fixes
 - GraphQl improvements and support
