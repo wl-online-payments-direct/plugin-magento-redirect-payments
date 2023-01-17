@@ -14,8 +14,22 @@
     <type name="Magento\QuoteGraphQl\Model\Cart\Payment\AdditionalDataProviderPool">
         <arguments>
             <argument name="dataProviders" xsi:type="array">
-                <item name="worldline_redirect_payment" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\AdditionalDataProvider</item>
-                <item name="worldline_redirect_payment_vault" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\VaultDataProvider</item>
+                <item name="worldline_redirect_payment_1" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\AdditionalDataProvider</item>
+                <item name="worldline_redirect_payment_2" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\AdditionalDataProvider</item>
+                <item name="worldline_redirect_payment_3" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\AdditionalDataProvider</item>
+                <item name="worldline_redirect_payment_117" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\AdditionalDataProvider</item>
+                <item name="worldline_redirect_payment_125" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\AdditionalDataProvider</item>
+                <item name="worldline_redirect_payment_130" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\AdditionalDataProvider</item>
+                <item name="worldline_redirect_payment_132" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\AdditionalDataProvider</item>
+                <item name="worldline_redirect_payment_3012" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\AdditionalDataProvider</item>
+                <item name="worldline_redirect_payment_1_vault" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\VaultDataProvider</item>
+                <item name="worldline_redirect_payment_2_vault" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\VaultDataProvider</item>
+                <item name="worldline_redirect_payment_3_vault" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\VaultDataProvider</item>
+                <item name="worldline_redirect_payment_117_vault" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\VaultDataProvider</item>
+                <item name="worldline_redirect_payment_125_vault" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\VaultDataProvider</item>
+                <item name="worldline_redirect_payment_130_vault" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\VaultDataProvider</item>
+                <item name="worldline_redirect_payment_132_vault" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\VaultDataProvider</item>
+                <item name="worldline_redirect_payment_3012_vault" xsi:type="object">Worldline\RedirectPayment\GraphQl\Model\VaultDataProvider</item>
             </argument>
         </arguments>
     </type>
