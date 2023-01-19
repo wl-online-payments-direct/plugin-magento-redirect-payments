@@ -6,11 +6,14 @@
         <depends>
             <field id="active">1</field>
         </depends>
-        <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
+        <field id="global_notification" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+            <frontend_model>Worldline\RedirectPayment\Block\Adminhtml\System\Config\MealvouchersGlobalNotification</frontend_model>
+        </field>
+        <field id="active" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1">
             <label>Enable Payment</label>
             <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
         </field>
-        <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+        <field id="title" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <label>Title</label>
             <validate>required-entry</validate>
             <config_path>payment/worldline_redirect_payment_5402/title</config_path>
@@ -18,7 +21,7 @@
                 <field id="active">1</field>
             </depends>
         </field>
-        <field id="sort_order" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
+        <field id="sort_order" type="text" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1">
             <label>Sort</label>
             <validate>validate-digits validate-zero-or-greater</validate>
             <depends>
@@ -26,7 +29,7 @@
             </depends>
             <config_path>payment/worldline_redirect_payment_5402/sort_order</config_path>
         </field>
-        <field id="allowspecific" translate="label" type="allowspecific" sortOrder="40" showInDefault="1" showInWebsite="1" canRestore="1">
+        <field id="allowspecific" translate="label" type="allowspecific" sortOrder="50" showInDefault="1" showInWebsite="1" canRestore="1">
             <label>Payment from Applicable Countries</label>
             <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
             <config_path>payment/worldline_redirect_payment_5402/allowspecific</config_path>
@@ -34,7 +37,7 @@
                 <field id="active">1</field>
             </depends>
         </field>
-        <field id="specificcountry" translate="label" type="multiselect" sortOrder="50" showInDefault="1" showInWebsite="1">
+        <field id="specificcountry" translate="label" type="multiselect" sortOrder="60" showInDefault="1" showInWebsite="1">
             <label>Payment from Specific Countries</label>
             <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
             <can_be_empty>1</can_be_empty>
@@ -44,7 +47,7 @@
                 <field id="allowspecific">1</field>
             </depends>
         </field>
-        <field id="allow_specific_currency" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" canRestore="1">
+        <field id="allow_specific_currency" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" canRestore="1">
             <label>Payment from Applicable Currencies</label>
             <source_model>Worldline\PaymentCore\Model\Config\Source\AllSpecificCurrencies</source_model>
             <config_path>payment/worldline_redirect_payment_5402/allow_specific_currency</config_path>
@@ -52,7 +55,7 @@
                 <field id="active">1</field>
             </depends>
         </field>
-        <field id="currency" translate="label" type="multiselect" sortOrder="70" showInDefault="1" showInWebsite="1">
+        <field id="currency" translate="label" type="multiselect" sortOrder="80" showInDefault="1" showInWebsite="1">
             <label>Payment from Specific Currencies</label>
             <source_model>Magento\Config\Model\Config\Source\Locale\Currency\All</source_model>
             <can_be_empty>1</can_be_empty>
@@ -62,7 +65,7 @@
                 <field id="allow_specific_currency">1</field>
             </depends>
         </field>
-        <field id="min_order_total" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1">
+        <field id="min_order_total" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1">
             <label>Minimum Order Total</label>
             <validate>validate-number validate-zero-or-greater</validate>
             <config_path>payment/worldline_redirect_payment_5402/min_order_total</config_path>
@@ -70,7 +73,7 @@
                 <field id="active">1</field>
             </depends>
         </field>
-        <field id="max_order_total" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1">
+        <field id="max_order_total" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1">
             <label>Maximum Order Total</label>
             <validate>validate-number validate-zero-or-greater</validate>
             <config_path>payment/worldline_redirect_payment_5402/max_order_total</config_path>

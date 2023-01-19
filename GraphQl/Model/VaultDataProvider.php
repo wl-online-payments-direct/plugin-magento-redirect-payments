@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Worldline\RedirectPayment\GraphQl\Model;
 
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
 
 class VaultDataProvider
 {
@@ -17,9 +18,9 @@ class VaultDataProvider
      */
     public function getData(array $args): array
     {
-        if (!$args[$args['code']]['public_hash']) {
+        if (!$args[ConfigProvider::VAULT_CODE]['public_hash']) {
             throw new GraphQlInputException(__('No public_hash provided'));
         }
-        return $args[$args['code']];
+        return $args[ConfigProvider::VAULT_CODE];
     }
 }

@@ -9,6 +9,7 @@ use Magento\Framework\App\State;
 use Magento\Framework\UrlInterface;
 use Magento\Payment\Gateway\Config\Config as PaymentGatewayConfig;
 use Magento\Store\Model\ScopeInterface;
+use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 
 class Config extends PaymentGatewayConfig
 {
@@ -139,5 +140,10 @@ class Config extends PaymentGatewayConfig
     public function isThreeDExemptionEnabled(?int $storeId = null): bool
     {
         return (bool) $this->getValue(self::THREE_D_EXEMPTION, $storeId);
+    }
+
+    public function isProcessMealvouchers(?int $storeId = null): bool
+    {
+        return $this->isPaymentProductActive(PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID, $storeId);
     }
 }
