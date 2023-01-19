@@ -14,6 +14,7 @@ use Magento\Quote\Model\QuoteIdMaskFactory;
 use Magento\Vault\Api\Data\PaymentTokenInterface;
 use Worldline\HostedCheckout\Gateway\Request\PaymentDataBuilder;
 use Worldline\HostedCheckout\Service\HostedCheckout\CreateHostedCheckoutService;
+use Worldline\PaymentCore\Api\QuoteRestorationInterface;
 use Worldline\PaymentCore\Model\DataAssigner\DataAssignerInterface;
 use Worldline\RedirectPayment\Api\RedirectManagementInterface;
 use Worldline\RedirectPayment\Service\HostedCheckout\CreateHostedCheckoutRequestBuilder;
@@ -60,6 +61,11 @@ class RedirectManagement implements RedirectManagementInterface
      */
     private $paymentInformationManagement;
 
+    /**
+     * @var QuoteRestorationInterface
+     */
+    private $quoteRestoration;
+
     public function __construct(
         CartRepositoryInterface $cartRepository,
         CreateHostedCheckoutService $createRequest,
@@ -67,6 +73,7 @@ class RedirectManagement implements RedirectManagementInterface
         QuoteIdMaskFactory $quoteIdMaskFactory,
         RequestInterface $request,
         PaymentInformationManagementInterface $paymentInformationManagement,
+        QuoteRestorationInterface $quoteRestoration,
         array $dataAssignerPool = []
     ) {
         $this->cartRepository = $cartRepository;
@@ -76,6 +83,7 @@ class RedirectManagement implements RedirectManagementInterface
         $this->request = $request;
         $this->dataAssignerPool = $dataAssignerPool;
         $this->paymentInformationManagement = $paymentInformationManagement;
+        $this->quoteRestoration = $quoteRestoration;
     }
 
     /**
@@ -149,6 +157,8 @@ class RedirectManagement implements RedirectManagementInterface
         $response = $this->createRequest->execute($request, (int)$quote->getStoreId());
         $payment->setAdditionalInformation('return_id', $response->getRETURNMAC());
         $payment->setAdditionalInformation(PaymentDataBuilder::HOSTED_CHECKOUT_ID, $response->getHostedCheckoutId());
+        $quote->setIsActive(false);
+        $this->quoteRestoration->preserveQuoteId((int)$quote->getId());
 
         $this->cartRepository->save($quote);
 

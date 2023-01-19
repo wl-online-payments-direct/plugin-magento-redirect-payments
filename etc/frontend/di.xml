@@ -24,4 +24,10 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="Worldline_RedirectPayment::LayoutProcessor"
+                type="Worldline\RedirectPayment\Plugin\Checkout\Block\Checkout\LayoutProcessor\PaymentsLayoutProcessor"
+                sortOrder="50"/>
+    </type>
 </config>
