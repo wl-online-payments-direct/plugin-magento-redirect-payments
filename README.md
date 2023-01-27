@@ -9,11 +9,14 @@ This module is an extension of the [hosted checkout](https://github.com/wl-onlin
 
 To install this solution, you may use
 [adobe commerce marketplace](https://marketplace.magento.com/worldline-module-magento-payment.html)
-or install it from the github.
+or install it from the GitHub.
 
 This solution is also included into [main plugin for adobe commerce](https://github.com/wl-online-payments-direct/plugin-magento).
 
-Change log:
+### Change log:
+
+#### 1.5.1
+- Rise core version
 
 #### 1.5.0
 - Add the "Mealvouchers" payment method.
