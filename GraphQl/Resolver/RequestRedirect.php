@@ -71,7 +71,7 @@ class RequestRedirect implements ResolverInterface
             $payment->setAdditionalInformation($additionalInfo);
         }
 
-        $redirectUrl = $this->redirectManagement->processRedirectRequest((int)$cart->getId(), $payment);
+        $redirectUrl = $this->redirectManagement->createRequest((int)$cart->getId(), $payment);
 
         return [
             'redirect_url' => $redirectUrl

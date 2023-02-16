@@ -5,12 +5,20 @@
 
     <type name="Worldline\RedirectPayment\WebApi\RedirectManagement">
         <arguments>
+            <argument name="baseCreatePaymentManagement" xsi:type="object">Worldline\RedirectPayment\WebApi\Checkout\BaseCreatePaymentManagement</argument>
+        </arguments>
+    </type>
+    <virtualType name="Worldline\RedirectPayment\WebApi\Checkout\BaseCreatePaymentManagement" type="Worldline\PaymentCore\WebApi\Checkout\BaseCreatePaymentManagement">
+        <arguments>
             <argument name="dataAssignerPool" xsi:type="array">
                 <item name="device-data" xsi:type="object">Worldline\PaymentCore\Model\DataAssigner\DeviceDataAssigner</item>
                 <item name="payment-data" xsi:type="object">Worldline\HostedCheckout\WebApi\RedirectManagement\PaymentMethodDataAssigner</item>
+                <item name="token-data" xsi:type="object">Worldline\PaymentCore\Model\DataAssigner\TokenDataAssigner</item>
+                <item name="payment-product-id-data" xsi:type="object">Worldline\RedirectPayment\WebApi\CreatePaymentManagement\PaymentProductIdAssigner</item>
+                <item name="create-payment-data" xsi:type="object">Worldline\RedirectPayment\WebApi\CreatePaymentManagement\CreatePaymentDataAssigner</item>
             </argument>
         </arguments>
-    </type>
+    </virtualType>
 
     <type name="Worldline\PaymentCore\Block\Customer\CardRenderer">
         <arguments>
@@ -65,9 +73,9 @@
 
     <type name="Worldline\PaymentCore\Service\CreateRequest\ThreeDSecureDataBuilder">
         <arguments>
-            <argument name="configProviders" xsi:type="array">
-                <item name="worldline_redirect_payment" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\Config</item>
-                <item name="worldline_redirect_payment_vault" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\Config</item>
+            <argument name="returnUrls" xsi:type="array">
+                <item name="worldline_redirect_payment" xsi:type="string">wl_hostedcheckout/returns/returnUrl</item>
+                <item name="worldline_redirect_payment_vault" xsi:type="string">wl_hostedcheckout/returns/returnUrl</item>
             </argument>
         </arguments>
     </type>
@@ -279,21 +287,6 @@
     <!-- END Commands -->
 
     <!-- VAULT configuration -->
-    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
-        <arguments>
-            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\Config\Virtual</argument>
-            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\Vault\Virtual</argument>
-            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\Adapter\Virtual</argument>
-            <argument name="code" xsi:type="const">Worldline\RedirectPayment\Ui\ConfigProvider::VAULT_CODE</argument>
-        </arguments>
-    </virtualType>
-    <!-- Default Vault Config Handler -->
-    <virtualType name="Worldline\RedirectPayment\Gateway\Config\Config\Virtual" type="Magento\Payment\Gateway\Config\Config">
-        <arguments>
-            <argument name="methodCode" xsi:type="const">Worldline\RedirectPayment\Ui\ConfigProvider::VAULT_CODE</argument>
-        </arguments>
-    </virtualType>
-    <!-- END Default Vault Config Handler -->
     <!-- Custom Vault Config Handler -->
     <virtualType name="Worldline\RedirectPayment\Gateway\Config\CustomConfig\Virtual" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
@@ -301,27 +294,260 @@
         </arguments>
     </virtualType>
     <!-- END Custom Vault Config Handler -->
-    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\Vault\Virtual" type="VaultPaymentValueHandlerPool">
-        <arguments>
-            <argument name="handlers" xsi:type="array">
-                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVault\Virtual</item>
-                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
-                <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
-                <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
-            </argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVault\Virtual" type="VaultPaymentDefaultValueHandler">
-        <arguments>
-            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\Config\Virtual</argument>
-        </arguments>
-    </virtualType>
     <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual" type="VaultPaymentDefaultValueHandler">
         <arguments>
             <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\CustomConfig\Virtual</argument>
         </arguments>
     </virtualType>
     <!-- END VAULT configuration -->
+
+    <!-- VAULT VISA configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\Visa\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigVisa\Virtual</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultVisa\Virtual</argument>
+            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterVisa\Virtual</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_1_vault</argument>
+        </arguments>
+    </virtualType>
+    <!-- Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigVisa\Virtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_1</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultVisa\Virtual" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultVisa\Virtual</item>
+                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultVisa\Virtual" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigVisa\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <!-- END VISA VAULT configuration -->
+
+    <!-- VAULT American Express configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\AmericanExpress\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigAmericanExpress\Virtual</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultAmericanExpress\Virtual</argument>
+            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterAmericanExpress\Virtual</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_2_vault</argument>
+        </arguments>
+    </virtualType>
+    <!-- Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigAmericanExpress\Virtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_2</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultAmericanExpress\Virtual" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultAmericanExpress\Virtual</item>
+                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultAmericanExpress\Virtual" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigAmericanExpress\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <!-- END American Express VAULT configuration -->
+
+    <!-- VAULT Mastercard configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\Mastercard\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigMastercard\Virtual</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultMastercard\Virtual</argument>
+            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterMastercard\Virtual</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_3_vault</argument>
+        </arguments>
+    </virtualType>
+    <!-- Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigMastercard\Virtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_3</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultMastercard\Virtual" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultMastercard\Virtual</item>
+                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultMastercard\Virtual" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigMastercard\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Mastercard VAULT configuration -->
+
+    <!-- VAULT Maestro configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\Maestro\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigMaestro\Virtual</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultMaestro\Virtual</argument>
+            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterMaestro\Virtual</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_117_vault</argument>
+        </arguments>
+    </virtualType>
+    <!-- Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigMaestro\Virtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_117</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultMaestro\Virtual" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultMaestro\Virtual</item>
+                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultMaestro\Virtual" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigMaestro\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Maestro VAULT configuration -->
+
+    <!-- VAULT JCB configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\JCB\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigJCB\Virtual</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultJCB\Virtual</argument>
+            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterJCB\Virtual</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_125_vault</argument>
+        </arguments>
+    </virtualType>
+    <!-- Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigJCB\Virtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_125</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultJCB\Virtual" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultJCB\Virtual</item>
+                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultJCB\Virtual" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigJCB\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <!-- END JCB VAULT configuration -->
+
+    <!-- VAULT Carte Bancaire configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\CarteBancaire\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigCarteBancaire\Virtual</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultCarteBancaire\Virtual</argument>
+            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterCarteBancaire\Virtual</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_130_vault</argument>
+        </arguments>
+    </virtualType>
+    <!-- Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigCarteBancaire\Virtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_130</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultCarteBancaire\Virtual" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultCarteBancaire\Virtual</item>
+                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultCarteBancaire\Virtual" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigCarteBancaire\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Carte Bancaire VAULT configuration -->
+
+    <!-- VAULT Diners Club configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\DinersClub\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigDinersClub\Virtual</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultDinersClub\Virtual</argument>
+            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterDinersClub\Virtual</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_132_vault</argument>
+        </arguments>
+    </virtualType>
+    <!-- Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigDinersClub\Virtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_132</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultDinersClub\Virtual" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultDinersClub\Virtual</item>
+                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultDinersClub\Virtual" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigDinersClub\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Diners Club VAULT configuration -->
+
+    <!-- VAULT Bancontact configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\Bancontact\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigBancontact\Virtual</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultBancontact\Virtual</argument>
+            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterBancontact\Virtual</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_3012_vault</argument>
+        </arguments>
+    </virtualType>
+    <!-- Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigBancontact\Virtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_3012</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\VaultBancontact\Virtual" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultBancontact\Virtual</item>
+                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultVaultBancontact\Virtual" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ConfigBancontact\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Bancontact VAULT configuration -->
 
     <!-- Command manages section for Vault -->
     <type name="Magento\Payment\Gateway\Command\CommandManagerPool">
@@ -391,12 +617,6 @@
             <argument name="methodCode" xsi:type="string">worldline_redirect_payment_1</argument>
         </arguments>
     </virtualType>
-    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\Visa\Virtual" type="Worldline\RedirectPayment\Model\Method\Vault\Virtual">
-        <arguments>
-            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterVisa\Virtual</argument>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_1_vault</argument>
-        </arguments>
-    </virtualType>
     <!-- VISA -->
 
     <!-- American Express -->
@@ -443,12 +663,6 @@
     <virtualType name="Worldline\RedirectPayment\Gateway\ConfigAmericanExpress\ConfigVirtual" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
             <argument name="methodCode" xsi:type="string">worldline_redirect_payment_2</argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\AmericanExpress\Virtual" type="Worldline\RedirectPayment\Model\Method\Vault\Virtual">
-        <arguments>
-            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterAmericanExpress\Virtual</argument>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_2_vault</argument>
         </arguments>
     </virtualType>
     <!-- American Express -->
@@ -499,12 +713,6 @@
             <argument name="methodCode" xsi:type="string">worldline_redirect_payment_3</argument>
         </arguments>
     </virtualType>
-    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\Mastercard\Virtual" type="Worldline\RedirectPayment\Model\Method\Vault\Virtual">
-        <arguments>
-            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterMastercard\Virtual</argument>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_3_vault</argument>
-        </arguments>
-    </virtualType>
     <!-- Mastercard -->
 
     <!-- Maestro -->
@@ -551,12 +759,6 @@
     <virtualType name="Worldline\RedirectPayment\Gateway\ConfigMaestro\ConfigVirtual" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
             <argument name="methodCode" xsi:type="string">worldline_redirect_payment_117</argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\Maestro\Virtual" type="Worldline\RedirectPayment\Model\Method\Vault\Virtual">
-        <arguments>
-            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterMaestro\Virtual</argument>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_117_vault</argument>
         </arguments>
     </virtualType>
     <!-- Maestro -->
@@ -607,12 +809,6 @@
             <argument name="methodCode" xsi:type="string">worldline_redirect_payment_125</argument>
         </arguments>
     </virtualType>
-    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\JCB\Virtual" type="Worldline\RedirectPayment\Model\Method\Vault\Virtual">
-        <arguments>
-            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterJCB\Virtual</argument>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_125_vault</argument>
-        </arguments>
-    </virtualType>
     <!-- JCB -->
 
     <!-- Carte Bancaire -->
@@ -661,12 +857,6 @@
             <argument name="methodCode" xsi:type="string">worldline_redirect_payment_130</argument>
         </arguments>
     </virtualType>
-    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\CarteBancaire\Virtual" type="Worldline\RedirectPayment\Model\Method\Vault\Virtual">
-        <arguments>
-            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterCarteBancaire\Virtual</argument>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_130_vault</argument>
-        </arguments>
-    </virtualType>
     <!-- Carte Bancaire -->
 
     <!-- Diners Club -->
@@ -713,12 +903,6 @@
     <virtualType name="Worldline\RedirectPayment\Gateway\ConfigDinersClub\ConfigVirtual" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
             <argument name="methodCode" xsi:type="string">worldline_redirect_payment_132</argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\DinersClub\Virtual" type="Worldline\RedirectPayment\Model\Method\Vault\Virtual">
-        <arguments>
-            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterDinersClub\Virtual</argument>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_132_vault</argument>
         </arguments>
     </virtualType>
     <!-- Diners Club -->
@@ -1103,12 +1287,6 @@
     <virtualType name="Worldline\RedirectPayment\Gateway\ConfigBancontact\ConfigVirtual" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
             <argument name="methodCode" xsi:type="string">worldline_redirect_payment_3012</argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\Bancontact\Virtual" type="Worldline\RedirectPayment\Model\Method\Vault\Virtual">
-        <arguments>
-            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterBancontact\Virtual</argument>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_3012_vault</argument>
         </arguments>
     </virtualType>
     <!-- Bancontact -->

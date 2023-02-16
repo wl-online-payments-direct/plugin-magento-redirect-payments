@@ -5,6 +5,7 @@ type Query {
 type ProcessPaymentResultOutput {
     result: String
     orderIncrementId: String
+    methodCode: String
 }
 
 input PaymentMethodInput {

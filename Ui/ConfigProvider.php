@@ -80,7 +80,7 @@ class ConfigProvider implements ConfigProviderInterface
 
             $payProducts[self::CODE . '_' . $payProductId] = [
                 'isActive' => true,
-                'vaultCode' => self::VAULT_CODE,
+                'vaultCode' => self::CODE . '_' . $payProductId . '_' . 'vault',
                 'icon' => $this->iconProvider->getIconById($payProductId, $storeId)
             ];
         }
