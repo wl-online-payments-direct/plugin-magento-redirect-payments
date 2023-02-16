@@ -44,6 +44,7 @@ class RequestResult implements ResolverInterface
             $orderState = $this->returnRequestProcessor->processRequest($paymentId, $mac);
             if ($orderState->getState() === ReturnRequestProcessor::WAITING_STATE) {
                 $result['result'] = ReturnRequestProcessor::WAITING_STATE;
+                $result['methodCode'] = $orderState->getPaymentMethod();
                 $result['orderIncrementId'] = $orderState->getIncrementId();
 
                 return $result;
@@ -51,11 +52,13 @@ class RequestResult implements ResolverInterface
 
             return [
                 'result' => ReturnRequestProcessor::SUCCESS_STATE,
+                'methodCode' => $orderState->getPaymentMethod(),
                 'orderIncrementId' => $orderState->getIncrementId()
             ];
         } catch (LocalizedException $e) {
             return [
                 'result' => ReturnRequestProcessor::FAIL_STATE,
+                'methodCode' => '',
                 'orderIncrementId' => ''
             ];
         }

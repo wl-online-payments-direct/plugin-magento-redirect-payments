@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\RedirectPayment\Plugin\Checkout\Block\Checkout\LayoutProcessor;
+namespace Worldline\RedirectPayment\Plugin\Magento\Checkout\Block\Checkout\LayoutProcessor;
 
 use Magento\Checkout\Block\Checkout\LayoutProcessor;
 use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;

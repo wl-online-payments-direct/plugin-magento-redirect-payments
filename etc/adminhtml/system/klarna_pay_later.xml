@@ -9,6 +9,7 @@
         <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
             <label>Enable Payment</label>
             <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>payment/worldline_redirect_payment_3302/active</config_path>
         </field>
         <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <label>Title</label>

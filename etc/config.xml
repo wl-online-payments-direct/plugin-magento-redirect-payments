@@ -35,7 +35,7 @@
                 <skip_3d>0</skip_3d>
             </worldline_redirect_payment>
             <worldline_redirect_payment_vault>
-                <model>Worldline\RedirectPayment\Model\Method\Vault\Virtual</model>
+                <model>Worldline\RedirectPayment\Model\Method\Adapter\Virtual</model>
                 <active>0</active>
                 <title>Stored Cards (Worldline Online Payments)</title>
                 <group>worldline_group</group>

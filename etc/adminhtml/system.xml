@@ -5,7 +5,7 @@
         <section id="worldline_payment">
             <tab>worldline</tab>
             <resource>Worldline_PaymentCore::config_worldline</resource>
-            <group id="redirect_payment" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="redirect_payment" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Redirect Payment</label>
                 <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
                     <label>Enable Payment</label>
@@ -91,49 +91,12 @@
                     </depends>
                     <config_path>payment/worldline_redirect_payment/order_status</config_path>
                 </field>
-                <field id="pwa_route" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Custom Return URL</label>
-                    <config_path>payment/worldline_redirect_payment/pwa_route</config_path>
-                    <comment><![CDATA[Should be set only if you use PWA Studio or any other 3rd party frontend.]]></comment>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                </field>
-                <field id="cart_lines" translate="label tooltip" type="select" sortOrder="120" showInDefault="1" showInWebsite="1">
+                <field id="cart_lines" translate="label tooltip" type="select" sortOrder="110" showInDefault="1" showInWebsite="1">
                     <label>Submit Customer Cart Items Data to Worldline</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <config_path>payment/worldline_redirect_payment/cart_lines</config_path>
                     <depends>
                         <field id="active">1</field>
-                    </depends>
-                </field>
-                <field id="skip_3d" translate="label tooltip" type="select" sortOrder="130" showInDefault="1" showInWebsite="1">
-                    <label>Skip 3DSecure Authentication</label>
-                    <tooltip>This option should not be turned off if the merchant is based in a EU country</tooltip>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <config_path>payment/worldline_redirect_payment/skip_3d</config_path>
-                    <depends>
-                        <field id="active">1</field>
-                    </depends>
-                </field>
-                <field id="authentication_trigger" translate="label tooltip" type="select" sortOrder="140" showInDefault="1" showInWebsite="1">
-                    <label>Trigger an Authentication for Every Payment</label>
-                    <tooltip>Enabling this option will make sure the customer performs a “Strong Customer Authentication” and hence enforces a “challenge” 3DS flow.</tooltip>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <config_path>payment/worldline_redirect_payment/authentication_trigger</config_path>
-                    <depends>
-                        <field id="active">1</field>
-                        <field id="skip_3d">0</field>
-                    </depends>
-                </field>
-                <field id="3d_exemption" translate="label tooltip" type="select" sortOrder="150" showInDefault="1" showInWebsite="1">
-                    <label>Request 3DS Exemption</label>
-                    <tooltip>If the setting is enabled and the sum of the order is below 30 euros, the customer won’t be asked to go through 3DS auth.</tooltip>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <config_path>payment/worldline_redirect_payment/3d_exemption</config_path>
-                    <depends>
-                        <field id="active">1</field>
-                        <field id="skip_3d">0</field>
                     </depends>
                 </field>
                 <include path="Worldline_RedirectPayment::system/alipay.xml"/>

@@ -7,6 +7,8 @@ use Magento\Framework\Locale\Resolver;
 use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\HostedCheckoutSpecificInput;
 use OnlinePayments\Sdk\Domain\HostedCheckoutSpecificInputFactory;
+use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder as HCSpecificInputDataBuilder;
+use Worldline\PaymentCore\Model\Config\GeneralSettingsConfig;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 
 class SpecificInputDataBuilder
@@ -22,6 +24,11 @@ class SpecificInputDataBuilder
     private $store;
 
     /**
+     * @var GeneralSettingsConfig
+     */
+    private $generalSettings;
+
+    /**
      * @var HostedCheckoutSpecificInputFactory
      */
     private $hostedCheckoutSpecificInputFactory;
@@ -29,10 +36,12 @@ class SpecificInputDataBuilder
     public function __construct(
         Config $config,
         Resolver $store,
+        GeneralSettingsConfig $generalSettings,
         HostedCheckoutSpecificInputFactory $hostedCheckoutSpecificInputFactory
     ) {
         $this->config = $config;
         $this->store = $store;
+        $this->generalSettings = $generalSettings;
         $this->hostedCheckoutSpecificInputFactory = $hostedCheckoutSpecificInputFactory;
     }
 
@@ -42,7 +51,9 @@ class SpecificInputDataBuilder
         $hostedCheckoutSpecificInput->setLocale($this->store->getLocale());
         $storeId = (int) $quote->getStoreId();
 
-        $hostedCheckoutSpecificInput->setReturnUrl($this->config->getReturnUrl($storeId));
+        $hostedCheckoutSpecificInput->setReturnUrl(
+            $this->generalSettings->getReturnUrl(HCSpecificInputDataBuilder::RETURN_URL, $storeId)
+        );
         if ($variant = $this->config->getTemplateId($storeId)) {
             $hostedCheckoutSpecificInput->setVariant($variant);
         }
