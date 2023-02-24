@@ -6,6 +6,7 @@ type ProcessPaymentResultOutput {
     result: String
     orderIncrementId: String
     methodCode: String
+    paymentProductId: Int
 }
 
 input PaymentMethodInput {

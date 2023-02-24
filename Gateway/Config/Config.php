@@ -21,6 +21,7 @@ class Config extends PaymentGatewayConfig
     public const KEY_CART_LINES = 'cart_lines';
 
     public const REDIRECT_PAYMENT_PATH = "payment/worldline_redirect_payment_";
+    public const VAULT_ACTIVE = 'payment/worldline_redirect_payment_vault/active';
 
     /**
      * @var ScopeConfigInterface
@@ -39,6 +40,11 @@ class Config extends PaymentGatewayConfig
     public function isActive(?int $storeId = null): bool
     {
         return (bool) $this->getValue(self::KEY_ACTIVE, $storeId);
+    }
+
+    public function isVaultActive(?int $storeId = null): bool
+    {
+        return (bool)$this->scopeConfig->isSetFlag(self::VAULT_ACTIVE, ScopeInterface::SCOPE_STORE, $storeId);
     }
 
     public function getAuthorizationMode(?int $storeId = null): string

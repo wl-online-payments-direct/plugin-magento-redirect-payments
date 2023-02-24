@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.6.1
+- Support the 13.0.0 version of PWA.
+
 #### 1.6.0
 - Add Multibanco payment method.
 - Add price restrictions for currencies having specific decimals rules (like JPY).

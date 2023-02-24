@@ -15,7 +15,7 @@ use Magento\Sales\Api\Data\OrderPaymentExtensionInterfaceFactory;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use Magento\Vault\Model\Method\Vault as MagentoVault;
 use Worldline\PaymentCore\Model\VaultValidation;
-use Worldline\RedirectPayment\Ui\ConfigProvider;
+use Worldline\RedirectPayment\Gateway\Config\Config;
 
 /**
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)
@@ -28,6 +28,11 @@ class Vault extends MagentoVault
      */
     private $vaultValidation;
 
+    /**
+     * @var Config
+     */
+    private $configProvider;
+
     public function __construct(
         ConfigInterface $config,
         ConfigFactoryInterface $configFactory,
@@ -39,6 +44,7 @@ class Vault extends MagentoVault
         PaymentTokenManagementInterface $tokenManagement,
         OrderPaymentExtensionInterfaceFactory $paymentExtensionFactory,
         VaultValidation $vaultValidation,
+        Config $configProvider,
         string $code
     ) {
         parent::__construct(
@@ -54,6 +60,7 @@ class Vault extends MagentoVault
             $code
         );
         $this->vaultValidation = $vaultValidation;
+        $this->configProvider = $configProvider;
     }
 
     /**
@@ -67,6 +74,10 @@ class Vault extends MagentoVault
         }
 
         if ($quote->getCustomerIsGuest()) {
+            return false;
+        }
+
+        if (!$this->configProvider->isVaultActive()) {
             return false;
         }
 
