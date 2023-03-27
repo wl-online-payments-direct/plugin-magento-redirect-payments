@@ -5,11 +5,10 @@ namespace Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest;
 
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Quote\Api\Data\CartInterface;
-use Magento\Vault\Api\Data\PaymentTokenInterface;
-use Magento\Vault\Api\PaymentTokenManagementInterface;
 use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInput;
 use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputFactory;
-use Worldline\PaymentCore\Service\CreateRequest\ThreeDSecureDataBuilder;
+use Worldline\HostedCheckout\Api\TokenManagerInterface;
+use Worldline\PaymentCore\Api\Service\CreateRequest\ThreeDSecureDataBuilderInterface;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
@@ -27,17 +26,12 @@ class CardPaymentMethodSIDBuilder
     private $cardPaymentMethodSpecificInputFactory;
 
     /**
-     * @var PaymentTokenManagementInterface
-     */
-    private $paymentTokenManagement;
-
-    /**
      * @var ManagerInterface
      */
     private $eventManager;
 
     /**
-     * @var ThreeDSecureDataBuilder
+     * @var ThreeDSecureDataBuilderInterface
      */
     private $threeDSecureDataBuilder;
 
@@ -46,23 +40,28 @@ class CardPaymentMethodSIDBuilder
      */
     private $alwaysSaleProductIds;
 
+    /**
+     * @var TokenManagerInterface
+     */
+    private $tokenManager;
+
     public function __construct(
         Config $config,
         CardPaymentMethodSpecificInputFactory $cardPaymentMethodSpecificInputFactory,
-        PaymentTokenManagementInterface $paymentTokenManagement,
         ManagerInterface $eventManager,
-        ThreeDSecureDataBuilder $threeDSecureDataBuilder,
+        ThreeDSecureDataBuilderInterface $threeDSecureDataBuilder,
+        TokenManagerInterface $tokenManager,
         array $alwaysSaleProductIds = []
     ) {
         $this->config = $config;
         $this->cardPaymentMethodSpecificInputFactory = $cardPaymentMethodSpecificInputFactory;
-        $this->paymentTokenManagement = $paymentTokenManagement;
         $this->eventManager = $eventManager;
         $this->threeDSecureDataBuilder = $threeDSecureDataBuilder;
         $this->alwaysSaleProductIds = $alwaysSaleProductIds;
+        $this->tokenManager = $tokenManager;
     }
 
-    public function build(CartInterface $quote): CardPaymentMethodSpecificInput
+    public function build(CartInterface $quote): ?CardPaymentMethodSpecificInput
     {
         $storeId = (int)$quote->getStoreId();
         /** @var CardPaymentMethodSpecificInput $cardPaymentMethodSpecificInput */
@@ -79,8 +78,12 @@ class CardPaymentMethodSIDBuilder
 
         $cardPaymentMethodSpecificInput->setThreeDSecure($this->threeDSecureDataBuilder->build($quote));
 
-        if ($token = $this->getToken($quote)) {
-            $cardPaymentMethodSpecificInput->setToken($token);
+        if ($token = $this->tokenManager->getToken($quote)) {
+            if ($this->tokenManager->isSepaToken($token)) {
+                return null;
+            }
+
+            $cardPaymentMethodSpecificInput->setToken($token->getGatewayToken());
         }
 
         $args = ['quote' => $quote, 'card_payment_method_specific_input' => $cardPaymentMethodSpecificInput];
@@ -96,16 +99,5 @@ class CardPaymentMethodSIDBuilder
         }
 
         return $this->config->getAuthorizationMode($storeId);
-    }
-
-    private function getToken(CartInterface $quote): ?string
-    {
-        $payment = $quote->getPayment();
-        if (!$publicHash = $payment->getAdditionalInformation(PaymentTokenInterface::PUBLIC_HASH)) {
-            return null;
-        }
-
-        $token = $this->paymentTokenManagement->getByPublicHash($publicHash, (int) $quote->getCustomerId());
-        return $token instanceof PaymentTokenInterface ? $token->getGatewayToken() : null;
     }
 }

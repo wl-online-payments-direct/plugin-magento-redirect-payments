@@ -257,6 +257,10 @@
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_771>
+            <worldline_redirect_payment_771_vault>
+                <model>Worldline\RedirectPayment\Model\Method\Vault\SepaDirectDebit\Virtual</model>
+                <group>worldline_group</group>
+            </worldline_redirect_payment_771_vault>
             <worldline_redirect_payment_1>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterVisa\Virtual</model>
                 <title>Visa</title>

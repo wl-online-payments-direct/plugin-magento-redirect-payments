@@ -15,6 +15,14 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.7.0
+- Add surcharge functionality (for the Australian market).
+- Add Sepa Direct Debit payment method.
+- Add the ability to save the Sepa Direct Debit mandate and use it through the Magento vault.
+- Improvements of the Oney3x4x payment method.
+- Extract GraphQl into a dedicated extension.
+- General code improvements and bug fixes.
+
 #### 1.6.1
 - Support the 13.0.0 version of PWA.
 

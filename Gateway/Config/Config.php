@@ -23,6 +23,9 @@ class Config extends PaymentGatewayConfig
     public const REDIRECT_PAYMENT_PATH = "payment/worldline_redirect_payment_";
     public const VAULT_ACTIVE = 'payment/worldline_redirect_payment_vault/active';
 
+    public const DIRECT_DEBIT_RECURRENCE_TYPE = 'payment/worldline_redirect_payment_771/direct_debit_recurrence_type';
+    public const DIRECT_DEBIT_SIGNATURE_TYPE = 'payment/worldline_redirect_payment_771/direct_debit_signature_type';
+
     /**
      * @var ScopeConfigInterface
      */
@@ -84,5 +87,23 @@ class Config extends PaymentGatewayConfig
     public function isProcessMealvouchers(?int $storeId = null): bool
     {
         return $this->isPaymentProductActive(PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID, $storeId);
+    }
+
+    public function getDirectDebitRecurrenceType(?int $storeId = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::DIRECT_DEBIT_RECURRENCE_TYPE,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
+    }
+
+    public function getDirectDebitSignatureType(?int $storeId = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::DIRECT_DEBIT_SIGNATURE_TYPE,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
     }
 }

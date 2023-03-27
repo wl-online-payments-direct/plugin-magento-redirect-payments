@@ -8,7 +8,7 @@ use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\HostedCheckoutSpecificInput;
 use OnlinePayments\Sdk\Domain\HostedCheckoutSpecificInputFactory;
 use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder as HCSpecificInputDataBuilder;
-use Worldline\PaymentCore\Model\Config\GeneralSettingsConfig;
+use Worldline\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 
 class SpecificInputDataBuilder
@@ -24,7 +24,7 @@ class SpecificInputDataBuilder
     private $store;
 
     /**
-     * @var GeneralSettingsConfig
+     * @var GeneralSettingsConfigInterface
      */
     private $generalSettings;
 
@@ -36,7 +36,7 @@ class SpecificInputDataBuilder
     public function __construct(
         Config $config,
         Resolver $store,
-        GeneralSettingsConfig $generalSettings,
+        GeneralSettingsConfigInterface $generalSettings,
         HostedCheckoutSpecificInputFactory $hostedCheckoutSpecificInputFactory
     ) {
         $this->config = $config;
