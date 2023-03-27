@@ -14,8 +14,8 @@ use Magento\Quote\Api\Data\CartInterface;
 use Magento\Sales\Api\Data\OrderPaymentExtensionInterfaceFactory;
 use Magento\Vault\Api\PaymentTokenManagementInterface;
 use Magento\Vault\Model\Method\Vault as MagentoVault;
-use Worldline\PaymentCore\Model\VaultValidation;
 use Worldline\RedirectPayment\Gateway\Config\Config;
+use Worldline\PaymentCore\Api\VaultValidationInterface;
 
 /**
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)
@@ -24,7 +24,7 @@ use Worldline\RedirectPayment\Gateway\Config\Config;
 class Vault extends MagentoVault
 {
     /**
-     * @var VaultValidation
+     * @var VaultValidationInterface
      */
     private $vaultValidation;
 
@@ -43,7 +43,7 @@ class Vault extends MagentoVault
         Command\CommandManagerPoolInterface $commandManagerPool,
         PaymentTokenManagementInterface $tokenManagement,
         OrderPaymentExtensionInterfaceFactory $paymentExtensionFactory,
-        VaultValidation $vaultValidation,
+        VaultValidationInterface $vaultValidation,
         Config $configProvider,
         string $code
     ) {

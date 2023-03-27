@@ -1,15 +1,21 @@
 /*browser:true*/
 /*global define*/
 define([
+    'ko',
     'jquery',
     'Magento_Checkout/js/model/full-screen-loader',
     'Magento_Vault/js/view/payment/method-renderer/vault',
     'Worldline_RedirectPayment/js/view/redirect-payment/redirect',
     'Worldline_PaymentCore/js/model/device-data',
-], function ($, fullScreenLoader, VaultComponent, placeOrderAction, deviceData) {
+    'mage/url'
+], function (ko, $, fullScreenLoader, VaultComponent, placeOrderAction, deviceData, urlBuilder) {
     'use strict';
 
     return VaultComponent.extend({
+        defaults: {
+            isSurchargeEnabled: ko.observable(false)
+        },
+
         /**
          * Get last 4 digits of card
          * @returns {String}
@@ -38,6 +44,10 @@ define([
             return this.public_hash;
         },
 
+        getSurcharge: function (data, event) {
+            this.placeOrder(data, event);
+        },
+
         placeOrder: function (data, event) {
             let self = this;
 
@@ -61,6 +71,11 @@ define([
                 function (redirectUrl) {
                     if (redirectUrl) {
                         window.location.replace(redirectUrl);
+                    } else {
+                        fullScreenLoader.startLoader();
+                        setTimeout(() => {
+                            window.location.replace(urlBuilder.build("wl_hostedcheckout/returns/returnUrlForVault"));
+                        }, 3000)
                     }
                 }
             ).fail(

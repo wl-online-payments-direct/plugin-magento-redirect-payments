@@ -21,6 +21,7 @@
                 <item name="worldline_redirect_payment_130" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
                 <item name="worldline_redirect_payment_132" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
                 <item name="worldline_redirect_payment_3012" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_771" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
             </argument>
         </arguments>
     </type>

@@ -7,7 +7,7 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Ui\ConfigProvider;
-use Worldline\PaymentCore\Model\AvailableMethodChecker;
+use Worldline\PaymentCore\Api\AvailableMethodCheckerInterface;
 
 class PaymentMethodIsActive implements ObserverInterface
 {
@@ -17,13 +17,13 @@ class PaymentMethodIsActive implements ObserverInterface
     private $config;
 
     /**
-     * @var AvailableMethodChecker
+     * @var AvailableMethodCheckerInterface
      */
     private $availableMethodChecker;
 
     public function __construct(
         Config $config,
-        AvailableMethodChecker $availableMethodChecker
+        AvailableMethodCheckerInterface $availableMethodChecker
     ) {
         $this->config = $config;
         $this->availableMethodChecker = $availableMethodChecker;

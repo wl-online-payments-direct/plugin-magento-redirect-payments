@@ -7,10 +7,11 @@ use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequest;
 use OnlinePayments\Sdk\Domain\CreateHostedCheckoutRequestFactory;
 use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
-use Worldline\PaymentCore\Ui\PaymentProductsProvider;
+use Worldline\PaymentCore\Api\Ui\PaymentProductsProviderInterface;
 use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\CardPaymentMethodSIDBuilder;
 use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\MobilePaymentMethodSpecificInputDataBuilder;
 use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\RedirectPaymentMethodSpecificInputDataBuilder;
+use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\SepaDirectDebitSIBuilder;
 use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
@@ -27,7 +28,7 @@ class CreateHostedCheckoutRequestBuilder
     private $orderDataBuilder;
 
     /**
-     * @var PaymentProductsProvider
+     * @var PaymentProductsProviderInterface
      */
     private $payProductsProvider;
 
@@ -51,14 +52,20 @@ class CreateHostedCheckoutRequestBuilder
      */
     private $mobilePaymentMethodSpecificInputDataBuilder;
 
+    /**
+     * @var SepaDirectDebitSIBuilder
+     */
+    private $sepaDirectDebitPaymentMethodSpecificInputBuilder;
+
     public function __construct(
         CreateHostedCheckoutRequestFactory $createHostedCheckoutRequestFactory,
         OrderDataBuilder $orderDataBuilder,
-        PaymentProductsProvider $payProductsProvider,
+        PaymentProductsProviderInterface $payProductsProvider,
         SpecificInputDataBuilder $specificInputDataBuilder,
         RedirectPaymentMethodSpecificInputDataBuilder $redirectPaymentMethodSpecificInputDataBuilder,
         CardPaymentMethodSIDBuilder $cardPaymentMethodSIDBuilder,
-        MobilePaymentMethodSpecificInputDataBuilder $mobilePaymentMethodSpecificInputDataBuilder
+        MobilePaymentMethodSpecificInputDataBuilder $mobilePaymentMethodSpecificInputDataBuilder,
+        SepaDirectDebitSIBuilder $sepaDirectDebitPaymentMethodSpecificInputBuilder
     ) {
         $this->createHostedCheckoutRequestFactory = $createHostedCheckoutRequestFactory;
         $this->orderDataBuilder = $orderDataBuilder;
@@ -67,6 +74,7 @@ class CreateHostedCheckoutRequestBuilder
         $this->redirectPaymentMethodSpecificInputDataBuilder = $redirectPaymentMethodSpecificInputDataBuilder;
         $this->cardPaymentMethodSIDBuilder = $cardPaymentMethodSIDBuilder;
         $this->mobilePaymentMethodSpecificInputDataBuilder = $mobilePaymentMethodSpecificInputDataBuilder;
+        $this->sepaDirectDebitPaymentMethodSpecificInputBuilder = $sepaDirectDebitPaymentMethodSpecificInputBuilder;
     }
 
     /**
@@ -91,7 +99,13 @@ class CreateHostedCheckoutRequestBuilder
             );
         }
 
-        if ($payMethod == null || $payMethod === 'card') {
+        if ($payMethod === 'directDebit') {
+            $createHostedCheckoutRequest->setSepaDirectDebitPaymentMethodSpecificInput(
+                $this->sepaDirectDebitPaymentMethodSpecificInputBuilder->build($quote)
+            );
+        }
+
+        if ($payMethod === 'card') {
             $createHostedCheckoutRequest->setCardPaymentMethodSpecificInput(
                 $this->cardPaymentMethodSIDBuilder->build($quote)
             );

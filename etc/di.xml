@@ -16,6 +16,7 @@
                 <item name="token-data" xsi:type="object">Worldline\PaymentCore\Model\DataAssigner\TokenDataAssigner</item>
                 <item name="payment-product-id-data" xsi:type="object">Worldline\RedirectPayment\WebApi\CreatePaymentManagement\PaymentProductIdAssigner</item>
                 <item name="create-payment-data" xsi:type="object">Worldline\RedirectPayment\WebApi\CreatePaymentManagement\CreatePaymentDataAssigner</item>
+                <item name="create-vault-payment-data" xsi:type="object">Worldline\HostedCheckout\WebApi\RedirectManagement\CreateVaultPaymentDataAssigner</item>
             </argument>
         </arguments>
     </virtualType>
@@ -31,6 +32,7 @@
                 <item name="worldline_redirect_payment_130" xsi:type="string">worldline_redirect_payment_130</item>
                 <item name="worldline_redirect_payment_132" xsi:type="string">worldline_redirect_payment_132</item>
                 <item name="worldline_redirect_payment_3012" xsi:type="string">worldline_redirect_payment_3012</item>
+                <item name="worldline_redirect_payment_771" xsi:type="string">worldline_redirect_payment_771</item>
             </argument>
         </arguments>
     </type>
@@ -76,6 +78,14 @@
             <argument name="returnUrls" xsi:type="array">
                 <item name="worldline_redirect_payment" xsi:type="string">wl_hostedcheckout/returns/returnUrl</item>
                 <item name="worldline_redirect_payment_vault" xsi:type="string">wl_hostedcheckout/returns/returnUrl</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Worldline\PaymentCore\Model\Checkout\ConfigProvider">
+        <arguments>
+            <argument name="allowedPaymentMethods" xsi:type="array">
+                <item name="worldline_redirect_payment" xsi:type="const">Worldline\RedirectPayment\Ui\ConfigProvider::CODE</item>
             </argument>
         </arguments>
     </type>
@@ -220,8 +230,17 @@
             <argument name="requestBuilder" xsi:type="object">Worldline\RedirectPayment\Gateway\Request\AuthorizeBuilder\Virtual</argument>
             <argument name="transferFactory" xsi:type="object">Worldline\PaymentCore\Gateway\Http\TransferFactory</argument>
             <argument name="client" xsi:type="object">Worldline\HostedCheckout\Gateway\Http\Client\TransactionSale</argument>
-            <argument name="handler" xsi:type="object">Worldline\RedirectPayment\Gateway\Response\HandlerChain\Authorization\Virtual</argument>
+            <argument name="handler" xsi:type="object">Worldline\RedirectPayment\Gateway\Response\HandlerChain\Authorization\Vault\Virtual</argument>
             <argument name="validator" xsi:type="object">Worldline\HostedCheckout\Gateway\Validator\AmountResponseValidator</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Response\HandlerChain\Authorization\Vault\Virtual" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="payment_details" xsi:type="string">Worldline\HostedCheckout\Gateway\Response\PaymentDetailsHandler</item>
+                <item name="txn_id" xsi:type="string">Worldline\HostedCheckout\Gateway\Response\TransactionIdHandler</item>
+                <item name="update_vault_expiration_date" xsi:type="string">Worldline\HostedCheckout\Gateway\Response\UpdateSepaVaultExpirationDateHandler</item>
+            </argument>
         </arguments>
     </virtualType>
     <virtualType name="Worldline\RedirectPayment\Gateway\Request\VaultAuthorizeBuilder\Virtual" type="Magento\Payment\Gateway\Request\BuilderComposite">
@@ -266,6 +285,7 @@
                 <item name="payment_details" xsi:type="string">Worldline\HostedCheckout\Gateway\Response\PaymentDetailsHandler</item>
                 <item name="txn_id" xsi:type="string">Worldline\HostedCheckout\Gateway\Response\TransactionIdHandler</item>
                 <item name="vault_details" xsi:type="string">Worldline\HostedCheckout\Gateway\Response\VaultDetailsHandler</item>
+                <item name="sepa_vault_details" xsi:type="string">Worldline\HostedCheckout\Gateway\Response\SepaVaultDetailsHandler</item>
             </argument>
         </arguments>
     </virtualType>
@@ -331,6 +351,36 @@
         </arguments>
     </virtualType>
     <!-- END VISA VAULT configuration -->
+    <!-- VAULT SEPA Direct Debit configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\SepaDirectDebit\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\SepaDirectDebit\Virtual</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\SepaDirectDebit\Virtual</argument>
+            <argument name="vaultProvider" xsi:type="object">Worldline\RedirectPayment\Model\Method\AdapterSepaDirectDebit\Virtual</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_771_vault</argument>
+        </arguments>
+    </virtualType>
+    <!-- Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\SepaDirectDebit\Virtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_771</argument>
+        </arguments>
+    </virtualType>
+    <!-- END Default Vault Config Handler -->
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\SepaDirectDebit\Virtual" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultSepaDirectDebit\Virtual</item>
+                <item name="order_status" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\NoVault\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandler\DefaultSepaDirectDebit\Virtual" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\SepaDirectDebit\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <!-- END SEPA Direct Debit VAULT configuration -->
 
     <!-- VAULT American Express configuration -->
     <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\AmericanExpress\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
@@ -561,6 +611,7 @@
                 <item name="worldline_redirect_payment_130" xsi:type="string">Worldline\RedirectPayment\Gateway\Command\CommandManager\Virtual</item>
                 <item name="worldline_redirect_payment_132" xsi:type="string">Worldline\RedirectPayment\Gateway\Command\CommandManager\Virtual</item>
                 <item name="worldline_redirect_payment_3012" xsi:type="string">Worldline\RedirectPayment\Gateway\Command\CommandManager\Virtual</item>
+                <item name="worldline_redirect_payment_771" xsi:type="string">Worldline\RedirectPayment\Gateway\Command\CommandManager\Virtual</item>
             </argument>
         </arguments>
     </type>

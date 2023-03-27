@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <event name="payment_method_assign_data_worldline_redirect_payment">
-        <observer name="Worldline_RedirectPayment::assign_entered_data"
-                  instance="Worldline\RedirectPayment\GraphQl\Observer\Payment\Model\Method\Adapter\AssignData" />
-    </event>
-</config>

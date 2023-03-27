@@ -79,5 +79,21 @@
                 <field id="active">1</field>
             </depends>
         </field>
+        <field id="direct_debit_recurrence_type" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1">
+            <label>Direct Debit Recurrence Type</label>
+            <source_model>Worldline\HostedCheckout\Config\Source\DirectDebit\RecurrenceType</source_model>
+            <config_path>payment/worldline_redirect_payment_771/direct_debit_recurrence_type</config_path>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+        </field>
+        <field id="direct_debit_signature_type" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1">
+            <label>Direct Debit Signature Type</label>
+            <source_model>Worldline\HostedCheckout\Config\Source\DirectDebit\SignatureType</source_model>
+            <config_path>payment/worldline_redirect_payment_771/direct_debit_signature_type</config_path>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+        </field>
     </group>
 </include>

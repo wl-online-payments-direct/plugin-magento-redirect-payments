@@ -28,6 +28,7 @@ class PaymentProductIdAssigner implements DataAssignerInterface
 
     private function extractProductId(string $paymentMethod): int
     {
+        $paymentMethod = str_replace('_vault', '', $paymentMethod);
         $offset = strrpos($paymentMethod, '_') + 1;
         return (int)substr($paymentMethod, $offset);
     }

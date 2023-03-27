@@ -5,6 +5,7 @@ namespace Worldline\RedirectPayment\WebApi\CreatePaymentManagement;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\PaymentInterface;
+use Worldline\HostedCheckout\Api\TokenManagerInterface;
 use Worldline\HostedCheckout\Gateway\Request\PaymentDataBuilder;
 use Worldline\HostedCheckout\Service\HostedCheckout\CreateHostedCheckoutService;
 use Worldline\PaymentCore\Model\DataAssigner\DataAssignerInterface;
@@ -22,12 +23,19 @@ class CreatePaymentDataAssigner implements DataAssignerInterface
      */
     private $createRequestBuilder;
 
+    /**
+     * @var TokenManagerInterface
+     */
+    private $tokenManager;
+
     public function __construct(
         CreateHostedCheckoutService $createRequest,
-        CreateHostedCheckoutRequestBuilder $createRequestBuilder
+        CreateHostedCheckoutRequestBuilder $createRequestBuilder,
+        TokenManagerInterface $tokenManager
     ) {
         $this->createRequest = $createRequest;
         $this->createRequestBuilder = $createRequestBuilder;
+        $this->tokenManager = $tokenManager;
     }
 
     /**
@@ -43,6 +51,11 @@ class CreatePaymentDataAssigner implements DataAssignerInterface
     public function assign(PaymentInterface $payment, array $additionalInformation): void
     {
         $quote = $payment->getQuote();
+
+        $token = $this->tokenManager->getToken($quote);
+        if ($token && $this->tokenManager->isSepaToken($token)) {
+            return;
+        }
 
         $request = $this->createRequestBuilder->build($quote);
         $response = $this->createRequest->execute($request, (int)$quote->getStoreId());
