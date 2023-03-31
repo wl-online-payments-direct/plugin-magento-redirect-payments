@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.7.1
+- Add backend address validation before payments.
+
 #### 1.7.0
 - Add surcharge functionality (for the Australian market).
 - Add Sepa Direct Debit payment method.
