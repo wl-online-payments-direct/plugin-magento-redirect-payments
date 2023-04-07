@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.7.2
+- Add fix for Adobe Commerce cloud instances.
+
 #### 1.7.1
 - Add backend address validation before payments.
 
