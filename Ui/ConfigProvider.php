@@ -98,11 +98,15 @@ class ConfigProvider implements ConfigProviderInterface
                 continue;
             }
 
-            $payProducts[self::CODE . '_' . $payProductId] = [
+            $payProductCode = self::CODE . '_' . $payProductId;
+            $payProducts[$payProductCode] = [
                 'isActive' => true,
-                'vaultCode' => self::CODE . '_' . $payProductId . '_' . 'vault',
                 'icon' => $this->iconProvider->getIconById($payProductId, $storeId)
             ];
+
+            if ($this->config->isVaultActive($storeId)) {
+                $payProducts[$payProductCode]['vaultCode'] = $payProductCode . '_' . 'vault';
+            }
         }
 
         return $payProducts;

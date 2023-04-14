@@ -79,5 +79,13 @@
                 <field id="active">1</field>
             </depends>
         </field>
+        <field id="oney3x4x_payment_option" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1">
+            <label>Oney3x4x payment option</label>
+            <config_path>payment/worldline_redirect_payment_5110/oney3x4x_payment_option</config_path>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+            <tooltip>Configure your payment option as defined on your Oney 3x4x contract. You can find the value directly from your Oney interface.</tooltip>
+        </field>
     </group>
 </include>

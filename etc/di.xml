@@ -42,6 +42,45 @@
             <argument name="allowedPaymentMethods" xsi:type="array">
                 <item name="worldline_redirect_payment" xsi:type="const">Worldline\RedirectPayment\Ui\ConfigProvider::CODE</item>
                 <item name="worldline_redirect_payment_vault" xsi:type="const">Worldline\RedirectPayment\Ui\ConfigProvider::VAULT_CODE</item>
+                <item name="worldline_redirect_payment_1" xsi:type="string">worldline_redirect_payment_1</item>
+                <item name="worldline_redirect_payment_1_vault" xsi:type="string">worldline_redirect_payment_1_vault</item>
+                <item name="worldline_redirect_payment_2" xsi:type="string">worldline_redirect_payment_2</item>
+                <item name="worldline_redirect_payment_2_vault" xsi:type="string">worldline_redirect_payment_2_vault</item>
+                <item name="worldline_redirect_payment_3" xsi:type="string">worldline_redirect_payment_3</item>
+                <item name="worldline_redirect_payment_3_vault" xsi:type="string">worldline_redirect_payment_3_vault</item>
+                <item name="worldline_redirect_payment_117" xsi:type="string">worldline_redirect_payment_117</item>
+                <item name="worldline_redirect_payment_117_vault" xsi:type="string">worldline_redirect_payment_117_vault</item>
+                <item name="worldline_redirect_payment_125" xsi:type="string">worldline_redirect_payment_125</item>
+                <item name="worldline_redirect_payment_125_vault" xsi:type="string">worldline_redirect_payment_125_vault</item>
+                <item name="worldline_redirect_payment_130" xsi:type="string">worldline_redirect_payment_130</item>
+                <item name="worldline_redirect_payment_130_vault" xsi:type="string">worldline_redirect_payment_130_vault</item>
+                <item name="worldline_redirect_payment_132" xsi:type="string">worldline_redirect_payment_132</item>
+                <item name="worldline_redirect_payment_132_vault" xsi:type="string">worldline_redirect_payment_132_vault</item>
+                <item name="worldline_redirect_payment_302" xsi:type="string">worldline_redirect_payment_302</item>
+                <item name="worldline_redirect_payment_320" xsi:type="string">worldline_redirect_payment_320</item>
+                <item name="worldline_redirect_payment_320_vault" xsi:type="string">worldline_redirect_payment_320_vault</item>
+                <item name="worldline_redirect_payment_771" xsi:type="string">worldline_redirect_payment_771</item>
+                <item name="worldline_redirect_payment_771_vault" xsi:type="string">worldline_redirect_payment_771_vault</item>
+                <item name="worldline_redirect_payment_809" xsi:type="string">worldline_redirect_payment_809</item>
+                <item name="worldline_redirect_payment_840" xsi:type="string">worldline_redirect_payment_840</item>
+                <item name="worldline_redirect_payment_861" xsi:type="string">worldline_redirect_payment_861</item>
+                <item name="worldline_redirect_payment_863" xsi:type="string">worldline_redirect_payment_863</item>
+                <item name="worldline_redirect_payment_3012" xsi:type="string">worldline_redirect_payment_3012</item>
+                <item name="worldline_redirect_payment_3012_vault" xsi:type="string">worldline_redirect_payment_3012_vault</item>
+                <item name="worldline_redirect_payment_3112" xsi:type="string">worldline_redirect_payment_3112</item>
+                <item name="worldline_redirect_payment_3301" xsi:type="string">worldline_redirect_payment_3301</item>
+                <item name="worldline_redirect_payment_3302" xsi:type="string">worldline_redirect_payment_3302</item>
+                <item name="worldline_redirect_payment_3303" xsi:type="string">worldline_redirect_payment_3303</item>
+                <item name="worldline_redirect_payment_3304" xsi:type="string">worldline_redirect_payment_3304</item>
+                <item name="worldline_redirect_payment_3305" xsi:type="string">worldline_redirect_payment_3305</item>
+                <item name="worldline_redirect_payment_5001" xsi:type="string">worldline_redirect_payment_5001</item>
+                <item name="worldline_redirect_payment_5100" xsi:type="string">worldline_redirect_payment_5100</item>
+                <item name="worldline_redirect_payment_5110" xsi:type="string">worldline_redirect_payment_5110</item>
+                <item name="worldline_redirect_payment_5125" xsi:type="string">worldline_redirect_payment_5125</item>
+                <item name="worldline_redirect_payment_5402" xsi:type="string">worldline_redirect_payment_5402</item>
+                <item name="worldline_redirect_payment_5500" xsi:type="string">worldline_redirect_payment_5500</item>
+                <item name="worldline_redirect_payment_5600" xsi:type="string">worldline_redirect_payment_5600</item>
+                <item name="worldline_redirect_payment_5700" xsi:type="string">worldline_redirect_payment_5700</item>
             </argument>
         </arguments>
     </type>
