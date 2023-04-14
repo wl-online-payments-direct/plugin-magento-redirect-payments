@@ -1,61 +1,62 @@
-"Required parameter ""code"" for ""payment_method"" is missing.","Required parameter ""code"" for ""payment_method"" is missing."
-"No public_hash provided","No public_hash provided"
-"Required parameter ""cart_id"" is missing.","Required parameter ""cart_id"" is missing."
-"Place Order","Place Order"
-"Redirect Payment","Redirect Payment"
-"Enable Payment","Enable Payment"
-"Enable Saved Payment (Vault)","Enable Saved Payment (Vault)"
-"Vault Title","Vault Title"
-"Payment from Applicable Customer Groups","Payment from Applicable Customer Groups"
-"Payment from Specific Customer Groups","Payment from Specific Customer Groups"
-"HTML Template ID","HTML Template ID"
-Debug,Debug
-"Payment Action","Payment Action"
-"Authorization Mode","Authorization Mode"
-"Default Order Status","Default Order Status"
-"Custom Return URL","Custom Return URL"
-"Should be set only if you use PWA Studio or any other 3rd party frontend.","Should be set only if you use PWA Studio or any other 3rd party frontend."
-"Submit Customer Cart Items Data to Worldline","Submit Customer Cart Items Data to Worldline"
-"Skip 3DSecure Authentication","Skip 3DSecure Authentication"
-"This option should not be turned off if the merchant is based in a EU country","This option should not be turned off if the merchant is based in a EU country"
-"Trigger an Authentication for Every Payment","Trigger an Authentication for Every Payment"
-"Enabling this option will make sure the customer performs a “Strong Customer Authentication” and hence enforces a “challenge” 3DS flow.","Enabling this option will make sure the customer performs a “Strong Customer Authentication” and hence enforces a “challenge” 3DS flow."
-"Request 3DS Exemption","Request 3DS Exemption"
-"If the setting is enabled and the sum of the order is below 30 euros, the customer won’t be asked to go through 3DS auth.","If the setting is enabled and the sum of the order is below 30 euros, the customer won’t be asked to go through 3DS auth."
-Alipay,Alipay
-Title,Title
-Sort,Sort
-"Payment from Applicable Countries","Payment from Applicable Countries"
-"Payment from Specific Countries","Payment from Specific Countries"
-"Payment from Applicable Currencies","Payment from Applicable Currencies"
-"Payment from Specific Currencies","Payment from Specific Currencies"
-"Minimum Order Total","Minimum Order Total"
-"Maximum Order Total","Maximum Order Total"
 "American Express","American Express"
 "Apple Pay","Apple Pay"
-Bancontact,Bancontact
-Bizum,Bizum
+"Authorization Mode","Authorization Mode"
 "Carte Bancaire","Carte Bancaire"
-Cpay,Cpay
+"Configure your payment option as defined on your Oney 3x4x contract. You can find the value directly from your Oney interface.","Configure your payment option as defined on your Oney 3x4x contract. You can find the value directly from your Oney interface."
+"Custom Return URL","Custom Return URL"
+"Default Order Status","Default Order Status"
 "Diners Club","Diners Club"
+"Enable Payment","Enable Payment"
+"Enable Saved Payment (Vault)","Enable Saved Payment (Vault)"
+"Enabling this option will make sure the customer performs a “Strong Customer Authentication” and hence enforces a “challenge” 3DS flow.","Enabling this option will make sure the customer performs a “Strong Customer Authentication” and hence enforces a “challenge” 3DS flow."
 "Google Pay","Google Pay"
-iDEAL,iDEAL
-Illicado,Illicado
-Intersolve,Intersolve
-JCB,JCB
+"HTML Template ID","HTML Template ID"
+"If the setting is enabled and the sum of the order is below 30 euros, the customer won’t be asked to go through 3DS auth.","If the setting is enabled and the sum of the order is below 30 euros, the customer won’t be asked to go through 3DS auth."
 "Klarna Bank Transfer","Klarna Bank Transfer"
 "Klarna Direct Debit","Klarna Direct Debit"
 "Klarna Financing","Klarna Financing"
 "Klarna Pay Later","Klarna Pay Later"
 "Klarna Pay Now","Klarna Pay Now"
+"Maximum Order Total","Maximum Order Total"
+"Minimum Order Total","Minimum Order Total"
+"No public_hash provided","No public_hash provided"
+"Oney 3x-4x","Oney 3x-4x"
+"Oney Financement Long","Oney Financement Long"
+"Payment Action","Payment Action"
+"Payment from Applicable Countries","Payment from Applicable Countries"
+"Payment from Applicable Currencies","Payment from Applicable Currencies"
+"Payment from Applicable Customer Groups","Payment from Applicable Customer Groups"
+"Payment from Specific Countries","Payment from Specific Countries"
+"Payment from Specific Currencies","Payment from Specific Currencies"
+"Payment from Specific Customer Groups","Payment from Specific Customer Groups"
+"Place Order","Place Order"
+"Redirect Payment","Redirect Payment"
+"Request 3DS Exemption","Request 3DS Exemption"
+"Required parameter ""cart_id"" is missing.","Required parameter ""cart_id"" is missing."
+"Required parameter ""code"" for ""payment_method"" is missing.","Required parameter ""code"" for ""payment_method"" is missing."
+"SEPA Direct Debit","SEPA Direct Debit"
+"Should be set only if you use PWA Studio or any other 3rd party frontend.","Should be set only if you use PWA Studio or any other 3rd party frontend."
+"Skip 3DSecure Authentication","Skip 3DSecure Authentication"
+"Submit Customer Cart Items Data to Worldline","Submit Customer Cart Items Data to Worldline"
+"This option should not be turned off if the merchant is based in a EU country","This option should not be turned off if the merchant is based in a EU country"
+"Trigger an Authentication for Every Payment","Trigger an Authentication for Every Payment"
+"Vault Title","Vault Title"
+"WeChat Pay","WeChat Pay"
+Alipay,Alipay
+Bancontact,Bancontact
+Bizum,Bizum
+Cpay,Cpay
+Debug,Debug
+iDEAL,iDEAL
+Illicado,Illicado
+Intersolve,Intersolve
+JCB,JCB
 Maestro,Maestro
 Mastercard,Mastercard
 Mealvouchers,Mealvouchers
 Multibanco,Multibanco
-"Oney 3x-4x","Oney 3x-4x"
-"Oney Financement Long","Oney Financement Long"
 OneyBrandedGiftCard,OneyBrandedGiftCard
 Paypal,Paypal
-"SEPA Direct Debit","SEPA Direct Debit"
+Sort,Sort
+Title,Title
 Visa,Visa
-"WeChat Pay","WeChat Pay"

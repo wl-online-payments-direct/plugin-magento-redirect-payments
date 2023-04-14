@@ -26,6 +26,8 @@ class Config extends PaymentGatewayConfig
     public const DIRECT_DEBIT_RECURRENCE_TYPE = 'payment/worldline_redirect_payment_771/direct_debit_recurrence_type';
     public const DIRECT_DEBIT_SIGNATURE_TYPE = 'payment/worldline_redirect_payment_771/direct_debit_signature_type';
 
+    public const ONEY_PAYMENT_OPTION = 'payment/worldline_redirect_payment_5110/oney3x4x_payment_option';
+
     /**
      * @var ScopeConfigInterface
      */
@@ -102,6 +104,15 @@ class Config extends PaymentGatewayConfig
     {
         return (string) $this->scopeConfig->getValue(
             self::DIRECT_DEBIT_SIGNATURE_TYPE,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
+    }
+
+    public function getOneyPaymentOption(?int $storeId = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::ONEY_PAYMENT_OPTION,
             ScopeInterface::SCOPE_STORE,
             $storeId
         );

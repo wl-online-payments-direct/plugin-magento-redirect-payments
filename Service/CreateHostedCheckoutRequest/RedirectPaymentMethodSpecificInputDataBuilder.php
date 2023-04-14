@@ -46,7 +46,9 @@ class RedirectPaymentMethodSpecificInputDataBuilder
         $redirectPaymentMethodSpecificInput = $this->redirectPaymentMethodSpecificInputFactory->create();
         $authMode = $this->config->getAuthorizationMode();
         $redirectPaymentMethodSpecificInput->setRequiresApproval($authMode !== Config::AUTHORIZATION_MODE_SALE);
-        $redirectPaymentMethodSpecificInput->setPaymentOption('W3999');
+        $redirectPaymentMethodSpecificInput->setPaymentOption(
+            $this->config->getOneyPaymentOption((int)$quote->getStoreId())
+        );
         $payProductId = $quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
         if ($payProductId) {
             $redirectPaymentMethodSpecificInput->setPaymentProductId((int)$payProductId);
