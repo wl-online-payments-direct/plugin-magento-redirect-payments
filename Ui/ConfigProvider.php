@@ -69,11 +69,9 @@ class ConfigProvider implements ConfigProviderInterface
                 return [];
             }
 
-            $result = [
+            return [
                 'payment' => $this->getActivePaymentProducts($storeId)
             ];
-
-            return $result;
         } catch (NoSuchEntityException $e) {
             $this->logger->critical($e);
             return [];

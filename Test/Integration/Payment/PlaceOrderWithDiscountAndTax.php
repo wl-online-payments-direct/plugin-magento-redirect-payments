@@ -62,7 +62,7 @@ class PlaceOrderWithDiscountAndTax extends TestCase
      * @magentoConfigFixture current_store worldline_connection/webhook/secret_key test-X-Gcs-Signature
      * @magentoConfigFixture current_store tax/classes/shipping_tax_class 2
      */
-    public function testOrderWithDiscountAndTax()
+    public function testOrderWithDiscountAndTax(): void
     {
         $reservedOrderId = $this->getQuote()->getReservedOrderId();
 

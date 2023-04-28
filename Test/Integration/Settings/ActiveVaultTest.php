@@ -69,11 +69,9 @@ class ActiveVaultTest extends TestCase
             return $method->getCode();
         }, $paymentMethods);
 
-        $this->assertTrue(
-            in_array(
-                ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID . '_vault',
-                $paymentMethodCodes
-            )
+        $this->assertContains(
+            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID . '_vault',
+            $paymentMethodCodes
         );
     }
 
@@ -111,11 +109,9 @@ class ActiveVaultTest extends TestCase
             return $method->getCode();
         }, $paymentMethods);
 
-        $this->assertFalse(
-            in_array(
-                ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID . '_vault',
-                $paymentMethodCodes
-            )
+        $this->assertNotContains(
+            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID . '_vault',
+            $paymentMethodCodes
         );
     }
 

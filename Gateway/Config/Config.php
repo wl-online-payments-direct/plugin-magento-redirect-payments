@@ -59,12 +59,11 @@ class Config extends PaymentGatewayConfig
         }
 
         $authorizationMode = (string) $this->getValue(self::AUTHORIZATION_MODE, $storeId);
-        switch ($authorizationMode) {
-            case 'pre':
-                return self::AUTHORIZATION_MODE_PRE;
-            default:
-                return self::AUTHORIZATION_MODE_FINAL;
+        if ($authorizationMode === 'pre') {
+            return self::AUTHORIZATION_MODE_PRE;
         }
+
+        return self::AUTHORIZATION_MODE_FINAL;
     }
 
     public function getTemplateId(?int $storeId = null): string

@@ -1,22 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\RedirectPayment\Test\Integration\Settings;
+namespace Worldline\RedirectPayment\Test\Integration\Payment;
 
 use Magento\Quote\Api\Data\CartInterface;
+use Magento\Sales\Api\Data\OrderInterfaceFactory;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
+use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
+use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\CardPaymentMethodSIDBuilder;
 use Worldline\RedirectPayment\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
+use Worldline\PaymentCore\Api\PaymentRepositoryInterface;
 use Worldline\PaymentCore\Api\QuoteResourceInterface;
 use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
+use Worldline\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
+use Worldline\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithIntersolve;
 
 /**
- * Test case for configurations:
- * "Enable 3-D Secure Authentication" and "Enforce Strong Customer Authentication for Every Payment"
+ * Test cases for Intersolve payment product
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class ThreeDSecureTest extends TestCase
+class PlaceOrderWithIntersolveTest extends TestCase
 {
     /**
      * @var CardPaymentMethodSIDBuilder
@@ -24,15 +29,33 @@ class ThreeDSecureTest extends TestCase
     private $cardPaymentMethodSIDBuilder;
 
     /**
+     * @var  WebhookStubSenderInterface
+     */
+    private $webhookStubSender;
+
+    /**
+     * @var OrderInterfaceFactory
+     */
+    private $orderFactory;
+
+    /**
      * @var QuoteResourceInterface
      */
     private $quoteExtendedRepository;
+
+    /**
+     * @var PaymentRepositoryInterface
+     */
+    private $paymentRepository;
 
     public function setUp(): void
     {
         $objectManager = Bootstrap::getObjectManager();
         $this->cardPaymentMethodSIDBuilder = $objectManager->get(CardPaymentMethodSIDBuilder::class);
+        $this->webhookStubSender = $objectManager->get(WebhookStubSenderInterface::class);
+        $this->orderFactory = $objectManager->get(OrderInterfaceFactory::class);
         $this->quoteExtendedRepository = $objectManager->get(QuoteResourceInterface::class);
+        $this->paymentRepository = $objectManager->get(PaymentRepositoryInterface::class);
         $objectManager->get(ServiceStubSwitcherInterface::class)->setEnabled(true);
     }
 
@@ -42,40 +65,52 @@ class ThreeDSecureTest extends TestCase
      * @magentoConfigFixture default/currency/options/allow EUR
      * @magentoConfigFixture default/currency/options/base EUR
      * @magentoConfigFixture default/currency/options/default EUR
-     * @magentoConfigFixture current_store payment/worldline_hosted_checkout_1/active 1
+     * @magentoConfigFixture default/sales_email/general/async_sending 0
+     * @magentoConfigFixture current_store payment/worldline_redirect_payment_5700/active 1
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/active 1
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/payment_action authorize
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/authorization_mode final
-     * @magentoConfigFixture current_store worldline_payment/general_settings/enable_3d 1
-     * @magentoConfigFixture current_store worldline_payment/general_settings/enforce_authentication 1
      * @magentoConfigFixture current_store worldline_connection/webhook/key test-X-Gcs-Keyid
      * @magentoConfigFixture current_store worldline_connection/webhook/secret_key test-X-Gcs-Signature
      */
-    public function testThreeDSecure(): void
+    public function testAuthorizeAndCaptureIntersolve(): void
     {
         $quote = $this->getQuote();
         $cardPaymentMethodSpecificInput = $this->cardPaymentMethodSIDBuilder->build($quote);
-
-        $this->assertNotFalse(
-            strpos(
-                $cardPaymentMethodSpecificInput->getThreeDSecure()->getRedirectionData()->getReturnUrl(),
-                'wl_hostedcheckout/returns/returnUrl'
-            )
-        );
-
-        $this->assertFalse($cardPaymentMethodSpecificInput->getThreeDSecure()->getSkipAuthentication());
         $this->assertEquals(
-            'challenge-required',
-            $cardPaymentMethodSpecificInput->getThreeDSecure()->getChallengeIndicator()
+            Config::AUTHORIZATION_MODE_FINAL,
+            $cardPaymentMethodSpecificInput->getAuthorizationMode()
         );
+
+        $this->paymentRepository->deleteByIncrementId('test01');
+
+        // send the webhook and place the order
+        $result = $this->webhookStubSender->sendWebhook(
+            AuthorizationWithIntersolve::getData($quote->getReservedOrderId())
+        );
+
+        // validate controller result
+        $reflectedResult = new \ReflectionObject($result);
+        $jsonProperty = $reflectedResult->getProperty('json');
+        $jsonProperty->setAccessible(true);
+        $this->assertEquals('{"messages":[],"error":false}', $jsonProperty->getValue($result));
+
+        // validate created order
+        $order = $this->orderFactory->create()->loadByIncrementId($quote->getReservedOrderId());
+        $this->assertTrue((bool) $order->getId());
+        $this->assertEquals('processing', $order->getStatus());
+        $this->assertEquals(
+            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::INTERSOLVE_PRODUCT_ID,
+            $order->getPayment()->getMethod()
+        );
+        $this->assertCount(1, $order->getInvoiceCollection()->getItems());
     }
 
     private function getQuote(): CartInterface
     {
         $quote = $this->quoteExtendedRepository->getQuoteByReservedOrderId('test01');
-        $quote->setReservedOrderId('test02');
         $quote->getPayment()->setMethod(
-            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID
+            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::INTERSOLVE_PRODUCT_ID
         );
         $quote->getShippingAddress()->setShippingMethod('flatrate_flatrate');
         $quote->getShippingAddress()->setCollectShippingRates(true);

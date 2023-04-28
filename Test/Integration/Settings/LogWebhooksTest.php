@@ -1,27 +1,35 @@
 <?php
 declare(strict_types=1);
 
-namespace Worldline\RedirectPayment\Test\Integration\Payment;
+namespace Worldline\RedirectPayment\Test\Integration\Settings;
 
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
 use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
-use Worldline\PaymentCore\Api\FraudRepositoryInterface;
-use Worldline\PaymentCore\Api\PaymentRepositoryInterface;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\PaymentCore\Api\QuoteResourceInterface;
 use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
 use Worldline\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
-use Worldline\PaymentCore\Api\TransactionRepositoryInterface;
 use Worldline\PaymentCore\Infrastructure\StubData\Webhook\Authorization;
-use Worldline\RedirectPayment\Ui\ConfigProvider;
+use Worldline\PaymentCore\Model\Webhook\ResourceModel\Webhook as WebhookResource;
+use Worldline\PaymentCore\Model\Webhook\WebhookFactory;
 
 /**
- * Test case about payment information in order
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * Test cases for configuration "Log Webhooks"
  */
-class OrderPaymentInfoTest extends TestCase
+class LogWebhooksTest extends TestCase
 {
+    /**
+     * @var WebhookFactory
+     */
+    private $webhookEntityFactory;
+
+    /**
+     * @var WebhookResource
+     */
+    private $webhookResource;
+
     /**
      * @var  WebhookStubSenderInterface
      */
@@ -32,29 +40,13 @@ class OrderPaymentInfoTest extends TestCase
      */
     private $quoteExtendedRepository;
 
-    /**
-     * @var PaymentRepositoryInterface
-     */
-    private $paymentRepository;
-
-    /**
-     * @var TransactionRepositoryInterface
-     */
-    private $transactionRepository;
-
-    /**
-     * @var FraudRepositoryInterface
-     */
-    private $fraudRepository;
-
     public function setUp(): void
     {
         $objectManager = Bootstrap::getObjectManager();
+        $this->webhookEntityFactory = $objectManager->get(WebhookFactory::class);
+        $this->webhookResource = $objectManager->get(WebhookResource::class);
         $this->webhookStubSender = $objectManager->get(WebhookStubSenderInterface::class);
         $this->quoteExtendedRepository = $objectManager->get(QuoteResourceInterface::class);
-        $this->paymentRepository = $objectManager->get(PaymentRepositoryInterface::class);
-        $this->transactionRepository = $objectManager->get(TransactionRepositoryInterface::class);
-        $this->fraudRepository = $objectManager->get(FraudRepositoryInterface::class);
         $objectManager->get(ServiceStubSwitcherInterface::class)->setEnabled(true);
     }
 
@@ -67,10 +59,11 @@ class OrderPaymentInfoTest extends TestCase
      * @magentoConfigFixture current_store payment/worldline_redirect_payment_1/active 1
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/active 1
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/payment_action authorize_capture
+     * @magentoConfigFixture default/worldline_debug/webhooks/active 1
      * @magentoConfigFixture current_store worldline_connection/webhook/key test-X-Gcs-Keyid
      * @magentoConfigFixture current_store worldline_connection/webhook/secret_key test-X-Gcs-Signature
      */
-    public function testOrderPaymentInfo(): void
+    public function testWebhookData(): void
     {
         $quote = $this->getQuote();
 
@@ -83,18 +76,10 @@ class OrderPaymentInfoTest extends TestCase
         $jsonProperty->setAccessible(true);
         $this->assertEquals('{"messages":[],"error":false}', $jsonProperty->getValue($result));
 
-        // validate payment info
-        $payment = $this->paymentRepository->get('test01');
-        $this->assertEquals('3254564310_0', $payment->getPaymentId());
-
-        $transaction = $this->transactionRepository->getLastTransaction('test01');
-        $this->assertEquals('3254564310_0', $transaction->getTransactionId());
-
-        // validate fraud info
-        $fraudInfo = $this->fraudRepository->getByIncrementId('test01');
-        $this->assertEquals('accepted', $fraudInfo->getResult());
-        $this->assertEquals('issuer', $fraudInfo->getLiability());
-        $this->assertEquals('Y', $fraudInfo->getAuthenticationStatus());
+        $webhookEntity = $this->webhookEntityFactory->create();
+        $this->webhookResource->load($webhookEntity, $quote->getReservedOrderId(), 'increment_id');
+        $this->assertEquals('payment.pending_capture', $webhookEntity->getType());
+        $this->assertEquals(5, $webhookEntity->getStatusCode());
     }
 
     private function getQuote(): CartInterface

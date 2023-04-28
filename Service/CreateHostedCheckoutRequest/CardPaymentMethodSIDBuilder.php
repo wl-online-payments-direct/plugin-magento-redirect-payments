@@ -94,7 +94,7 @@ class CardPaymentMethodSIDBuilder
 
     private function getAuthorizationMode(int $payProductId, int $storeId): string
     {
-        if (in_array($payProductId, $this->alwaysSaleProductIds)) {
+        if (in_array($payProductId, $this->alwaysSaleProductIds, true)) {
             return Config::AUTHORIZATION_MODE_SALE;
         }
 
