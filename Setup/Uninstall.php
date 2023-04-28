@@ -28,15 +28,16 @@ class Uninstall implements UninstallInterface
     }
 
     /**
-     * @param SchemaSetupInterface $installer
+     * @param SchemaSetupInterface $setup
      * @param ModuleContextInterface $context
      * @return void
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @throws \Exception
      */
-    public function uninstall(SchemaSetupInterface $installer, ModuleContextInterface $context): void
+    public function uninstall(SchemaSetupInterface $setup, ModuleContextInterface $context): void
     {
-        $installer->startSetup();
+        $setup->startSetup();
 
         $collection = $this->configCollectionFactory->create()
             ->addFieldToFilter(
@@ -51,6 +52,6 @@ class Uninstall implements UninstallInterface
             $this->configResource->delete($config);
         }
 
-        $installer->endSetup();
+        $setup->endSetup();
     }
 }

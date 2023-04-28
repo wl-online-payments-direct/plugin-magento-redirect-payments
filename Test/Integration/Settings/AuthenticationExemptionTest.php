@@ -56,11 +56,11 @@ class AuthenticationExemptionTest extends TestCase
         $quote = $this->getQuote();
         $cardPaymentMethodSpecificInput = $this->cardPaymentMethodSIDBuilder->build($quote);
 
-        $this->assertTrue(
+        $this->assertNotFalse(
             strpos(
                 $cardPaymentMethodSpecificInput->getThreeDSecure()->getRedirectionData()->getReturnUrl(),
                 'wl_hostedcheckout/returns/returnUrl'
-            ) !== false
+            )
         );
 
         $this->assertFalse($cardPaymentMethodSpecificInput->getThreeDSecure()->getSkipAuthentication());

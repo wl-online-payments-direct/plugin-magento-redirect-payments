@@ -3,25 +3,31 @@ declare(strict_types=1);
 
 namespace Worldline\RedirectPayment\Test\Integration\Settings;
 
+use Magento\Framework\App\Area;
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\TestFramework\Helper\Bootstrap;
+use Magento\Framework\App\State;
 use PHPUnit\Framework\TestCase;
-use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\CardPaymentMethodSIDBuilder;
-use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
+use Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\PaymentCore\Api\QuoteResourceInterface;
 use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
 
 /**
- * Test case for configurations:
- * "Enable 3-D Secure Authentication" and "Enforce Strong Customer Authentication for Every Payment"
+ * Test case for configuration "Custom Return URL"
  */
-class ThreeDSecureTest extends TestCase
+class ReturnUrlForPwaTest extends TestCase
 {
     /**
-     * @var CardPaymentMethodSIDBuilder
+     * @var State
      */
-    private $cardPaymentMethodSIDBuilder;
+    private $state;
+
+    /**
+     * @var SpecificInputDataBuilder
+     */
+    private $specificInputDataBuilder;
 
     /**
      * @var QuoteResourceInterface
@@ -31,7 +37,8 @@ class ThreeDSecureTest extends TestCase
     public function setUp(): void
     {
         $objectManager = Bootstrap::getObjectManager();
-        $this->cardPaymentMethodSIDBuilder = $objectManager->get(CardPaymentMethodSIDBuilder::class);
+        $this->state = $objectManager->get(State::class);
+        $this->specificInputDataBuilder = $objectManager->get(SpecificInputDataBuilder::class);
         $this->quoteExtendedRepository = $objectManager->get(QuoteResourceInterface::class);
         $objectManager->get(ServiceStubSwitcherInterface::class)->setEnabled(true);
     }
@@ -42,31 +49,23 @@ class ThreeDSecureTest extends TestCase
      * @magentoConfigFixture default/currency/options/allow EUR
      * @magentoConfigFixture default/currency/options/base EUR
      * @magentoConfigFixture default/currency/options/default EUR
-     * @magentoConfigFixture current_store payment/worldline_hosted_checkout_1/active 1
+     * @magentoConfigFixture current_store payment/worldline_redirect_payment_1/active 1
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/active 1
-     * @magentoConfigFixture current_store payment/worldline_redirect_payment/payment_action authorize
-     * @magentoConfigFixture current_store payment/worldline_redirect_payment/authorization_mode final
-     * @magentoConfigFixture current_store worldline_payment/general_settings/enable_3d 1
-     * @magentoConfigFixture current_store worldline_payment/general_settings/enforce_authentication 1
+     * @magentoConfigFixture current_store payment/worldline_redirect_payment/payment_action authorize_capture
      * @magentoConfigFixture current_store worldline_connection/webhook/key test-X-Gcs-Keyid
      * @magentoConfigFixture current_store worldline_connection/webhook/secret_key test-X-Gcs-Signature
+     * @magentoConfigFixture current_store worldline_payment/general_settings/pwa_route https://pwa.com/checkout/success
      */
-    public function testThreeDSecure(): void
+    public function testCustomUrl(): void
     {
+        $this->state->setAreaCode(Area::AREA_GRAPHQL);
+
         $quote = $this->getQuote();
-        $cardPaymentMethodSpecificInput = $this->cardPaymentMethodSIDBuilder->build($quote);
+        $hostedCheckoutSpecificInput = $this->specificInputDataBuilder->build($quote);
 
-        $this->assertNotFalse(
-            strpos(
-                $cardPaymentMethodSpecificInput->getThreeDSecure()->getRedirectionData()->getReturnUrl(),
-                'wl_hostedcheckout/returns/returnUrl'
-            )
-        );
-
-        $this->assertFalse($cardPaymentMethodSpecificInput->getThreeDSecure()->getSkipAuthentication());
         $this->assertEquals(
-            'challenge-required',
-            $cardPaymentMethodSpecificInput->getThreeDSecure()->getChallengeIndicator()
+            'https://pwa.com/checkout/success',
+            $hostedCheckoutSpecificInput->getReturnUrl()
         );
     }
 
@@ -74,9 +73,7 @@ class ThreeDSecureTest extends TestCase
     {
         $quote = $this->quoteExtendedRepository->getQuoteByReservedOrderId('test01');
         $quote->setReservedOrderId('test02');
-        $quote->getPayment()->setMethod(
-            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID
-        );
+        $quote->getPayment()->setMethod(ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID);
         $quote->getShippingAddress()->setShippingMethod('flatrate_flatrate');
         $quote->getShippingAddress()->setCollectShippingRates(true);
         $quote->getShippingAddress()->collectShippingRates();

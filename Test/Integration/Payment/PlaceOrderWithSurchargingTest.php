@@ -3,19 +3,37 @@ declare(strict_types=1);
 
 namespace Worldline\RedirectPayment\Test\Integration\Payment;
 
+use Magento\Customer\Model\Session;
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Sales\Api\Data\OrderInterfaceFactory;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
+use Worldline\RedirectPayment\Ui\ConfigProvider;
+use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\OrderDataBuilder;
 use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 use Worldline\PaymentCore\Api\QuoteResourceInterface;
+use Worldline\PaymentCore\Api\SurchargingQuoteRepositoryInterface;
 use Worldline\PaymentCore\Api\Test\Infrastructure\ServiceStubSwitcherInterface;
 use Worldline\PaymentCore\Api\Test\Infrastructure\WebhookStubSenderInterface;
-use Worldline\PaymentCore\Infrastructure\StubData\Webhook\Authorization;
-use Worldline\RedirectPayment\Ui\ConfigProvider;
+use Worldline\PaymentCore\Infrastructure\StubData\Webhook\AuthorizationWithSurcharging;
+use Worldline\PaymentCore\Service\CreateRequest\Order\SurchargeDataBuilder;
 
-class VoidOrderTest extends TestCase
+/**
+ * Test case about place order with surcharging
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
+class PlaceOrderWithSurchargingTest extends TestCase
 {
+    /**
+     * @var OrderDataBuilder
+     */
+    private $orderDataBuilder;
+
+    /**
+     * @var QuoteResourceInterface
+     */
+    private $quoteExtendedRepository;
+
     /**
      * @var  WebhookStubSenderInterface
      */
@@ -27,21 +45,23 @@ class VoidOrderTest extends TestCase
     private $orderFactory;
 
     /**
-     * @var QuoteResourceInterface
+     * @var SurchargingQuoteRepositoryInterface
      */
-    private $quoteExtendedRepository;
+    private $surchargingQuoteRepository;
 
     public function setUp(): void
     {
         $objectManager = Bootstrap::getObjectManager();
+        $this->orderDataBuilder = $objectManager->get(OrderDataBuilder::class);
+        $this->quoteExtendedRepository = $objectManager->get(QuoteResourceInterface::class);
         $this->webhookStubSender = $objectManager->get(WebhookStubSenderInterface::class);
         $this->orderFactory = $objectManager->get(OrderInterfaceFactory::class);
-        $this->quoteExtendedRepository = $objectManager->get(QuoteResourceInterface::class);
+        $this->surchargingQuoteRepository = $objectManager->get(SurchargingQuoteRepositoryInterface::class);
         $objectManager->get(ServiceStubSwitcherInterface::class)->setEnabled(true);
     }
 
     /**
-     * @magentoDbIsolation enabled
+     * @magentoAppIsolation enabled
      * @magentoDataFixture Magento/Sales/_files/quote.php
      * @magentoConfigFixture default/currency/options/allow EUR
      * @magentoConfigFixture default/currency/options/base EUR
@@ -51,21 +71,38 @@ class VoidOrderTest extends TestCase
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/active 1
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/payment_action authorize
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/authorization_mode final
+     * @magentoConfigFixture current_store worldline_payment/general_settings/apply_surcharge 1
      * @magentoConfigFixture current_store worldline_connection/webhook/key test-X-Gcs-Keyid
      * @magentoConfigFixture current_store worldline_connection/webhook/secret_key test-X-Gcs-Signature
      */
-    public function testVoidOrder(): void
+    public function testSurcharging(): void
     {
+        /** @var Session $customerSession */
+        $customerSession = Bootstrap::getObjectManager()->get(Session::class);
+        $customerSession->loginById(1);
         $quote = $this->getQuote();
+        $grandTotalBeforeCalculateSurcharging = $quote->getGrandTotal();
+
+        $orderSpecificOutput = $this->orderDataBuilder->build($quote);
+        $surchargeSpecificInput = $orderSpecificOutput->getSurchargeSpecificInput();
+
+        // validate surcharge settings
+        $this->assertNotNull($surchargeSpecificInput);
+        $this->assertEquals(SurchargeDataBuilder::SURCHARGE_MODE, $surchargeSpecificInput->getMode());
 
         // send the webhook and place the order
-        $result = $this->webhookStubSender->sendWebhook(Authorization::getData($quote->getReservedOrderId()));
+        $result = $this->webhookStubSender->sendWebhook(
+            AuthorizationWithSurcharging::getData($quote->getReservedOrderId())
+        );
 
         // validate controller result
         $reflectedResult = new \ReflectionObject($result);
         $jsonProperty = $reflectedResult->getProperty('json');
         $jsonProperty->setAccessible(true);
         $this->assertEquals('{"messages":[],"error":false}', $jsonProperty->getValue($result));
+
+        $surchargingQuote = $this->surchargingQuoteRepository->getByQuoteId((int)$quote->getId());
+        $this->assertNotNull($surchargingQuote->getAmount());
 
         // validate created order
         $order = $this->orderFactory->create()->loadByIncrementId($quote->getReservedOrderId());
@@ -75,26 +112,23 @@ class VoidOrderTest extends TestCase
             ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID,
             $order->getPayment()->getMethod()
         );
-        $this->assertCount(0, $order->getInvoiceCollection()->getItems());
-
-        $order->getPayment()->void(new \Magento\Framework\DataObject());
-        $order->save();
-
-        $this->assertEquals('3254564310-void', $order->getPayment()->getLastTransId());
+        $this->assertEquals($grandTotalBeforeCalculateSurcharging + 10.0, $order->getGrandTotal());
     }
 
     private function getQuote(): CartInterface
     {
         $quote = $this->quoteExtendedRepository->getQuoteByReservedOrderId('test01');
-        $quote->getPayment()->setMethod(ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID);
+        $quote->getPayment()->setMethod(
+            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID
+        );
         $quote->getShippingAddress()->setShippingMethod('flatrate_flatrate');
         $quote->getShippingAddress()->setCollectShippingRates(true);
         $quote->getShippingAddress()->collectShippingRates();
         $quote->setCustomerEmail('example@worldline.com');
-        $quote->getPayment()->setAdditionalInformation('payment_id', '3254564310_0');
+        $quote->getPayment()->setAdditionalInformation('payment_id', '3254564316_0');
         $quote->getPayment()->setAdditionalInformation('token_id', 'test');
+        $quote->getPayment()->setAdditionalInformation('customer_id', 1);
         $quote->collectTotals();
-        $quote->getPayment()->save();
         $quote->save();
 
         return $quote;

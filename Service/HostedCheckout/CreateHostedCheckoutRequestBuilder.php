@@ -93,7 +93,7 @@ class CreateHostedCheckoutRequestBuilder
         $createHostedCheckoutRequest = $this->createHostedCheckoutRequestFactory->create();
         $createHostedCheckoutRequest->setOrder($this->orderDataBuilder->build($quote));
         $createHostedCheckoutRequest->setHostedCheckoutSpecificInput($this->specificInputDataBuilder->build($quote));
-        if ($payMethod == null || $payMethod === 'redirect') {
+        if ($payMethod === null || $payMethod === 'redirect') {
             $createHostedCheckoutRequest->setRedirectPaymentMethodSpecificInput(
                 $this->redirectPaymentMethodSpecificInputDataBuilder->build($quote)
             );

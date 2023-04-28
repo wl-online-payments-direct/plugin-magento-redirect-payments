@@ -13,7 +13,7 @@ class MealvouchersGlobalNotification extends Field
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function render(AbstractElement $element)
+    public function render(AbstractElement $element): string
     {
         $notifyText = "Please note that the Mealvouchers method will work properly only if the "
             . "'Submit Customer Cart Items Data to Worldline' setting is enabled";

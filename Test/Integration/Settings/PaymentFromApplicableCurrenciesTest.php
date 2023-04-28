@@ -64,11 +64,9 @@ class PaymentFromApplicableCurrenciesTest extends TestCase
             return $method->getCode();
         }, $paymentMethods);
 
-        $this->assertTrue(
-            in_array(
-                ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID,
-                $paymentMethodCodes
-            )
+        $this->assertContains(
+            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID,
+            $paymentMethodCodes
         );
     }
 
@@ -103,11 +101,9 @@ class PaymentFromApplicableCurrenciesTest extends TestCase
             return $method->getCode();
         }, $paymentMethods);
 
-        $this->assertFalse(
-            in_array(
-                ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID,
-                $paymentMethodCodes
-            )
+        $this->assertNotContains(
+            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID,
+            $paymentMethodCodes
         );
     }
 

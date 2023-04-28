@@ -5,9 +5,10 @@ namespace Worldline\RedirectPayment\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Payment\Model\Method\Adapter;
+use Worldline\PaymentCore\Api\AvailableMethodCheckerInterface;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Ui\ConfigProvider;
-use Worldline\PaymentCore\Api\AvailableMethodCheckerInterface;
 
 class PaymentMethodIsActive implements ObserverInterface
 {
@@ -31,7 +32,7 @@ class PaymentMethodIsActive implements ObserverInterface
 
     public function execute(Observer $observer): void
     {
-        /** @var \Magento\Payment\Model\Method\Adapter $methodInstance */
+        /** @var Adapter $methodInstance */
         $methodInstance = $observer->getMethodInstance();
         $quote = $observer->getQuote();
         if ($methodInstance === null

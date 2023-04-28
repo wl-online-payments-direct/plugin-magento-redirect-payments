@@ -37,6 +37,16 @@
         </arguments>
     </type>
 
+    <type name="Worldline\HostedCheckout\Observer\StorePayment">
+        <arguments>
+            <argument name="paymentMethods" xsi:type="array">
+                <item name="worldline_redirect_payment_5700" xsi:type="string">worldline_redirect_payment_5700</item>
+                <item name="worldline_redirect_payment_3012" xsi:type="string">worldline_redirect_payment_3012</item>
+                <item name="worldline_redirect_payment_771" xsi:type="string">worldline_redirect_payment_771</item>
+            </argument>
+        </arguments>
+    </type>
+
     <type name="Worldline\PaymentCore\Model\ResourceModel\PendingOrderProvider">
         <arguments>
             <argument name="allowedPaymentMethods" xsi:type="array">
