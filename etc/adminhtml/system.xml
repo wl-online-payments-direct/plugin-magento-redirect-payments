@@ -107,6 +107,7 @@
                 <include path="Worldline_RedirectPayment::system/carte_bancaire.xml"/>
                 <include path="Worldline_RedirectPayment::system/cpay.xml"/>
                 <include path="Worldline_RedirectPayment::system/diners_club.xml"/>
+                <include path="Worldline_RedirectPayment::system/giftcard_limonetik.xml"/>
                 <include path="Worldline_RedirectPayment::system/google_pay.xml"/>
                 <include path="Worldline_RedirectPayment::system/ideal.xml"/>
                 <include path="Worldline_RedirectPayment::system/illicado.xml"/>

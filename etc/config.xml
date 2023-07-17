@@ -112,6 +112,13 @@
                 <model>Worldline\RedirectPayment\Model\Method\Vault\DinersClub\Virtual</model>
                 <group>worldline_group</group>
             </worldline_redirect_payment_132_vault>
+            <worldline_redirect_payment_3111>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterGiftcardLimonetik\Virtual</model>
+                <title>Giftcard Limonetik</title>
+                <sort_order>85</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
+            </worldline_redirect_payment_3111>
             <worldline_redirect_payment_320>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterGooglePay\Virtual</model>
                 <title>Google Pay</title>
