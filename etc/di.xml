@@ -77,6 +77,7 @@
                 <item name="worldline_redirect_payment_863" xsi:type="string">worldline_redirect_payment_863</item>
                 <item name="worldline_redirect_payment_3012" xsi:type="string">worldline_redirect_payment_3012</item>
                 <item name="worldline_redirect_payment_3012_vault" xsi:type="string">worldline_redirect_payment_3012_vault</item>
+                <item name="worldline_redirect_payment_3111" xsi:type="string">worldline_redirect_payment_3111</item>
                 <item name="worldline_redirect_payment_3112" xsi:type="string">worldline_redirect_payment_3112</item>
                 <item name="worldline_redirect_payment_3301" xsi:type="string">worldline_redirect_payment_3301</item>
                 <item name="worldline_redirect_payment_3302" xsi:type="string">worldline_redirect_payment_3302</item>
@@ -1054,6 +1055,54 @@
         </arguments>
     </virtualType>
     <!-- Apple Pay -->
+
+    <!-- Giftcard Limonetik -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterGiftcardLimonetik\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">
+        <arguments>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_3111</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolGiftcardLimonetik\Virtual</argument>
+            <argument name="validatorPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolGiftcardLimonetik\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolGiftcardLimonetik\Virtual" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="country" xsi:type="string">Worldline\RedirectPayment\Gateway\Validator\CountryValidatorGiftcardLimonetik\Virtual</item>
+                <item name="currency" xsi:type="string">Worldline\RedirectPayment\Gateway\Validator\CurrencyValidatorGiftcardLimonetik\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\CountryValidatorGiftcardLimonetik\Virtual" type="Magento\Payment\Gateway\Validator\CountryValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigGiftcardLimonetik\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\CurrencyValidatorGiftcardLimonetik\Virtual" type="Worldline\PaymentCore\Gateway\Validator\CurrencyValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigGiftcardLimonetik\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolGiftcardLimonetik\Virtual" type="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\Virtual">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerGiftcardLimonetik\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerGiftcardLimonetik\Virtual</item>
+                <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerGiftcardLimonetik\Virtual</item>
+                <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerGiftcardLimonetik\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerGiftcardLimonetik\Virtual" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigGiftcardLimonetik\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\ConfigGiftcardLimonetik\ConfigVirtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_3111</argument>
+        </arguments>
+    </virtualType>
+    <!-- Giftcard Limonetik -->
 
     <!-- Google Pay -->
     <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterGooglePay\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">
