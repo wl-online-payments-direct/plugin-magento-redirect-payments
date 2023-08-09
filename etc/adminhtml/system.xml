@@ -107,17 +107,18 @@
                 <include path="Worldline_RedirectPayment::system/carte_bancaire.xml"/>
                 <include path="Worldline_RedirectPayment::system/cpay.xml"/>
                 <include path="Worldline_RedirectPayment::system/diners_club.xml"/>
+                <include path="Worldline_RedirectPayment::system/eps.xml"/>
                 <include path="Worldline_RedirectPayment::system/giftcard_limonetik.xml"/>
                 <include path="Worldline_RedirectPayment::system/google_pay.xml"/>
                 <include path="Worldline_RedirectPayment::system/ideal.xml"/>
                 <include path="Worldline_RedirectPayment::system/illicado.xml"/>
                 <include path="Worldline_RedirectPayment::system/intersolve.xml"/>
                 <include path="Worldline_RedirectPayment::system/jcb.xml"/>
-                <include path="Worldline_RedirectPayment::system/klarna_pay_now.xml"/>
-                <include path="Worldline_RedirectPayment::system/klarna_pay_later.xml"/>
-                <include path="Worldline_RedirectPayment::system/klarna_financing.xml"/>
                 <include path="Worldline_RedirectPayment::system/klarna_bank_transfer.xml"/>
                 <include path="Worldline_RedirectPayment::system/klarna_direct_debit.xml"/>
+                <include path="Worldline_RedirectPayment::system/klarna_financing.xml"/>
+                <include path="Worldline_RedirectPayment::system/klarna_pay_later.xml"/>
+                <include path="Worldline_RedirectPayment::system/klarna_pay_now.xml"/>
                 <include path="Worldline_RedirectPayment::system/maestro.xml"/>
                 <include path="Worldline_RedirectPayment::system/mastercard.xml"/>
                 <include path="Worldline_RedirectPayment::system/mealvouchers.xml"/>
@@ -126,7 +127,10 @@
                 <include path="Worldline_RedirectPayment::system/oney_financement_long.xml"/>
                 <include path="Worldline_RedirectPayment::system/oneybrandedgiftcard.xml"/>
                 <include path="Worldline_RedirectPayment::system/paypal.xml"/>
+                <include path="Worldline_RedirectPayment::system/przelewy24.xml"/>
                 <include path="Worldline_RedirectPayment::system/sepa_direct_debit.xml"/>
+                <include path="Worldline_RedirectPayment::system/twint.xml"/>
+                <include path="Worldline_RedirectPayment::system/union_pay_int.xml"/>
                 <include path="Worldline_RedirectPayment::system/visa.xml"/>
                 <include path="Worldline_RedirectPayment::system/wechat_pay.xml"/>
             </group>

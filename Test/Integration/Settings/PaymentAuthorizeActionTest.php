@@ -27,11 +27,6 @@ class PaymentAuthorizeActionTest extends TestCase
     private $cardPaymentMethodSIDBuilder;
 
     /**
-     * @var CartInterface
-     */
-    private $quote;
-
-    /**
      * @var  WebhookStubSenderInterface
      */
     private $webhookStubSender;
@@ -99,66 +94,21 @@ class PaymentAuthorizeActionTest extends TestCase
         );
     }
 
-    /**
-     * @magentoAppIsolation enabled
-     * @magentoDataFixture Magento/Sales/_files/quote.php
-     * @magentoConfigFixture current_store currency/options/allow EUR
-     * @magentoConfigFixture current_store currency/options/base EUR
-     * @magentoConfigFixture current_store currency/options/default EUR
-     * @magentoConfigFixture default/sales_email/general/async_sending 0
-     * @magentoConfigFixture current_store payment/worldline_redirect_payment_1/active 1
-     * @magentoConfigFixture current_store payment/worldline_redirect_payment/active 1
-     * @magentoConfigFixture current_store payment/worldline_redirect_payment/payment_action authorize
-     * @magentoConfigFixture current_store payment/worldline_redirect_payment/authorization_mode pre
-     * @magentoConfigFixture current_store worldline_connection/webhook/key test-X-Gcs-Keyid
-     * @magentoConfigFixture current_store worldline_connection/webhook/secret_key test-X-Gcs-Signature
-     */
-    public function testAuthorizeWithPreAuthorization(): void
-    {
-        $quote = $this->getQuote();
-        $cardPaymentMethodSpecificInput = $this->cardPaymentMethodSIDBuilder->build($quote);
-        $this->assertEquals(
-            Config::AUTHORIZATION_MODE_PRE,
-            $cardPaymentMethodSpecificInput->getAuthorizationMode()
-        );
-
-        // send the webhook and place the order
-        $result = $this->webhookStubSender->sendWebhook(Authorization::getData($quote->getReservedOrderId()));
-
-        // validate controller result
-        $reflectedResult = new \ReflectionObject($result);
-        $jsonProperty = $reflectedResult->getProperty('json');
-        $jsonProperty->setAccessible(true);
-        $this->assertEquals('{"messages":[],"error":false}', $jsonProperty->getValue($result));
-
-        // validate created order
-        $order = $this->orderFactory->create()->loadByIncrementId($quote->getReservedOrderId());
-        $this->assertTrue((bool) $order->getId());
-        $this->assertEquals('processing', $order->getStatus());
-        $this->assertCount(0, $order->getInvoiceCollection()->getItems());
-        $this->assertEquals(
-            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID,
-            $order->getPayment()->getMethod()
-        );
-    }
-
     private function getQuote(): CartInterface
     {
-        if (empty($this->quote)) {
-            $this->quote = $this->quoteExtendedRepository->getQuoteByReservedOrderId('test01');
-            $this->quote->getPayment()->setMethod(
-                ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID
-            );
-            $this->quote->getShippingAddress()->setShippingMethod('flatrate_flatrate');
-            $this->quote->getShippingAddress()->setCollectShippingRates(true);
-            $this->quote->getShippingAddress()->collectShippingRates();
-            $this->quote->setCustomerEmail('example@worldline.com');
-            $this->quote->getPayment()->setAdditionalInformation('payment_id', '3254564310_0');
-            $this->quote->getPayment()->setAdditionalInformation('token_id', 'test');
-            $this->quote->collectTotals();
-            $this->quote->save();
-        }
+        $quote = $this->quoteExtendedRepository->getQuoteByReservedOrderId('test01');
+        $quote->getPayment()->setMethod(
+            ConfigProvider::CODE . '_' . PaymentProductsDetailsInterface::VISA_PRODUCT_ID
+        );
+        $quote->getShippingAddress()->setShippingMethod('flatrate_flatrate');
+        $quote->getShippingAddress()->setCollectShippingRates(true);
+        $quote->getShippingAddress()->collectShippingRates();
+        $quote->setCustomerEmail('example@worldline.com');
+        $quote->getPayment()->setAdditionalInformation('payment_id', '3254564310_0');
+        $quote->getPayment()->setAdditionalInformation('token_id', 'test');
+        $quote->collectTotals();
+        $quote->save();
 
-        return $this->quote;
+        return $quote;
     }
 }

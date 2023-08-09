@@ -16,6 +16,7 @@
                 <item name="worldline_redirect_payment_1" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
                 <item name="worldline_redirect_payment_2" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
                 <item name="worldline_redirect_payment_3" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
+                <item name="worldline_redirect_payment_56" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
                 <item name="worldline_redirect_payment_117" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
                 <item name="worldline_redirect_payment_125" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
                 <item name="worldline_redirect_payment_130" xsi:type="object">Worldline\RedirectPayment\Ui\TokenUiComponentProvider</item>
