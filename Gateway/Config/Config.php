@@ -28,6 +28,8 @@ class Config extends PaymentGatewayConfig
 
     public const ONEY_PAYMENT_OPTION = 'payment/worldline_redirect_payment_5110/oney3x4x_payment_option';
 
+    public const INTERSOLVE_GIFT_CARDS = 'payment/worldline_redirect_payment_5700/gift_cards';
+
     /**
      * @var ScopeConfigInterface
      */
@@ -115,5 +117,15 @@ class Config extends PaymentGatewayConfig
             ScopeInterface::SCOPE_STORE,
             $storeId
         );
+    }
+
+    public function getIntersolveGiftCards(?int $storeId = null): ?array
+    {
+        $giftCards = $this->scopeConfig->getValue(self::INTERSOLVE_GIFT_CARDS, ScopeInterface::SCOPE_STORE, $storeId);
+        if (!$giftCards) {
+            return null;
+        }
+
+        return explode(",", (string)$giftCards);
     }
 }

@@ -8,6 +8,7 @@ use Magento\Quote\Api\Data\CartInterface;
 use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInput;
 use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputFactory;
 use Worldline\HostedCheckout\Api\TokenManagerInterface;
+use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 use Worldline\PaymentCore\Api\Service\CreateRequest\ThreeDSecureDataBuilderInterface;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Ui\ConfigProvider;
@@ -67,9 +68,10 @@ class CardPaymentMethodSIDBuilder
         /** @var CardPaymentMethodSpecificInput $cardPaymentMethodSpecificInput */
         $cardPaymentMethodSpecificInput = $this->cardPaymentMethodSpecificInputFactory->create();
 
-        $payProductId = $quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
+        $payProductId = (int)$quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
         if ($payProductId) {
-            $cardPaymentMethodSpecificInput->setPaymentProductId((int)$payProductId);
+            $cardPaymentMethodSpecificInput->setPaymentProductId($payProductId);
+            $this->checkIntersolveGiftCards($cardPaymentMethodSpecificInput, $payProductId, $storeId);
         }
 
         $cardPaymentMethodSpecificInput->setAuthorizationMode(
@@ -99,5 +101,24 @@ class CardPaymentMethodSIDBuilder
         }
 
         return $this->config->getAuthorizationMode($storeId);
+    }
+
+    private function checkIntersolveGiftCards(
+        CardPaymentMethodSpecificInput $cardPaymentMethodSpecificInput,
+        int $payProductId,
+        int $storeId
+    ): void {
+        if ($payProductId !== PaymentProductsDetailsInterface::INTERSOLVE_PRODUCT_ID) {
+            return;
+        }
+
+        $giftCards = $this->config->getIntersolveGiftCards($storeId);
+        if (!empty($giftCards)) {
+            if (count($giftCards) === 1) {
+                $cardPaymentMethodSpecificInput->setPaymentProductId((int)$giftCards[0]);
+            } else {
+                $cardPaymentMethodSpecificInput->setPaymentProductId(null);
+            }
+        }
     }
 }

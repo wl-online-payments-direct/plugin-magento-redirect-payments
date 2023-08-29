@@ -79,5 +79,14 @@
                 <field id="active">1</field>
             </depends>
         </field>
+        <field id="gift_cards" translate="label tooltip" type="text" sortOrder="100" showInDefault="1" showInWebsite="1">
+            <label>Intersolve gift card(s)</label>
+            <validate>validate-per-page-value-list</validate>
+            <config_path>payment/worldline_redirect_payment_5700/gift_cards</config_path>
+            <tooltip>Intersolve offers own branded gift cards, should you have own branded gift card(s), please enter the corresponding paymentProductId(s). It supports multiple paymentProductId values, make sure to separated them by a “,”. If you do not have own branded Intersolve gift card(s), please leave this empty.</tooltip>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+        </field>
     </group>
 </include>

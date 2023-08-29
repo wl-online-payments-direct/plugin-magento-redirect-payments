@@ -277,6 +277,8 @@
                 <sort_order>300</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
+                <direct_debit_recurrence_type>UNIQUE</direct_debit_recurrence_type>
+                <direct_debit_signature_type>SMS</direct_debit_signature_type>
             </worldline_redirect_payment_771>
             <worldline_redirect_payment_771_vault>
                 <model>Worldline\RedirectPayment\Model\Method\Vault\SepaDirectDebit\Virtual</model>
