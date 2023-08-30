@@ -15,6 +15,10 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.11.1
+- Fixed issue with partial invoices and partial credit memos.
+- Fixed transaction ID value for request to check if payment can be cancelled.
+
 #### 1.11.0
 - Added own branded gift card compatibility for Intersolve payment method.
 - Added compatibility with Php Sdk 5.7.0.
