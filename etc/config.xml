@@ -32,6 +32,7 @@
                 <group>worldline_group</group>
                 <vault>1</vault>
                 <cart_lines>1</cart_lines>
+                <session_timeout></session_timeout>
                 <skip_3d>0</skip_3d>
             </worldline_redirect_payment>
             <worldline_redirect_payment_vault>

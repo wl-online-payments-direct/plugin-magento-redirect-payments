@@ -71,6 +71,11 @@ class SpecificInputDataBuilder
         $hostedCheckoutSpecificInput->setLocale($this->store->getLocale());
         $storeId = (int) $quote->getStoreId();
 
+        $sessionTimeout = $this->config->getSessionTimeout($storeId);
+        if ($sessionTimeout) {
+            $hostedCheckoutSpecificInput->setSessionTimeout($sessionTimeout);
+        }
+
         $hostedCheckoutSpecificInput->setReturnUrl(
             $this->generalSettings->getReturnUrl(HCSpecificInputDataBuilder::RETURN_URL, $storeId)
         );
