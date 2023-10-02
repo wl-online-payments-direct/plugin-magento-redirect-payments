@@ -15,6 +15,13 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.12.0
+- Added "Session Timeout" configuration for the hosted checkout page.
+- Added "Allowed Number Of Payment Attempts" configuration for the hosted checkout page.
+- Added compatibility with Php Sdk 5.8.2.
+- Added refund refused notifications functionality.
+- Fixed update of the credit memo status when the refund request was refused by acquirer.
+
 #### 1.11.1
 - Fixed issue with partial invoices and partial credit memos.
 - Fixed transaction ID value for request to check if payment can be cancelled.

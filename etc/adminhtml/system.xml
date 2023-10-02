@@ -99,6 +99,16 @@
                         <field id="active">1</field>
                     </depends>
                 </field>
+                <field id="session_timeout" translate="label comment tooltip" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Session Timeout</label>
+                    <validate>validate-digits validate-digits-range digits-range-1-1440</validate>
+                    <config_path>payment/worldline_redirect_payment/session_timeout</config_path>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <comment>Enter a value from 1-1440. Default value is 180.</comment>
+                    <tooltip>Set in minutes how long the hosted payment page session should last for. Customers attempting to process their payment past this time limit will not be allowed to complete their transaction. Allowed value ranges from 1 minute to 1440 minutes (24 hours). By default, the hosted payment page has a session timeout of 180 minutes. Leave this box empty to use the default session timeout.</tooltip>
+                </field>
                 <include path="Worldline_RedirectPayment::system/alipay.xml"/>
                 <include path="Worldline_RedirectPayment::system/american_express.xml"/>
                 <include path="Worldline_RedirectPayment::system/apple_pay.xml"/>

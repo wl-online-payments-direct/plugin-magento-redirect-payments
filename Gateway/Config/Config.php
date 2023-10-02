@@ -19,6 +19,7 @@ class Config extends PaymentGatewayConfig
     public const AUTHORIZE_CAPTURE = 'authorize_capture';
     public const TEMPLATE_ID = 'template_id';
     public const KEY_CART_LINES = 'cart_lines';
+    public const SESSION_TIMEOUT = 'session_timeout';
 
     public const REDIRECT_PAYMENT_PATH = "payment/worldline_redirect_payment_";
     public const VAULT_ACTIVE = 'payment/worldline_redirect_payment_vault/active';
@@ -127,5 +128,10 @@ class Config extends PaymentGatewayConfig
         }
 
         return explode(",", (string)$giftCards);
+    }
+
+    public function getSessionTimeout(?int $storeId = null): int
+    {
+        return (int) $this->getValue(self::SESSION_TIMEOUT, $storeId);
     }
 }
