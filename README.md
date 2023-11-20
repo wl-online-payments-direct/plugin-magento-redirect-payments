@@ -15,6 +15,14 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.13.0
+- Added email to customer and “Copy To” for "Auto Refund For Out Of Stock Orders" notifications.
+- Added translations for French (Belgium), French (Switzerland) and Dutch (Belgium).
+- Improved notifications so they are only sent once per event.
+- Improved "Failed Orders Notifications" to avoid triggering on transaction status 46.
+- Fixed "Redirect Payments" display issue after customer modifies shipping options.
+- Fixed server error on checkout page when "Specific Currencies" are not aligned with Magento’s non-default currencies.
+
 #### 1.12.0
 - Added "Session Timeout" configuration for the hosted checkout page.
 - Added "Allowed Number Of Payment Attempts" configuration for the hosted checkout page.

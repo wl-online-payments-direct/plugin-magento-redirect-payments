@@ -367,6 +367,11 @@
     <!-- END Commands -->
 
     <!-- VAULT configuration -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\Vault\RPVault\Virtual" type="Worldline\RedirectPayment\Vault\Vault">
+        <arguments>
+            <argument name="code" xsi:type="const">\Worldline\RedirectPayment\Ui\ConfigProvider::VAULT_CODE</argument>
+        </arguments>
+    </virtualType>
     <!-- Custom Vault Config Handler -->
     <virtualType name="Worldline\RedirectPayment\Gateway\Config\CustomConfig\Virtual" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
