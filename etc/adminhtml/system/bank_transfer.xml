@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
-    <group id="redirect_payment_5700" translate="label" type="text" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
-        <label>Intersolve</label>
+    <group id="redirect_payment_5408" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Bank Transfer by Worldline</label>
         <depends>
             <field id="active">1</field>
         </depends>
         <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
             <label>Enable Payment</label>
             <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-            <config_path>payment/worldline_redirect_payment_5700/active</config_path>
+            <config_path>payment/worldline_redirect_payment_5408/active</config_path>
         </field>
         <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <label>Title</label>
             <validate>required-entry</validate>
-            <config_path>payment/worldline_redirect_payment_5700/title</config_path>
+            <config_path>payment/worldline_redirect_payment_5408/title</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>
@@ -25,12 +25,12 @@
             <depends>
                 <field id="active">1</field>
             </depends>
-            <config_path>payment/worldline_redirect_payment_5700/sort_order</config_path>
+            <config_path>payment/worldline_redirect_payment_5408/sort_order</config_path>
         </field>
         <field id="allowspecific" translate="label" type="allowspecific" sortOrder="40" showInDefault="1" showInWebsite="1" canRestore="1">
             <label>Payment from Applicable Countries</label>
             <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
-            <config_path>payment/worldline_redirect_payment_5700/allowspecific</config_path>
+            <config_path>payment/worldline_redirect_payment_5408/allowspecific</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>
@@ -39,7 +39,7 @@
             <label>Payment from Specific Countries</label>
             <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
             <can_be_empty>1</can_be_empty>
-            <config_path>payment/worldline_redirect_payment_5700/specificcountry</config_path>
+            <config_path>payment/worldline_redirect_payment_5408/specificcountry</config_path>
             <depends>
                 <field id="active">1</field>
                 <field id="allowspecific">1</field>
@@ -48,7 +48,7 @@
         <field id="allow_specific_currency" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" canRestore="1">
             <label>Payment from Applicable Currencies</label>
             <source_model>Worldline\PaymentCore\Model\Config\Source\AllSpecificCurrencies</source_model>
-            <config_path>payment/worldline_redirect_payment_5700/allow_specific_currency</config_path>
+            <config_path>payment/worldline_redirect_payment_5408/allow_specific_currency</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>
@@ -57,7 +57,7 @@
             <label>Payment from Specific Currencies</label>
             <source_model>Magento\Config\Model\Config\Source\Locale\Currency\All</source_model>
             <can_be_empty>1</can_be_empty>
-            <config_path>payment/worldline_redirect_payment_5700/currency</config_path>
+            <config_path>payment/worldline_redirect_payment_5408/currency</config_path>
             <depends>
                 <field id="active">1</field>
                 <field id="allow_specific_currency">1</field>
@@ -66,7 +66,7 @@
         <field id="min_order_total" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1">
             <label>Minimum Order Total</label>
             <validate>validate-number validate-zero-or-greater</validate>
-            <config_path>payment/worldline_redirect_payment_5700/min_order_total</config_path>
+            <config_path>payment/worldline_redirect_payment_5408/min_order_total</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>
@@ -74,19 +74,29 @@
         <field id="max_order_total" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1">
             <label>Maximum Order Total</label>
             <validate>validate-number validate-zero-or-greater</validate>
-            <config_path>payment/worldline_redirect_payment_5700/max_order_total</config_path>
+            <config_path>payment/worldline_redirect_payment_5408/max_order_total</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>
         </field>
-        <field id="gift_cards" translate="label tooltip" type="text" sortOrder="100" showInDefault="1" showInWebsite="1">
-            <label>Intersolve gift card(s)</label>
-            <validate>validate-per-page-value-list</validate>
-            <config_path>payment/worldline_redirect_payment_5700/gift_cards</config_path>
-            <tooltip>Intersolve offers own branded gift cards, should you have own branded gift card(s), please enter the corresponding paymentProductId(s). It supports multiple paymentProductId values, make sure to separated them by a “,”. If you do not have own branded Intersolve gift card(s), please leave this empty.</tooltip>
+        <field id="bank_transfer_mode" translate="label tooltip" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+            <label>Bank Transfer by Worldline - Mode</label>
+            <source_model>Worldline\PaymentCore\Model\Config\Source\BankTransferModes</source_model>
+            <config_path>payment/worldline_redirect_payment_5408/bank_transfer_mode</config_path>
+            <tooltip><![CDATA[Select which modes of bank transfer you want to allow."Instant Payments Only" : Receive transfer confirmation within 20 minutes. Limits customer bank choices to only those supporting instant payments."Standard & Instant Payments" : Accept transfers from all banks. Broader customer bank choice but it can take up to 96 hours for transfer confirmation.]]></tooltip>
             <depends>
                 <field id="active">1</field>
             </depends>
+        </field>
+        <field id="bank_transfer_descriptor" translate="label comment tooltip" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+            <label>Bank Transfer by Worldline - Descriptor</label>
+            <validate>validate-length maximum-length-22</validate>
+            <config_path>payment/worldline_redirect_payment_5408/bank_transfer_descriptor</config_path>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+            <comment>22 characters max</comment>
+            <tooltip>Descriptor text will appear on your customers' bank statement.</tooltip>
         </field>
     </group>
 </include>

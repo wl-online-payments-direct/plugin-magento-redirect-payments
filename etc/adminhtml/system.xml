@@ -113,6 +113,7 @@
                 <include path="Worldline_RedirectPayment::system/american_express.xml"/>
                 <include path="Worldline_RedirectPayment::system/apple_pay.xml"/>
                 <include path="Worldline_RedirectPayment::system/bancontact.xml"/>
+                <include path="Worldline_RedirectPayment::system/bank_transfer.xml"/>
                 <include path="Worldline_RedirectPayment::system/bizum.xml"/>
                 <include path="Worldline_RedirectPayment::system/carte_bancaire.xml"/>
                 <include path="Worldline_RedirectPayment::system/cpay.xml"/>
