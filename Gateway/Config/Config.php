@@ -31,6 +31,9 @@ class Config extends PaymentGatewayConfig
 
     public const INTERSOLVE_GIFT_CARDS = 'payment/worldline_redirect_payment_5700/gift_cards';
 
+    public const BANK_TRANSFER_MODE = 'payment/worldline_redirect_payment_5408/bank_transfer_mode';
+    public const BANK_TRANSFER_DESCRIPTOR = 'payment/worldline_redirect_payment_5408/bank_transfer_descriptor';
+
     /**
      * @var ScopeConfigInterface
      */
@@ -133,5 +136,23 @@ class Config extends PaymentGatewayConfig
     public function getSessionTimeout(?int $storeId = null): int
     {
         return (int) $this->getValue(self::SESSION_TIMEOUT, $storeId);
+    }
+
+    public function getBankTransferMode(?int $storeId = null): bool
+    {
+        return (bool) $this->scopeConfig->getValue(
+            self::BANK_TRANSFER_MODE,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
+    }
+
+    public function getBankTransferDescriptor(?int $storeId = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::BANK_TRANSFER_DESCRIPTOR,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
     }
 }

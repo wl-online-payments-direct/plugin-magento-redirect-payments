@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
-    <group id="redirect_payment_840" translate="label" type="text" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
-        <label>Paypal</label>
+    <group id="redirect_payment_840" translate="label" type="text" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>PayPal</label>
         <depends>
             <field id="active">1</field>
         </depends>

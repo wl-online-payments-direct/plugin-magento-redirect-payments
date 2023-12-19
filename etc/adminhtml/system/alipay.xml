@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
-    <group id="redirect_payment_861" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
-        <label>Alipay</label>
+    <group id="redirect_payment_5405" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Alipay+</label>
         <depends>
             <field id="active">1</field>
         </depends>
         <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
             <label>Enable Payment</label>
             <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-            <config_path>payment/worldline_redirect_payment_861/active</config_path>
+            <config_path>payment/worldline_redirect_payment_5405/active</config_path>
         </field>
         <field id="title" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <label>Title</label>
             <validate>required-entry</validate>
-            <config_path>payment/worldline_redirect_payment_861/title</config_path>
+            <config_path>payment/worldline_redirect_payment_5405/title</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>
@@ -25,12 +25,12 @@
             <depends>
                 <field id="active">1</field>
             </depends>
-            <config_path>payment/worldline_redirect_payment_861/sort_order</config_path>
+            <config_path>payment/worldline_redirect_payment_5405/sort_order</config_path>
         </field>
         <field id="allowspecific" translate="label" type="allowspecific" sortOrder="40" showInDefault="1" showInWebsite="1" canRestore="1">
             <label>Payment from Applicable Countries</label>
             <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
-            <config_path>payment/worldline_redirect_payment_861/allowspecific</config_path>
+            <config_path>payment/worldline_redirect_payment_5405/allowspecific</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>
@@ -39,7 +39,7 @@
             <label>Payment from Specific Countries</label>
             <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
             <can_be_empty>1</can_be_empty>
-            <config_path>payment/worldline_redirect_payment_861/specificcountry</config_path>
+            <config_path>payment/worldline_redirect_payment_5405/specificcountry</config_path>
             <depends>
                 <field id="active">1</field>
                 <field id="allowspecific">1</field>
@@ -48,7 +48,7 @@
         <field id="allow_specific_currency" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" canRestore="1">
             <label>Payment from Applicable Currencies</label>
             <source_model>Worldline\PaymentCore\Model\Config\Source\AllSpecificCurrencies</source_model>
-            <config_path>payment/worldline_redirect_payment_861/allow_specific_currency</config_path>
+            <config_path>payment/worldline_redirect_payment_5405/allow_specific_currency</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>
@@ -57,7 +57,7 @@
             <label>Payment from Specific Currencies</label>
             <source_model>Magento\Config\Model\Config\Source\Locale\Currency\All</source_model>
             <can_be_empty>1</can_be_empty>
-            <config_path>payment/worldline_redirect_payment_861/currency</config_path>
+            <config_path>payment/worldline_redirect_payment_5405/currency</config_path>
             <depends>
                 <field id="active">1</field>
                 <field id="allow_specific_currency">1</field>
@@ -66,7 +66,7 @@
         <field id="min_order_total" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1">
             <label>Minimum Order Total</label>
             <validate>validate-number validate-zero-or-greater</validate>
-            <config_path>payment/worldline_redirect_payment_861/min_order_total</config_path>
+            <config_path>payment/worldline_redirect_payment_5405/min_order_total</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>
@@ -74,7 +74,7 @@
         <field id="max_order_total" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1">
             <label>Maximum Order Total</label>
             <validate>validate-number validate-zero-or-greater</validate>
-            <config_path>payment/worldline_redirect_payment_861/max_order_total</config_path>
+            <config_path>payment/worldline_redirect_payment_5405/max_order_total</config_path>
             <depends>
                 <field id="active">1</field>
             </depends>

@@ -36,7 +36,7 @@ class EnableModule extends TestCase
      * @magentoConfigFixture current_store currency/options/allow EUR
      * @magentoConfigFixture current_store currency/options/base EUR
      * @magentoConfigFixture current_store currency/options/default EUR
-     * @magentoConfigFixture current_store payment/worldline_redirect_payment_863/active 1
+     * @magentoConfigFixture current_store payment/worldline_redirect_payment_5404/active 1
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/active 1
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/payment_action authorize_capture
      */
@@ -57,7 +57,7 @@ class EnableModule extends TestCase
      * @magentoConfigFixture current_store currency/options/allow EUR
      * @magentoConfigFixture current_store currency/options/base EUR
      * @magentoConfigFixture current_store currency/options/default EUR
-     * @magentoConfigFixture current_store payment/worldline_redirect_payment_863/active 0
+     * @magentoConfigFixture current_store payment/worldline_redirect_payment_5404/active 0
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/active 0
      * @magentoConfigFixture current_store payment/worldline_redirect_payment/payment_action authorize_capture
      */

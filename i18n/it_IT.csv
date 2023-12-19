@@ -3,3 +3,5 @@
 "Intersolve offers own branded gift cards, should you have own branded gift card(s), please enter the corresponding paymentProductId(s). It supports multiple paymentProductId values, make sure to separated them by a “,”. If you do not have own branded Intersolve gift card(s), please leave this empty.","Intersolve offre carte regalo con il proprio marchio, se si dispone di una o più carte regalo con il proprio marchio, inserire i corrispondenti paymentProductId. Supporta più valori paymentProductId, assicurati di separarli con un “,”. Se non disponi di carte regalo Intersolve con il tuo marchio, lascia vuoto questo campo."
 "Intersolve gift card(s)","Carte regalo Intersolve"
 "Redirect Payment","Reindirizzare il pagamento"
+"Descriptor text will appear on your customers' bank statement.","Il testo descrittivo apparirà sull'estratto conto dei tuoi clienti."
+"22 characters max","22 caratteri massimo"

@@ -42,9 +42,13 @@
         <arguments>
             <argument name="paymentMethods" xsi:type="array">
                 <item name="worldline_redirect_payment_771" xsi:type="string">worldline_redirect_payment_771</item>
+                <item name="worldline_redirect_payment_809" xsi:type="string">worldline_redirect_payment_809</item>
                 <item name="worldline_redirect_payment_3012" xsi:type="string">worldline_redirect_payment_3012</item>
                 <item name="worldline_redirect_payment_3124" xsi:type="string">worldline_redirect_payment_3124</item>
+                <item name="worldline_redirect_payment_5404" xsi:type="string">worldline_redirect_payment_5404</item>
+                <item name="worldline_redirect_payment_5405" xsi:type="string">worldline_redirect_payment_5405</item>
                 <item name="worldline_redirect_payment_5406" xsi:type="string">worldline_redirect_payment_5406</item>
+                <item name="worldline_redirect_payment_5408" xsi:type="string">worldline_redirect_payment_5408</item>
                 <item name="worldline_redirect_payment_5700" xsi:type="string">worldline_redirect_payment_5700</item>
             </argument>
         </arguments>
@@ -78,8 +82,8 @@
                 <item name="worldline_redirect_payment_771_vault" xsi:type="string">worldline_redirect_payment_771_vault</item>
                 <item name="worldline_redirect_payment_809" xsi:type="string">worldline_redirect_payment_809</item>
                 <item name="worldline_redirect_payment_840" xsi:type="string">worldline_redirect_payment_840</item>
-                <item name="worldline_redirect_payment_861" xsi:type="string">worldline_redirect_payment_861</item>
-                <item name="worldline_redirect_payment_863" xsi:type="string">worldline_redirect_payment_863</item>
+                <item name="worldline_redirect_payment_5405" xsi:type="string">worldline_redirect_payment_5405</item>
+                <item name="worldline_redirect_payment_5404" xsi:type="string">worldline_redirect_payment_5404</item>
                 <item name="worldline_redirect_payment_3012" xsi:type="string">worldline_redirect_payment_3012</item>
                 <item name="worldline_redirect_payment_3012_vault" xsi:type="string">worldline_redirect_payment_3012_vault</item>
                 <item name="worldline_redirect_payment_3111" xsi:type="string">worldline_redirect_payment_3111</item>
@@ -97,6 +101,7 @@
                 <item name="worldline_redirect_payment_5402" xsi:type="string">worldline_redirect_payment_5402</item>
                 <item name="worldline_redirect_payment_5406" xsi:type="string">worldline_redirect_payment_5406</item>
                 <item name="worldline_redirect_payment_5407" xsi:type="string">worldline_redirect_payment_5407</item>
+                <item name="worldline_redirect_payment_5408" xsi:type="string">worldline_redirect_payment_5408</item>
                 <item name="worldline_redirect_payment_5500" xsi:type="string">worldline_redirect_payment_5500</item>
                 <item name="worldline_redirect_payment_5600" xsi:type="string">worldline_redirect_payment_5600</item>
                 <item name="worldline_redirect_payment_5700" xsi:type="string">worldline_redirect_payment_5700</item>
@@ -120,6 +125,10 @@
                 <item name="intersolve" xsi:type="const">Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface::INTERSOLVE_PRODUCT_ID</item>
                 <item name="przelewy24" xsi:type="const">Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface::PRZELEWY24_PRODUCT_ID</item>
                 <item name="eps" xsi:type="const">Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface::EPS_PRODUCT_ID</item>
+                <item name="alipay_plus" xsi:type="const">Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface::ALIPAY_PLUS_PRODUCT_ID</item>
+                <item name="ideal" xsi:type="const">Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface::IDEAL_PRODUCT_ID</item>
+                <item name="wechat_pay" xsi:type="const">Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface::WECHAT_PAY_PRODUCT_ID</item>
+                <item name="bank_transfer" xsi:type="const">Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface::BANK_TRANSFER_PRODUCT_ID</item>
             </argument>
         </arguments>
     </type>
@@ -1343,7 +1352,7 @@
     </virtualType>
     <!-- iDEAL -->
 
-    <!-- Paypal -->
+    <!-- PayPal -->
     <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterPaypal\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">
         <arguments>
             <argument name="code" xsi:type="string">worldline_redirect_payment_840</argument>
@@ -1389,12 +1398,12 @@
             <argument name="methodCode" xsi:type="string">worldline_redirect_payment_840</argument>
         </arguments>
     </virtualType>
-    <!-- Paypal -->
+    <!-- PayPal -->
 
-    <!-- Alipay -->
+    <!-- AlipayPlus -->
     <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterAlipay\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">
         <arguments>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_861</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_5405</argument>
             <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolAlipay\Virtual</argument>
             <argument name="validatorPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolAlipay\Virtual</argument>
         </arguments>
@@ -1434,15 +1443,15 @@
     </virtualType>
     <virtualType name="Worldline\RedirectPayment\Gateway\ConfigAlipay\ConfigVirtual" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
-            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_861</argument>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_5405</argument>
         </arguments>
     </virtualType>
-    <!-- Alipay -->
+    <!-- AlipayPlus -->
 
     <!-- WeChat Pay -->
     <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterWeChatPay\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">
         <arguments>
-            <argument name="code" xsi:type="string">worldline_redirect_payment_863</argument>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_5404</argument>
             <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolWeChatPay\Virtual</argument>
             <argument name="validatorPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolWeChatPay\Virtual</argument>
         </arguments>
@@ -1482,7 +1491,7 @@
     </virtualType>
     <virtualType name="Worldline\RedirectPayment\Gateway\ConfigWeChatPay\ConfigVirtual" type="Magento\Payment\Gateway\Config\Config">
         <arguments>
-            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_863</argument>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_5404</argument>
         </arguments>
     </virtualType>
     <!-- WeChat Pay -->
@@ -2158,6 +2167,54 @@
         </arguments>
     </virtualType>
     <!-- TWINT -->
+
+    <!-- Bank Transfer By Worldline -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterBankTransfer\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">
+        <arguments>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_5408</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolBankTransfer\Virtual</argument>
+            <argument name="validatorPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolBankTransfer\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolBankTransfer\Virtual" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="country" xsi:type="string">Worldline\RedirectPayment\Gateway\Validator\CountryValidatorBankTransfer\Virtual</item>
+                <item name="currency" xsi:type="string">Worldline\RedirectPayment\Gateway\Validator\CurrencyValidatorBankTransfer\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\CountryValidatorBankTransfer\Virtual" type="Magento\Payment\Gateway\Validator\CountryValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigBankTransfer\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\CurrencyValidatorBankTransfer\Virtual" type="Worldline\PaymentCore\Gateway\Validator\CurrencyValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigBankTransfer\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolBankTransfer\Virtual" type="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\Virtual">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBankTransfer\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBankTransfer\Virtual</item>
+                <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBankTransfer\Virtual</item>
+                <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBankTransfer\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerBankTransfer\Virtual" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigBankTransfer\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\ConfigBankTransfer\ConfigVirtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_5408</argument>
+        </arguments>
+    </virtualType>
+    <!-- Bank Transfer By Worldline -->
 
     <!-- Union pay int -->
     <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterUpi\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">
