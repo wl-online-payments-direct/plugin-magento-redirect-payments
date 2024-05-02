@@ -5,6 +5,7 @@ namespace Worldline\RedirectPayment\WebApi\CreatePaymentManagement;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\PaymentInterface;
+use Worldline\PaymentCore\Api\Data\QuotePaymentInterface;
 use Worldline\PaymentCore\Model\DataAssigner\DataAssignerInterface;
 
 class PaymentProductIdAssigner implements DataAssignerInterface
@@ -15,14 +16,18 @@ class PaymentProductIdAssigner implements DataAssignerInterface
      * Assign payment product id
      *
      * @param PaymentInterface $payment
+     * @param QuotePaymentInterface $wlQuotePayment
      * @param array $additionalInformation
      * @return void
      * @throws LocalizedException
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function assign(PaymentInterface $payment, array $additionalInformation): void
-    {
+    public function assign(
+        PaymentInterface $payment,
+        QuotePaymentInterface $wlQuotePayment,
+        array $additionalInformation
+    ): void {
         $payment->setAdditionalInformation(self::PAYMENT_PRODUCT_ID, $this->extractProductId($payment->getMethod()));
     }
 

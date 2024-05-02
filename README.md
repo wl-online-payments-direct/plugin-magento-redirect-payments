@@ -15,6 +15,10 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.15.0
+- Improved the order creation process by tracking multiple paymentIDs.
+- Improved logging and exception handling when multiple payments are done for a single order.
+
 #### 1.14.0
 - Added new payment method "Bank Transfer by Worldline".
 - Added the "Contact email" field to the feature suggestion form.
