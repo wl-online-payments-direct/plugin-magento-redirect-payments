@@ -52,7 +52,7 @@
                 </field>
                 <field id="template_id" type="text" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>HTML Template ID</label>
-                    <validate>validate-html-template-id</validate>
+                    <validate>no-whitespace</validate>
                     <config_path>payment/worldline_redirect_payment/template_id</config_path>
                     <depends>
                         <field id="active">1</field>
