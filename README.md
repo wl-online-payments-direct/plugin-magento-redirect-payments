@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.22.0
+- Fixed order creation using Google Pay & Apple Pay
+
 #### 1.21.0
 - Update plugin translations
 
