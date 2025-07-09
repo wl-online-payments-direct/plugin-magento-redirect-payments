@@ -15,6 +15,10 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.23.0
+- Add compatibility with PHP 8.4
+- Update SDK version
+
 #### 1.22.0
 - Fixed order creation using Google Pay & Apple Pay
 

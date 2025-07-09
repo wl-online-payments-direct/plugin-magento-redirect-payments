@@ -37,7 +37,7 @@ class RedirectManagement implements RedirectManagementInterface
     public function createRequest(
         int $cartId,
         PaymentInterface $paymentMethod,
-        AddressInterface $billingAddress = null
+        ?AddressInterface $billingAddress = null
     ): string {
         return $this->baseCreatePaymentManagement->createRequest($cartId, $paymentMethod, $billingAddress);
     }
@@ -57,7 +57,7 @@ class RedirectManagement implements RedirectManagementInterface
         string $cartId,
         PaymentInterface $paymentMethod,
         string $email,
-        AddressInterface $billingAddress = null
+        ?AddressInterface $billingAddress = null
     ): string {
         return $this->baseCreatePaymentManagement->createGuestRequest($cartId, $paymentMethod, $email, $billingAddress);
     }
