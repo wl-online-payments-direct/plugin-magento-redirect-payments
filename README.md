@@ -15,6 +15,10 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.26.0
+- Fix issue with showing split payment amounts on order details page for Mealvoucher transactions
+- Fix issue with showing Mealvoucher in full redirect
+
 #### 1.25.0
 - Fix logo issue for CB on checkout page
 - Fix PHP >= 8.2 issue with not sending parameter by reference
