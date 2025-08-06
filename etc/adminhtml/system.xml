@@ -116,6 +116,7 @@
                 <include path="Worldline_RedirectPayment::system/bank_transfer.xml"/>
                 <include path="Worldline_RedirectPayment::system/bizum.xml"/>
                 <include path="Worldline_RedirectPayment::system/carte_bancaire.xml"/>
+                <include path="Worldline_RedirectPayment::system/cheque_vacances_connect.xml"/>
                 <include path="Worldline_RedirectPayment::system/cpay.xml"/>
                 <include path="Worldline_RedirectPayment::system/diners_club.xml"/>
                 <include path="Worldline_RedirectPayment::system/eps.xml"/>

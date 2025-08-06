@@ -91,9 +91,14 @@ class SpecificInputDataBuilder
                 $paymentProductFilter = $this->paymentProductFilterFactory->create();
                 $paymentProductFilter->setProducts($giftCards);
 
+                /** @var PaymentProductFilter $paymentProductFilterMealVoucher */
+                $paymentProductFilterMealVoucher = $this->paymentProductFilterFactory->create();
+                $paymentProductFilterMealVoucher->setProducts([PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID]);
+
                 /** @var PaymentProductFiltersHostedCheckout $paymentProductFiltersHC */
                 $paymentProductFiltersHC = $this->paymentProductFiltersHCFactory->create();
                 $paymentProductFiltersHC->setRestrictTo($paymentProductFilter);
+                $paymentProductFiltersHC->setExclude($paymentProductFilterMealVoucher);
 
                 $hostedCheckoutSpecificInput->setPaymentProductFilters($paymentProductFiltersHC);
             }

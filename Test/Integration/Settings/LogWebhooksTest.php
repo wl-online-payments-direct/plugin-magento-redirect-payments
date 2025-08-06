@@ -78,7 +78,7 @@ class LogWebhooksTest extends TestCase
 
         $webhookEntity = $this->webhookEntityFactory->create();
         $this->webhookResource->load($webhookEntity, $quote->getReservedOrderId(), 'increment_id');
-        $this->assertEquals('payment.pending_capture', $webhookEntity->getType());
+        $this->assertEquals('payment.pending_capture', $webhookEntity->type);
         $this->assertEquals(5, $webhookEntity->getStatusCode());
     }
 
