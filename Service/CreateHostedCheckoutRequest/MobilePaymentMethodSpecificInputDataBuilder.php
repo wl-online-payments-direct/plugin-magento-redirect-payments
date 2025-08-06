@@ -79,9 +79,9 @@ class MobilePaymentMethodSpecificInputDataBuilder
                 $gPayThreeDSecure->setSkipAuthentication(false);
             } elseif ($this->generalSettings->isAuthExemptionEnabled($storeId)) {
                 $threeDSExemptionType = $this->generalSettings->getAuthExemptionType($storeId);
-                $threeDSExemptedAmount = $threeDSExemptionType === ParamsHandler::LOW_VALUE_EXEMPTION_TYPE
-                    ? $this->generalSettings->getAuthLowValueAmount($storeId)
-                    : $this->generalSettings->getAuthTransactionRiskAnalysisAmount($storeId);
+                $threeDSExemptedAmount = $threeDSExemptionType === ParamsHandler::LOW_VALUE_EXEMPTION_TYPE ?
+                    $this->generalSettings->getAuthLowValueAmount($storeId) :
+                    $this->generalSettings->getAuthTransactionRiskAnalysisAmount($storeId);
 
                 if ((float)$threeDSExemptedAmount >= (float)$baseSubtotalAmount) {
                     $gPayThreeDSecure->setSkipAuthentication(true);

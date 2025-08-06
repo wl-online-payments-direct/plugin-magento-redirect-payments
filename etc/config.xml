@@ -239,52 +239,59 @@
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5402>
+            <worldline_redirect_payment_5403>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterChequeVacancesConnect\Virtual</model>
+                <title>Cheque Vacances Connect</title>
+                <sort_order>250</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
+            </worldline_redirect_payment_5403>
             <worldline_redirect_payment_5500>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterMultibanco\Virtual</model>
                 <title>Multibanco</title>
-                <sort_order>250</sort_order>
+                <sort_order>260</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5500>
             <worldline_redirect_payment_5110>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterOney3x4x\Virtual</model>
                 <title>Oney 3x-4x</title>
-                <sort_order>260</sort_order>
+                <sort_order>270</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5110>
             <worldline_redirect_payment_5125>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterOneyFinancementLong\Virtual</model>
                 <title>Oney Financement Long</title>
-                <sort_order>270</sort_order>
+                <sort_order>280</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5125>
             <worldline_redirect_payment_5600>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterOneyBrandedGiftCard\Virtual</model>
                 <title>OneyBrandedGiftCard</title>
-                <sort_order>280</sort_order>
+                <sort_order>290</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5600>
             <worldline_redirect_payment_840>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterPaypal\Virtual</model>
                 <title>PayPal</title>
-                <sort_order>290</sort_order>
+                <sort_order>300</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_840>
             <worldline_redirect_payment_3124>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterPrzelewy24\Virtual</model>
                 <title>Przelewy24</title>
-                <sort_order>300</sort_order>
+                <sort_order>310</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3124>
             <worldline_redirect_payment_771>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterSepaDirectDebit\Virtual</model>
                 <title>SEPA Direct Debit</title>
-                <sort_order>310</sort_order>
+                <sort_order>320</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
                 <direct_debit_recurrence_type>UNIQUE</direct_debit_recurrence_type>
@@ -297,14 +304,14 @@
             <worldline_redirect_payment_5407>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterTwint\Virtual</model>
                 <title>Twint</title>
-                <sort_order>320</sort_order>
+                <sort_order>330</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5407>
             <worldline_redirect_payment_56>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterUpi\Virtual</model>
                 <title>Union Pay International</title>
-                <sort_order>330</sort_order>
+                <sort_order>340</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_56>
@@ -315,7 +322,7 @@
             <worldline_redirect_payment_1>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterVisa\Virtual</model>
                 <title>Visa</title>
-                <sort_order>340</sort_order>
+                <sort_order>350</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_1>
@@ -326,7 +333,7 @@
             <worldline_redirect_payment_5404>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterWeChatPay\Virtual</model>
                 <title>WeChat Pay</title>
-                <sort_order>350</sort_order>
+                <sort_order>360</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5404>
