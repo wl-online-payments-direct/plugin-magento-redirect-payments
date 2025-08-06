@@ -11,7 +11,7 @@
                 <img data-bind="attr: {
                     'src': getIcon().url,
                     'alt': getIcon().title
-                }">
+                }, style: item.method && item.method.endsWith('130') ? { marginTop: '10px' } : {}">
             </li>
         </ul>
         <!--/ko-->
