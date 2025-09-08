@@ -136,6 +136,8 @@ class CreateHostedCheckoutRequestBuilder
             );
         }
 
+        $createHostedCheckoutRequest->getOrder()->getCustomer()->getDevice()->setIpAddress(null);
+
         return $createHostedCheckoutRequest;
     }
 }

@@ -93,7 +93,9 @@ class SpecificInputDataBuilder
 
                 /** @var PaymentProductFilter $paymentProductFilterMealVoucher */
                 $paymentProductFilterMealVoucher = $this->paymentProductFilterFactory->create();
-                $paymentProductFilterMealVoucher->setProducts([PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID]);
+                $paymentProductFilterMealVoucher->setProducts([
+                    PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID
+                ]);
 
                 /** @var PaymentProductFiltersHostedCheckout $paymentProductFiltersHC */
                 $paymentProductFiltersHC = $this->paymentProductFiltersHCFactory->create();

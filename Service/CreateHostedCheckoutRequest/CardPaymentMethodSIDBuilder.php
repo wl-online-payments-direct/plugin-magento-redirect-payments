@@ -18,6 +18,9 @@ use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class CardPaymentMethodSIDBuilder
 {
     const CARTE_BANCAIRE_PAYMENT_ID = 130;

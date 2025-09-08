@@ -15,6 +15,15 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.30.0
+- Add quote ID to request payload
+- Fix wrong IP address being sent on checkout
+- Decrease maximum payment method logos
+- Add compatibility with 2.4.8-p2
+
+#### 1.29.0
+- Fix issue with sending email
+
 #### 1.28.0
 - Fix wrong handling of payment specific information on order page
 
