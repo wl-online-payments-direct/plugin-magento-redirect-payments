@@ -15,6 +15,13 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.32.0
+- Remove MealVouchers configuration from hosted checkout
+- Fix mobile payment method information not being shown in order details
+
+#### 1.31.0
+- Update payment brand logos
+
 #### 1.30.0
 - Add quote ID to request payload
 - Fix wrong IP address being sent on checkout

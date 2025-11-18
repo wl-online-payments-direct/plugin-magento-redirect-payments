@@ -15,9 +15,15 @@ class MealvouchersGlobalNotification extends Field
      */
     public function render(AbstractElement $element): string
     {
-        $notifyText = "Please note that the Mealvouchers method will work properly only if the "
+        $notifySendCart = "Please note that the Mealvouchers method will work properly only if the "
             . "'Submit Customer Cart Items Data to Worldline' setting is enabled";
+        $notifyDetails = "By enabling mealvouchers, you will be able to configure your products as 'Food and Drink', "
+            . "'Home and Garden', or 'Gift and Flowers'. Simply note that the Worldline platform only allows one type "
+            . "of products per basket, and the plugin will automatically update the products of the basket that are "
+            . "missing a product type to the value recognized in the basket; in case of a mixed basket "
+            . "all products will be set to 'Food and Drink'";
 
-        return '<div class="message message-notice notice">' . __($notifyText) . '</div>';
+        return '<div class="message message-notice notice">' . __($notifySendCart) . '</div>'
+            . '<div class="message message-notice notice">' . __($notifyDetails) . '</div>';
     }
 }
