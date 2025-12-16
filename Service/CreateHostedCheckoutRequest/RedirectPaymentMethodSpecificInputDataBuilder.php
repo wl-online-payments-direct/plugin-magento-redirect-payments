@@ -5,11 +5,13 @@ namespace Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest;
 
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Quote\Api\Data\CartInterface;
+use Magento\Store\Model\StoreManagerInterface;
 use OnlinePayments\Sdk\Domain\RedirectPaymentMethodSpecificInput;
 use OnlinePayments\Sdk\Domain\RedirectPaymentMethodSpecificInputFactory;
 use OnlinePayments\Sdk\Domain\RedirectPaymentProduct5402SpecificInputFactory;
 use OnlinePayments\Sdk\Domain\RedirectPaymentProduct5408SpecificInputFactory;
 use OnlinePayments\Sdk\Domain\RedirectPaymentProduct5403SpecificInputFactory;
+use OnlinePayments\Sdk\Domain\RedirectPaymentProduct5300SpecificInputFactory;
 use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Ui\ConfigProvider;
@@ -49,20 +51,35 @@ class RedirectPaymentMethodSpecificInputDataBuilder
      */
     private $paymentProduct5402SIFactory;
 
+    /**
+     * @var RedirectPaymentProduct5300SpecificInputFactory
+     */
+    private $paymentProduct5300SIFactory;
+
+    /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
     public function __construct(
-        Config $config,
-        ManagerInterface $eventManager,
-        RedirectPaymentMethodSpecificInputFactory $redirectPaymentMethodSpecificInputFactory,
+        Config                                         $config,
+        ManagerInterface                               $eventManager,
+        RedirectPaymentMethodSpecificInputFactory      $redirectPaymentMethodSpecificInputFactory,
         RedirectPaymentProduct5408SpecificInputFactory $paymentProduct5408SIFactory,
         RedirectPaymentProduct5403SpecificInputFactory $paymentProduct5403SIFactory,
-        RedirectPaymentProduct5402SpecificInputFactory $paymentProduct5402SIFactory
-    ) {
+        RedirectPaymentProduct5402SpecificInputFactory $paymentProduct5402SIFactory,
+        RedirectPaymentProduct5300SpecificInputFactory $paymentProduct5300SIFactory,
+        StoreManagerInterface $storeManager
+    )
+    {
         $this->config = $config;
         $this->eventManager = $eventManager;
         $this->redirectPaymentMethodSpecificInputFactory = $redirectPaymentMethodSpecificInputFactory;
         $this->paymentProduct5408SIFactory = $paymentProduct5408SIFactory;
         $this->paymentProduct5403SIFactory = $paymentProduct5403SIFactory;
         $this->paymentProduct5402SIFactory = $paymentProduct5402SIFactory;
+        $this->paymentProduct5300SIFactory = $paymentProduct5300SIFactory;
+        $this->storeManager = $storeManager;
     }
 
     public function build(CartInterface $quote): RedirectPaymentMethodSpecificInput
@@ -73,7 +90,8 @@ class RedirectPaymentMethodSpecificInputDataBuilder
         $payProductId = $quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
         $authMode = $this->config->getAuthorizationMode();
         if ($payProductId && ($payProductId === PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID
-                || $payProductId === PaymentProductsDetailsInterface::CHEQUE_VACANCES_CONNECT_PRODUCT_ID)
+                || $payProductId === PaymentProductsDetailsInterface::CHEQUE_VACANCES_CONNECT_PRODUCT_ID
+                || $payProductId === PaymentProductsDetailsInterface::PLEDG_PRODUCT_ID)
         ) {
             $redirectPaymentMethodSpecificInput->setRequiresApproval(false);
         } else {
@@ -97,6 +115,9 @@ class RedirectPaymentMethodSpecificInputDataBuilder
         $paymentProduct5402SI = $this->paymentProduct5402SIFactory->create();
         $paymentProduct5402SI->setCompleteRemainingPaymentAmount(true);
         $redirectPaymentMethodSpecificInput->setPaymentProduct5402SpecificInput($paymentProduct5402SI);
+
+        $paymentProduct5300SI = $this->paymentProduct5300SIFactory->create();
+        $redirectPaymentMethodSpecificInput->setPaymentProduct5300SpecificInput($paymentProduct5300SI);
 
         $args = ['quote' => $quote, self::RP_METHOD_SPECIFIC_INPUT => $redirectPaymentMethodSpecificInput];
         $this->eventManager->dispatch(ConfigProvider::CODE . '_redirect_payment_method_specific_input_builder', $args);
