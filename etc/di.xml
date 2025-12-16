@@ -98,6 +98,7 @@
                 <item name="worldline_redirect_payment_5100" xsi:type="string">worldline_redirect_payment_5100</item>
                 <item name="worldline_redirect_payment_5110" xsi:type="string">worldline_redirect_payment_5110</item>
                 <item name="worldline_redirect_payment_5125" xsi:type="string">worldline_redirect_payment_5125</item>
+                <item name="worldline_redirect_payment_5300" xsi:type="string">worldline_redirect_payment_5300</item>
                 <item name="worldline_redirect_payment_5402" xsi:type="string">worldline_redirect_payment_5402</item>
                 <item name="worldline_redirect_payment_5403" xsi:type="string">worldline_redirect_payment_5403</item>
                 <item name="worldline_redirect_payment_5406" xsi:type="string">worldline_redirect_payment_5406</item>
@@ -2168,6 +2169,70 @@
         </arguments>
     </virtualType>
     <!-- Cheque Vacances Connect -->
+
+    <!-- ======================= PLEDG REDIRECT PAYMENT METHOD ======================= -->
+
+    <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterPledg\Virtual"
+                 type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">
+        <arguments>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_5300</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolPledg\Virtual</argument>
+            <argument name="validatorPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolPledg\Virtual</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolPledg\Virtual"
+                 type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="country" xsi:type="string">Worldline\RedirectPayment\Gateway\Validator\CountryValidatorPledg\Virtual</item>
+                <item name="currency" xsi:type="string">Worldline\RedirectPayment\Gateway\Validator\CurrencyValidatorPledg\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\CountryValidatorPledg\Virtual"
+                 type="Magento\Payment\Gateway\Validator\CountryValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigPledg\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\CurrencyValidatorPledg\Virtual"
+                 type="Worldline\PaymentCore\Gateway\Validator\CurrencyValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigPledg\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolPledg\Virtual"
+                 type="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\Virtual">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual</item>
+                <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual</item>
+                <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual"
+                 type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigPledg\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Worldline\RedirectPayment\Gateway\ConfigPledg\ConfigVirtual"
+                 type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_5300</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- ========================================================================= -->
+
 
     <!-- TWINT -->
     <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterTwint\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">

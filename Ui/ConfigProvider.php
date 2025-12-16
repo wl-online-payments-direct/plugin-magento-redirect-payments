@@ -142,6 +142,10 @@ class ConfigProvider implements ConfigProviderInterface
             return (float)$quote->getGrandTotal() >= 0.00001;
         }
 
+        if ($payProductId === PaymentProductsDetailsInterface::PLEDG_PRODUCT_ID) {
+            return $this->canActivatePledg($quote);
+        }
+
         return true;
     }
 
@@ -213,5 +217,33 @@ class ConfigProvider implements ConfigProviderInterface
         }
 
         return false;
+    }
+
+    /**
+     * Check if Pledg payment method can be activated.
+     *
+     * Allows Pledg only when billing country is FR and
+     * the quote currency is EUR.
+     *
+     * @param Quote $quote
+     * @return bool
+     */
+
+    private function canActivatePledg(Quote $quote): bool
+    {
+        $billing = $quote->getBillingAddress();
+        if (!$billing) {
+            return false;
+        }
+
+        if ($billing->getCountryId() !== 'FR') {
+            return false;
+        }
+
+        if ($quote->getQuoteCurrencyCode() !== 'EUR') {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -137,6 +137,7 @@
                 <include path="Worldline_RedirectPayment::system/multibanco.xml"/>
                 <include path="Worldline_RedirectPayment::system/oney3x-4x.xml"/>
                 <include path="Worldline_RedirectPayment::system/oney_financement_long.xml"/>
+                <include path="Worldline_RedirectPayment::system/pledg.xml"/>
                 <include path="Worldline_RedirectPayment::system/oneybrandedgiftcard.xml"/>
                 <include path="Worldline_RedirectPayment::system/paypal.xml"/>
                 <include path="Worldline_RedirectPayment::system/przelewy24.xml"/>

@@ -281,17 +281,24 @@
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_840>
+            <worldline_redirect_payment_5300>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterPledg\Virtual</model>
+                <title>Pledg</title>
+                <sort_order>310</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
+            </worldline_redirect_payment_5300>
             <worldline_redirect_payment_3124>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterPrzelewy24\Virtual</model>
                 <title>Przelewy24</title>
-                <sort_order>310</sort_order>
+                <sort_order>320</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3124>
             <worldline_redirect_payment_771>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterSepaDirectDebit\Virtual</model>
                 <title>SEPA Direct Debit</title>
-                <sort_order>320</sort_order>
+                <sort_order>330</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
                 <direct_debit_recurrence_type>UNIQUE</direct_debit_recurrence_type>
@@ -304,14 +311,14 @@
             <worldline_redirect_payment_5407>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterTwint\Virtual</model>
                 <title>Twint</title>
-                <sort_order>330</sort_order>
+                <sort_order>340</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5407>
             <worldline_redirect_payment_56>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterUpi\Virtual</model>
                 <title>Union Pay International</title>
-                <sort_order>340</sort_order>
+                <sort_order>350</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_56>
@@ -322,7 +329,7 @@
             <worldline_redirect_payment_1>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterVisa\Virtual</model>
                 <title>Visa</title>
-                <sort_order>350</sort_order>
+                <sort_order>360</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_1>
@@ -333,7 +340,7 @@
             <worldline_redirect_payment_5404>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterWeChatPay\Virtual</model>
                 <title>WeChat Pay</title>
-                <sort_order>360</sort_order>
+                <sort_order>370</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5404>
