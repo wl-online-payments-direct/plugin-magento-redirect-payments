@@ -15,9 +15,12 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+#### 1.35.0
+- Added: Possibility to auto-include primary webhooks URL in the payload of payment request, and to configure up to 4 additional endpoints.
+- Fix Worldline Block/Info.php not compatible with Magento core Payment/Block/Info.php.
+
 #### 1.34.0
 - Improved: Data mapping to flag correctly exemptions requests to 3-D Secure.
-
 
 #### 1.33.0
 - Add new payment method: Pledg

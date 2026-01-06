@@ -17,6 +17,9 @@ use Worldline\RedirectPayment\Gateway\Config\Config;
 use Worldline\RedirectPayment\Ui\ConfigProvider;
 use Worldline\RedirectPayment\WebApi\RedirectManagement;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class RedirectPaymentMethodSpecificInputDataBuilder
 {
     public const RP_METHOD_SPECIFIC_INPUT = 'redirect_payment_method_specific_input';
@@ -70,8 +73,7 @@ class RedirectPaymentMethodSpecificInputDataBuilder
         RedirectPaymentProduct5402SpecificInputFactory $paymentProduct5402SIFactory,
         RedirectPaymentProduct5300SpecificInputFactory $paymentProduct5300SIFactory,
         StoreManagerInterface $storeManager
-    )
-    {
+    ) {
         $this->config = $config;
         $this->eventManager = $eventManager;
         $this->redirectPaymentMethodSpecificInputFactory = $redirectPaymentMethodSpecificInputFactory;
