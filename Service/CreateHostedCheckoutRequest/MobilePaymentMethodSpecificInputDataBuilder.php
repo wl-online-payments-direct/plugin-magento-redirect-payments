@@ -83,11 +83,15 @@ class MobilePaymentMethodSpecificInputDataBuilder
                     $this->generalSettings->getAuthLowValueAmount($storeId) :
                     $this->generalSettings->getAuthTransactionRiskAnalysisAmount($storeId);
 
+                $gPayThreeDSecure->setSkipAuthentication(false);
+
                 if ((float)$threeDSExemptedAmount >= (float)$baseSubtotalAmount) {
-                    $gPayThreeDSecure->setSkipAuthentication(true);
                     $gPayThreeDSecure->setExemptionRequest($threeDSExemptionType);
-                } else {
-                    $gPayThreeDSecure->setSkipAuthentication(false);
+                    $gPayThreeDSecure->setChallengeIndicator(
+                        $threeDSExemptionType === ParamsHandler::TRANSACTION_RISK_ANALYSIS_EXEMPTION_TYPE
+                            ? ParamsHandler::ANALYSIS_PERFORMED_CHALLENGE_INDICATOR
+                            : ParamsHandler::NO_CHALLENGE_REQUESTED_CHALLENGE_INDICATOR
+                    );
                 }
             }
             $gPayRedirectionData = new RedirectionData();
