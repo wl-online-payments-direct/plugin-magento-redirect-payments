@@ -141,9 +141,11 @@ class CardPaymentMethodSIDBuilder
                     $this->generalSettings->getAuthLowValueAmount($storeId) :
                     $this->generalSettings->getAuthTransactionRiskAnalysisAmount($storeId);
 
-                (float)$threeDSExemptedAmount >= (float)$quote->getGrandTotal() ?
-                    $paymentProduct130ThreeDSecure->setAcquirerExemption(true) :
-                    $paymentProduct130ThreeDSecure->setAcquirerExemption(false);
+                if ((float)$threeDSExemptedAmount >= (float)$quote->getGrandTotal()) {
+                    $paymentProduct130ThreeDSecure->setAcquirerExemption(
+                        $threeDSExemptionType === ParamsHandler::TRANSACTION_RISK_ANALYSIS_EXEMPTION_TYPE
+                    );
+                }
             }
             $paymentProduct130SpecificInput->setThreeDSecure($paymentProduct130ThreeDSecure);
 
