@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.39.0
+- Fix: Stability for 3DS exemption capabilities
+
 ### 1.38.0
 - Improved exemptions capabilities related to 3ds exemption types
 - Added phone number formatter for sending API requests
