@@ -15,11 +15,16 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.38.0
+- Improved exemptions capabilities related to 3ds exemption types
+- Added phone number formatter for sending API requests
+
 ### 1.37.0
 - Removed Mealvouchers logo from checkout page when using "Hosted Checkout (redirect to Worldline)"
 
 #### 1.36.0
 - Fix: Do not allow usage of decimals in the object cardPaymentMethodSpecificInput.paymentProduct130SpecificInput.threeDSecure.numberOfItems
+- Fix amount discrepancy issue
 
 #### 1.35.0
 - Added: Possibility to auto-include primary webhooks URL in the payload of payment request, and to configure up to 4 additional endpoints.
@@ -36,6 +41,8 @@ This solution is also included into [main plugin for adobe commerce](https://git
 - Fix mobile payment method information not being shown in order details
 
 #### 1.31.0
+- Add allow amount discrepancy option
+- Fix print invoice issue
 - Update payment brand logos
 
 #### 1.30.0

@@ -4,10 +4,10 @@
     "require": {
         "php": ">=7.3",
         "ext-json": "*",
-        "worldline/module-magento-payment-hosted-checkout": "1.38.0"
+        "worldline/module-magento-payment-hosted-checkout": "1.39.0"
     },
     "type": "magento2-module",
-    "version": "1.37.0",
+    "version": "1.38.0",
     "license": ["MIT"],
     "authors": [
         {
