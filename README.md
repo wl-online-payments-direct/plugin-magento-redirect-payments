@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.41.0
+- Fix order creation when 3DS exemption configuration is disabled
+
 ### 1.39.0
 - Fix: Stability for 3DS exemption capabilities
 
