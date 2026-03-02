@@ -220,9 +220,9 @@ class ConfigProvider implements ConfigProviderInterface
     }
 
     /**
-     * Check if Pledg payment method can be activated.
+     * Check if Pledg (Sofinco) payment method can be activated.
      *
-     * Allows Pledg only when billing country is FR and
+     * Allows Pledg (Sofinco) only when billing country is FR and
      * the quote currency is EUR.
      *
      * @param Quote $quote
