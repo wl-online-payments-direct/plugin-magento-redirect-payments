@@ -15,6 +15,17 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.45.0
+- Fixed: Creating an online invoice for orders
+- Fixed: Amount discrepancy check for non-worldline methods
+- Added: Debug log for API call when the Worldline stored card is deleted
+
+### 1.44.0
+- Fixed: Prevented cart loss after cancelled or declined payments on the Hosted payment page
+
+### 1.43.0
+- Added: Deleting a consumer’s stored token from their account now also deletes the token on the payment platform
+
 ### 1.42.0
 - Updated: Change iDEAL logo and label
 - Updated: Branding of Pledg changed to Sofinco
