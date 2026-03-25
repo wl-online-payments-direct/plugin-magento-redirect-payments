@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.46.0
+- Fixed: Handle formatting phone number when it is optional
+
 ### 1.45.0
 - Fixed: Creating an online invoice for orders
 - Fixed: Amount discrepancy check for non-worldline methods
