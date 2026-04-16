@@ -93,7 +93,8 @@ class RedirectPaymentMethodSpecificInputDataBuilder
         $authMode = $this->config->getAuthorizationMode();
         if ($payProductId && ($payProductId === PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID
                 || $payProductId === PaymentProductsDetailsInterface::CHEQUE_VACANCES_CONNECT_PRODUCT_ID
-                || $payProductId === PaymentProductsDetailsInterface::PLEDG_PRODUCT_ID)
+                || $payProductId === PaymentProductsDetailsInterface::PLEDG_PRODUCT_ID
+                || $payProductId === PaymentProductsDetailsInterface::LINXO_CONNECT_PRODUCT_ID)
         ) {
             $redirectPaymentMethodSpecificInput->setRequiresApproval(false);
         } else {

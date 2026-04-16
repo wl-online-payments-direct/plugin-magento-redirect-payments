@@ -48,6 +48,7 @@
                 <item name="worldline_redirect_payment_5404" xsi:type="string">worldline_redirect_payment_5404</item>
                 <item name="worldline_redirect_payment_5405" xsi:type="string">worldline_redirect_payment_5405</item>
                 <item name="worldline_redirect_payment_5406" xsi:type="string">worldline_redirect_payment_5406</item>
+                <item name="worldline_redirect_payment_5003" xsi:type="string">worldline_redirect_payment_5003</item>
                 <item name="worldline_redirect_payment_5408" xsi:type="string">worldline_redirect_payment_5408</item>
                 <item name="worldline_redirect_payment_5700" xsi:type="string">worldline_redirect_payment_5700</item>
             </argument>
@@ -94,6 +95,7 @@
                 <item name="worldline_redirect_payment_3303" xsi:type="string">worldline_redirect_payment_3303</item>
                 <item name="worldline_redirect_payment_3304" xsi:type="string">worldline_redirect_payment_3304</item>
                 <item name="worldline_redirect_payment_3305" xsi:type="string">worldline_redirect_payment_3305</item>
+                <item name="worldline_redirect_payment_5003" xsi:type="string">worldline_redirect_payment_5003</item>
                 <item name="worldline_redirect_payment_5001" xsi:type="string">worldline_redirect_payment_5001</item>
                 <item name="worldline_redirect_payment_5100" xsi:type="string">worldline_redirect_payment_5100</item>
                 <item name="worldline_redirect_payment_5110" xsi:type="string">worldline_redirect_payment_5110</item>
@@ -1929,6 +1931,54 @@
         </arguments>
     </virtualType>
     <!-- Bizum -->
+
+    <!-- Linxo Connect -->
+    <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterLinxoConnect\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">
+        <arguments>
+            <argument name="code" xsi:type="string">worldline_redirect_payment_5003</argument>
+            <argument name="valueHandlerPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolLinxoConnect\Virtual</argument>
+            <argument name="validatorPool" xsi:type="object">Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolLinxoConnect\Virtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\ValidatorPoolLinxoConnect\Virtual" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="country" xsi:type="string">Worldline\RedirectPayment\Gateway\Validator\CountryValidatorLinxoConnect\Virtual</item>
+                <item name="currency" xsi:type="string">Worldline\RedirectPayment\Gateway\Validator\CurrencyValidatorLinxoConnect\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\CountryValidatorLinxoConnect\Virtual" type="Magento\Payment\Gateway\Validator\CountryValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigLinxoConnect\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Validator\CurrencyValidatorLinxoConnect\Virtual" type="Worldline\PaymentCore\Gateway\Validator\CurrencyValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigLinxoConnect\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPoolLinxoConnect\Virtual" type="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\Virtual">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerLinxoConnect\Virtual</item>
+                <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerLinxoConnect\Virtual</item>
+                <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerLinxoConnect\Virtual</item>
+                <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerLinxoConnect\Virtual</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerLinxoConnect\Virtual" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigLinxoConnect\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Worldline\RedirectPayment\Gateway\ConfigLinxoConnect\ConfigVirtual" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">worldline_redirect_payment_5003</argument>
+        </arguments>
+    </virtualType>
+    <!-- Linxo Connect -->
 
     <!-- Cpay -->
     <virtualType name="Worldline\RedirectPayment\Model\Method\AdapterCpay\Virtual" type="Worldline\RedirectPayment\Model\Method\Adapter\Virtual">

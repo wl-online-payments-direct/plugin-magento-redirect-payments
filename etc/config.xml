@@ -210,6 +210,13 @@
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_3305>
+            <worldline_redirect_payment_5003>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterLinxoConnect\Virtual</model>
+                <title>Linxo Connect</title>
+                <sort_order>65</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
+            </worldline_redirect_payment_5003>
             <worldline_redirect_payment_117>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterMaestro\Virtual</model>
                 <title>Maestro</title>
