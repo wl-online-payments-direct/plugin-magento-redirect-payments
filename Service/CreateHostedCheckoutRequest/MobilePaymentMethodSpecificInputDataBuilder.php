@@ -4,8 +4,7 @@ declare(strict_types=1);
 namespace Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest;
 
 use Magento\Quote\Api\Data\CartInterface;
-use OnlinePayments\Sdk\Domain\MobilePaymentMethodSpecificInput;
-use OnlinePayments\Sdk\Domain\MobilePaymentMethodSpecificInputFactory;
+use OnlinePayments\Sdk\Domain\MobilePaymentMethodHostedCheckoutSpecificInput;
 use OnlinePayments\Sdk\Domain\GPayThreeDSecure;
 use OnlinePayments\Sdk\Domain\MobilePaymentProduct320SpecificInput;
 use Worldline\HostedCheckout\Service\CreateHostedCheckoutRequest\SpecificInputDataBuilder as HCSpecificInputDataBuilder;
@@ -26,34 +25,24 @@ class MobilePaymentMethodSpecificInputDataBuilder
     private $config;
 
     /**
-     * @var MobilePaymentMethodSpecificInputFactory
-     */
-    private $mobilePaymentMethodSpecificInputFactory;
-
-    /**
      * @var GeneralSettingsConfigInterface
      */
     private $generalSettings;
 
     /**
      * @param Config $config
-     * @param MobilePaymentMethodSpecificInputFactory $mobilePaymentMethodSpecificInputFactory
      * @param GeneralSettingsConfigInterface $generalSettings
      */
-    public function __construct(
-        Config $config,
-        MobilePaymentMethodSpecificInputFactory $mobilePaymentMethodSpecificInputFactory,
-        GeneralSettingsConfigInterface $generalSettings
-    ) {
+    public function __construct(Config $config, GeneralSettingsConfigInterface $generalSettings)
+    {
         $this->config = $config;
-        $this->mobilePaymentMethodSpecificInputFactory = $mobilePaymentMethodSpecificInputFactory;
         $this->generalSettings = $generalSettings;
     }
 
-    public function build(CartInterface $quote): MobilePaymentMethodSpecificInput
+    public function build(CartInterface $quote): MobilePaymentMethodHostedCheckoutSpecificInput
     {
-        /** @var MobilePaymentMethodSpecificInput $mobilePaymentMethodSpecificInputFactory */
-        $mobilePaymentMethodSpecificInput = $this->mobilePaymentMethodSpecificInputFactory->create();
+        $mobilePaymentMethodSpecificInput = new MobilePaymentMethodHostedCheckoutSpecificInput();
+
         $mobilePaymentMethodSpecificInput->setAuthorizationMode($this->config->getAuthorizationMode());
         $payProductId = $quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
         if ($payProductId) {

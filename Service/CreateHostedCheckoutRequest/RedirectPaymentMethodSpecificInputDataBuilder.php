@@ -11,6 +11,7 @@ use OnlinePayments\Sdk\Domain\RedirectPaymentMethodSpecificInputFactory;
 use OnlinePayments\Sdk\Domain\RedirectPaymentProduct5402SpecificInputFactory;
 use OnlinePayments\Sdk\Domain\RedirectPaymentProduct5408SpecificInputFactory;
 use OnlinePayments\Sdk\Domain\RedirectPaymentProduct5403SpecificInputFactory;
+use OnlinePayments\Sdk\Domain\RedirectPaymentProduct3112SpecificInputFactory;
 use OnlinePayments\Sdk\Domain\RedirectPaymentProduct5300SpecificInputFactory;
 use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 use Worldline\RedirectPayment\Gateway\Config\Config;
@@ -55,6 +56,11 @@ class RedirectPaymentMethodSpecificInputDataBuilder
     private $paymentProduct5402SIFactory;
 
     /**
+     * @var RedirectPaymentProduct3112SpecificInputFactory
+     */
+    private $paymentProduct3112SIFactory;
+
+    /**
      * @var RedirectPaymentProduct5300SpecificInputFactory
      */
     private $paymentProduct5300SIFactory;
@@ -71,6 +77,7 @@ class RedirectPaymentMethodSpecificInputDataBuilder
         RedirectPaymentProduct5408SpecificInputFactory $paymentProduct5408SIFactory,
         RedirectPaymentProduct5403SpecificInputFactory $paymentProduct5403SIFactory,
         RedirectPaymentProduct5402SpecificInputFactory $paymentProduct5402SIFactory,
+        RedirectPaymentProduct3112SpecificInputFactory $paymentProduct3112SIFactory,
         RedirectPaymentProduct5300SpecificInputFactory $paymentProduct5300SIFactory,
         StoreManagerInterface $storeManager
     ) {
@@ -80,6 +87,7 @@ class RedirectPaymentMethodSpecificInputDataBuilder
         $this->paymentProduct5408SIFactory = $paymentProduct5408SIFactory;
         $this->paymentProduct5403SIFactory = $paymentProduct5403SIFactory;
         $this->paymentProduct5402SIFactory = $paymentProduct5402SIFactory;
+        $this->paymentProduct3112SIFactory = $paymentProduct3112SIFactory;
         $this->paymentProduct5300SIFactory = $paymentProduct5300SIFactory;
         $this->storeManager = $storeManager;
     }
@@ -94,7 +102,8 @@ class RedirectPaymentMethodSpecificInputDataBuilder
         if ($payProductId && ($payProductId === PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID
                 || $payProductId === PaymentProductsDetailsInterface::CHEQUE_VACANCES_CONNECT_PRODUCT_ID
                 || $payProductId === PaymentProductsDetailsInterface::PLEDG_PRODUCT_ID
-                || $payProductId === PaymentProductsDetailsInterface::LINXO_CONNECT_PRODUCT_ID)
+                || $payProductId === PaymentProductsDetailsInterface::LINXO_CONNECT_PRODUCT_ID
+                || $payProductId === PaymentProductsDetailsInterface::ILLICADO_PRODUCT_ID)
         ) {
             $redirectPaymentMethodSpecificInput->setRequiresApproval(false);
         } else {
@@ -121,6 +130,10 @@ class RedirectPaymentMethodSpecificInputDataBuilder
 
         $paymentProduct5300SI = $this->paymentProduct5300SIFactory->create();
         $redirectPaymentMethodSpecificInput->setPaymentProduct5300SpecificInput($paymentProduct5300SI);
+
+        $paymentProduct3112SI = $this->paymentProduct3112SIFactory->create();
+        $paymentProduct3112SI->setCompleteRemainingPaymentAmount(true);
+        $redirectPaymentMethodSpecificInput->setPaymentProduct3112SpecificInput($paymentProduct3112SI);
 
         $args = ['quote' => $quote, self::RP_METHOD_SPECIFIC_INPUT => $redirectPaymentMethodSpecificInput];
         $this->eventManager->dispatch(ConfigProvider::CODE . '_redirect_payment_method_specific_input_builder', $args);

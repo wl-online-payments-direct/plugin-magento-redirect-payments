@@ -5,9 +5,10 @@ namespace Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest;
 
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Quote\Api\Data\CartInterface;
-use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInput;
-use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputFactory;
+use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputBase;
+use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputBaseFactory;
 use OnlinePayments\Sdk\Domain\PaymentProduct130SpecificInput;
+use OnlinePayments\Sdk\Domain\ThreeDSecureBase;
 use OnlinePayments\Sdk\Domain\PaymentProduct130SpecificThreeDSecure;
 use Worldline\HostedCheckout\Api\TokenManagerInterface;
 use Worldline\PaymentCore\Api\Config\GeneralSettingsConfigInterface;
@@ -34,7 +35,7 @@ class CardPaymentMethodSIDBuilder
     private $config;
 
     /**
-     * @var CardPaymentMethodSpecificInputFactory
+     * @var CardPaymentMethodSpecificInputBaseFactory
      */
     private $cardPaymentMethodSpecificInputFactory;
 
@@ -70,7 +71,7 @@ class CardPaymentMethodSIDBuilder
 
     public function __construct(
         Config $config,
-        CardPaymentMethodSpecificInputFactory $cardPaymentMethodSpecificInputFactory,
+        CardPaymentMethodSpecificInputBaseFactory $cardPaymentMethodSpecificInputFactory,
         ManagerInterface $eventManager,
         ThreeDSecureDataBuilderInterface $threeDSecureDataBuilder,
         ThreeDSecureQtyCalculatorInterface $threeDSecureQtyCalculator,
@@ -88,10 +89,10 @@ class CardPaymentMethodSIDBuilder
         $this->generalSettings = $generalSettings;
     }
 
-    public function build(CartInterface $quote): ?CardPaymentMethodSpecificInput
+    public function build(CartInterface $quote): ?CardPaymentMethodSpecificInputBase
     {
         $storeId = (int)$quote->getStoreId();
-        /** @var CardPaymentMethodSpecificInput $cardPaymentMethodSpecificInput */
+        /** @var CardPaymentMethodSpecificInputBase $cardPaymentMethodSpecificInput */
         $cardPaymentMethodSpecificInput = $this->cardPaymentMethodSpecificInputFactory->create();
 
         $payProductId = (int)$quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
@@ -104,7 +105,9 @@ class CardPaymentMethodSIDBuilder
             $this->getAuthorizationMode($payProductId, $storeId)
         );
 
-        $cardPaymentMethodSpecificInput->setThreeDSecure($this->threeDSecureDataBuilder->build($quote));
+        $threeDSecure = $this->threeDSecureDataBuilder->build($quote);
+        $threeDSecureBase = (new ThreeDSecureBase())->fromJson($threeDSecure->toJson());
+        $cardPaymentMethodSpecificInput->setThreeDSecure($threeDSecureBase);
 
         if ($cardPaymentMethodSpecificInput->getPaymentProductId() === self::CARTE_BANCAIRE_PAYMENT_ID) {
             $paymentProduct130SpecificInput = $this->buildPaymentProduct130SpecificInput($quote);
@@ -141,7 +144,7 @@ class CardPaymentMethodSIDBuilder
                 $this->threeDSecureQtyCalculator->calculateNumberOfItems($quote),
                 self::MAX_SUPPORTED_NUMBER_OF_ITEMS
             );
-            $paymentProduct130ThreeDSecure->setNumberOfItems($numberOfItems);
+            $paymentProduct130ThreeDSecure->setNumberOfItems((int) $numberOfItems);
 
             if (!$this->generalSettings->isAuthExemptionEnabled($storeId)) {
                 $paymentProduct130ThreeDSecure->setAcquirerExemption(false);
@@ -175,7 +178,7 @@ class CardPaymentMethodSIDBuilder
     }
 
     private function checkIntersolveGiftCards(
-        CardPaymentMethodSpecificInput $cardPaymentMethodSpecificInput,
+        CardPaymentMethodSpecificInputBase $cardPaymentMethodSpecificInput,
         int $payProductId,
         int $storeId
     ): void {
