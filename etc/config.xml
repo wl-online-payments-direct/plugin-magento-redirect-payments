@@ -34,6 +34,7 @@
                 <cart_lines>1</cart_lines>
                 <session_timeout></session_timeout>
                 <skip_3d>0</skip_3d>
+                <show_result_page>1</show_result_page>
             </worldline_redirect_payment>
             <worldline_redirect_payment_vault>
                 <model>Worldline\RedirectPayment\Model\Method\Vault\RPVault\Virtual</model>

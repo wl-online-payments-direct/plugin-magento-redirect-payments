@@ -15,6 +15,10 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.50.0
+- Added: Configuration option to skip the Worldline payment confirmation page
+- Fixed: Mealvouchers product type mapping and line item adjustments
+
 ### 1.48.0
 - Added: Support for Illicado payment method
 - Upgrade PHP SDK to 8.3 version

@@ -1,4 +1,7 @@
 "American Express","American Express"
+"Display payment confirmation page","Display payment confirmation page"
+"By enabling this option, your customers will see the Worldline payment confirmation page","By enabling this option, your customers will see the Worldline payment confirmation page"
+"If enabled, customers will see a dedicated confirmation screen after payment is processed, confirming the payment and providing key details.","If enabled, customers will see a dedicated confirmation screen after payment is processed, confirming the payment and providing key details."
 "Apple Pay","Apple Pay"
 "Authorization Mode","Authorization Mode"
 "Carte Bancaire","Carte Bancaire"

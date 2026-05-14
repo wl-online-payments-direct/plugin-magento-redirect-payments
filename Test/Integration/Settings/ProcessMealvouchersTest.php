@@ -60,7 +60,7 @@ class ProcessMealvouchersTest extends TestCase
         /** @var Order $orderSpecificInput */
         $orderSpecificInput = $this->orderDataBuilder->build($quote);
         $shoppingCart = $orderSpecificInput->getShoppingCart();
-        $this->assertCount(count($quote->getAllItems()) + 1, $shoppingCart->getItems());
+        $this->assertCount(1, $shoppingCart->getItems());
         foreach ($shoppingCart->getItems() as $lineItem) {
             $this->assertEquals(
                 MealvouchersProductTypes::FOOD_AND_DRINK,

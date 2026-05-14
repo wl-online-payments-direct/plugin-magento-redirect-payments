@@ -6,3 +6,6 @@
 "Redirect Payment","Betaling omleiden"
 "Descriptor text will appear on your customers' bank statement.","De beschrijvende tekst verschijnt op het bankafschrift van uw klant."
 "22 characters max","Maximaal 22 tekens"
+"Display payment confirmation page","Pagina met betalingsbevestiging weergeven"
+"By enabling this option, your customers will see the Worldline payment confirmation page","Door deze optie in te schakelen, zien uw klanten de Worldline-betaalbevestigingspagina"
+"If enabled, customers will see a dedicated confirmation screen after payment is processed, confirming the payment and providing key details.","Indien ingeschakeld, zien klanten een speciale bevestigingsscherm nadat de betaling is verwerkt, die de betaling bevestigt en belangrijke details verstrekt."

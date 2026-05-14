@@ -6,3 +6,6 @@
 "Redirect Payment","Pago redirigido"
 "Descriptor text will appear on your customers' bank statement.","El texto descriptivo aparecerá en el extracto bancario de sus clientes."
 "22 characters max","22 caracteres máximo"
+"Display payment confirmation page","Mostrar la página de confirmación de pago"
+"By enabling this option, your customers will see the Worldline payment confirmation page","Al habilitar esta opción, sus clientes verán la página de confirmación de pago de Worldline"
+"If enabled, customers will see a dedicated confirmation screen after payment is processed, confirming the payment and providing key details.","Si está habilitado, los clientes verán una pantalla de confirmación dedicada después de procesar el pago, confirmando el pago y proporcionando detalles clave."

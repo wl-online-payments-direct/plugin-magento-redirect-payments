@@ -83,6 +83,8 @@ class SpecificInputDataBuilder
             $hostedCheckoutSpecificInput->setVariant($variant);
         }
 
+        $hostedCheckoutSpecificInput->setShowResultPage($this->config->isShowResultPageEnabled($storeId));
+
         $payProductId = (int)$quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
         if ($payProductId && $payProductId === PaymentProductsDetailsInterface::INTERSOLVE_PRODUCT_ID) {
             $giftCards = $this->config->getIntersolveGiftCards($storeId);

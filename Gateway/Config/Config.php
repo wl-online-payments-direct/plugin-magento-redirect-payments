@@ -20,6 +20,7 @@ class Config extends PaymentGatewayConfig
     public const TEMPLATE_ID = 'template_id';
     public const KEY_CART_LINES = 'cart_lines';
     public const SESSION_TIMEOUT = 'session_timeout';
+    public const SHOW_RESULT_PAGE = 'show_result_page';
 
     public const REDIRECT_PAYMENT_PATH = "payment/worldline_redirect_payment_";
     public const VAULT_ACTIVE = 'payment/worldline_redirect_payment_vault/active';
@@ -145,6 +146,11 @@ class Config extends PaymentGatewayConfig
             ScopeInterface::SCOPE_STORE,
             $storeId
         );
+    }
+
+    public function isShowResultPageEnabled(?int $storeId = null): bool
+    {
+        return (bool) $this->getValue(self::SHOW_RESULT_PAGE, $storeId);
     }
 
     public function getBankTransferDescriptor(?int $storeId = null): string

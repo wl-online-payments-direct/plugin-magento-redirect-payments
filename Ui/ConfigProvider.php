@@ -135,7 +135,7 @@ class ConfigProvider implements ConfigProviderInterface
         }
 
         if ($payProductId === PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID) {
-            return $this->isEligibleForMealVoucher($quote) && $this->isCustomerValid($quote);
+            return $this->canActivateMealVoucher($quote);
         }
 
         if ($payProductId === PaymentProductsDetailsInterface::SEPA_DIRECT_DEBIT_PRODUCT_ID) {
@@ -217,6 +217,28 @@ class ConfigProvider implements ConfigProviderInterface
         }
 
         return false;
+    }
+
+    /**
+     * Mealvoucher is only offered for EUR quotes billed to FR or BE,
+     * and only when at least one cart item has an eligible product type.
+     */
+    private function canActivateMealVoucher(Quote $quote): bool
+    {
+        if (!$this->isCustomerValid($quote) || !$this->isEligibleForMealVoucher($quote)) {
+            return false;
+        }
+
+        if ($quote->getQuoteCurrencyCode() !== 'EUR') {
+            return false;
+        }
+
+        $billing = $quote->getBillingAddress();
+        if (!$billing || !in_array($billing->getCountryId(), ['FR', 'BE'], true)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

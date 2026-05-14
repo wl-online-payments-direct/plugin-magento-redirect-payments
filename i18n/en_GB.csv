@@ -64,3 +64,6 @@ Visa,Visa
 "Intersolve gift card(s)","Intersolve gift card(s)"
 "Descriptor text will appear on your customers' bank statement.","Descriptor text will appear on your customers' bank statement."
 "22 characters max","22 characters max"
+"Display payment confirmation page","Display payment confirmation page"
+"By enabling this option, your customers will see the Worldline payment confirmation page","By enabling this option, your customers will see the Worldline payment confirmation page"
+"If enabled, customers will see a dedicated confirmation screen after payment is processed, confirming the payment and providing key details.","If enabled, customers will see a dedicated confirmation screen after payment is processed, confirming the payment and providing key details."
