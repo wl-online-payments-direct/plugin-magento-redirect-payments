@@ -15,7 +15,17 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.52.0
+- Added: Soft-delete handling for quote-linked tables
+
+### 1.51.0
+- Fixed: Support new PAYID format
+
 ### 1.50.0
+- Fixed: Fix the issue with cart staying active despite the order being placed
+- Fixed: Add check if the store is connected to Worldline before retrieving products from API
+
+### 1.49.0
 - Added: Configuration option to skip the Worldline payment confirmation page
 - Fixed: Mealvouchers product type mapping and line item adjustments
 
