@@ -9,3 +9,5 @@
 "Redirect Payment","Rediriger le paiement"
 "Descriptor text will appear on your customers' bank statement.","Le texte du descripteur apparaîtra sur le relevé bancaire de vos clients."
 "22 characters max","22 caractères maximum"
+"Please ensure the mandate signing method is configured correctly if you offer SEPA Direct Debit to your customers; otherwise, transactions may be refused.","Veuillez vous assurer que le mode de signature du mandat est correctement configuré si vous proposez le Prélèvement SEPA à vos clients ; sinon, les transactions pourraient être refusées."
+"Please note that not all signature types are available to every user. Depending on your partner, please choose as follows:<br/>• Worldline: SMS, UNSIGNED, or AIS<br/>• PAYONE: UNSIGNED or TICK_BOX<br/>• ANZ or CAWL: this setting does not apply","Veuillez noter que tous les types de signature ne sont pas accessibles à tous les utilisateurs. Selon votre partenaire, veuillez choisir comme suit :<br/>• Worldline : SMS, UNSIGNED ou AIS<br/>• PAYONE : UNSIGNED ou TICK_BOX<br/>• ANZ ou CAWL : ce paramètre ne s'applique pas"

@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.53.0
+- Added: New signature types options for SEPA Direct Debit
+
 ### 1.52.0
 - Added: Soft-delete handling for quote-linked tables
 

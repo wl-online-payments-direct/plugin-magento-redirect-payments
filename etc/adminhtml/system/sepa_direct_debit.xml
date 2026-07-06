@@ -87,10 +87,17 @@
                 <field id="active">1</field>
             </depends>
         </field>
-        <field id="direct_debit_signature_type" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1">
+        <field id="direct_debit_signature_type_warning" type="label" sortOrder="105" showInDefault="1" showInWebsite="1">
+            <frontend_model>Worldline\RedirectPayment\Block\Adminhtml\System\Config\SepaWarning</frontend_model>
+            <depends>
+                <field id="active">1</field>
+            </depends>
+        </field>
+        <field id="direct_debit_signature_type" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1">
             <label>Direct Debit Signature Type</label>
             <source_model>Worldline\HostedCheckout\Config\Source\DirectDebit\SignatureType</source_model>
             <config_path>payment/worldline_redirect_payment_771/direct_debit_signature_type</config_path>
+            <comment><![CDATA[Please note that not all signature types are available to every user. Depending on your partner, please choose as follows:<br/>• Worldline: SMS, UNSIGNED, or AIS<br/>• PAYONE: UNSIGNED or TICK_BOX<br/>• ANZ or CAWL: this setting does not apply]]></comment>
             <depends>
                 <field id="active">1</field>
             </depends>
