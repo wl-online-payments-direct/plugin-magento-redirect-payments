@@ -11,3 +11,4 @@
 "22 characters max","Maximal 22 Zeichen"
 "Please ensure the mandate signing method is configured correctly if you offer SEPA Direct Debit to your customers; otherwise, transactions may be refused.","Bitte stellen Sie sicher, dass die Unterschriftsmethode für das Mandat korrekt konfiguriert ist, wenn Sie SEPA-Lastschrift an Ihre Kunden anbieten; andernfalls können Transaktionen abgelehnt werden."
 "Please note that not all signature types are available to every user. Depending on your partner, please choose as follows:<br/>• Worldline: SMS, UNSIGNED, or AIS<br/>• PAYONE: UNSIGNED or TICK_BOX<br/>• ANZ or CAWL: this setting does not apply","Bitte beachten Sie, dass nicht alle Signaturarten für jeden Benutzer verfügbar sind. Je nach Partner wählen Sie bitte wie folgt:<br/>• Worldline: SMS, UNSIGNED oder AIS<br/>• PAYONE: UNSIGNED oder TICK_BOX<br/>• ANZ oder CAWL: diese Einstellung gilt nicht"
+"Pay in installments","Bezahlen in Raten"

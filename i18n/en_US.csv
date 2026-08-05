@@ -69,3 +69,4 @@ Visa,Visa
 "22 characters max","22 characters max"
 "Please ensure the mandate signing method is configured correctly if you offer SEPA Direct Debit to your customers; otherwise, transactions may be refused.","Please ensure the mandate signing method is configured correctly if you offer SEPA Direct Debit to your customers; otherwise, transactions may be refused."
 "Please note that not all signature types are available to every user. Depending on your partner, please choose as follows:<br/>• Worldline: SMS, UNSIGNED, or AIS<br/>• PAYONE: UNSIGNED or TICK_BOX<br/>• ANZ or CAWL: this setting does not apply","Please note that not all signature types are available to every user. Depending on your partner, please choose as follows:<br/>• Worldline: SMS, UNSIGNED, or AIS<br/>• PAYONE: UNSIGNED or TICK_BOX<br/>• ANZ or CAWL: this setting does not apply"
+"Pay in installments","Pay in installments"

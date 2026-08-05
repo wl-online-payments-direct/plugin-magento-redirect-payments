@@ -311,7 +311,7 @@
             </worldline_redirect_payment_771_vault>
             <worldline_redirect_payment_5300>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterPledg\Virtual</model>
-                <title>Sofinco</title>
+                <title>Pay in installments</title>
                 <sort_order>310</sort_order>
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>

@@ -2259,7 +2259,7 @@
                  type="Worldline\RedirectPayment\Gateway\Config\ValueHandlerPool\Virtual">
         <arguments>
             <argument name="handlers" xsi:type="array">
-                <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual</item>
+                <item name="title" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\TranslatedTitleValueHandlerPledg\Virtual</item>
                 <item name="sort_order" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual</item>
                 <item name="min_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual</item>
                 <item name="max_order_total" xsi:type="string">Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual</item>
@@ -2269,6 +2269,13 @@
 
     <virtualType name="Worldline\RedirectPayment\Gateway\Config\ConfigValueHandlerPledg\Virtual"
                  type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigPledg\ConfigVirtual</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Worldline\RedirectPayment\Gateway\Config\TranslatedTitleValueHandlerPledg\Virtual"
+                 type="Worldline\RedirectPayment\Gateway\Config\TranslatedTitleValueHandler">
         <arguments>
             <argument name="configInterface" xsi:type="object">Worldline\RedirectPayment\Gateway\ConfigPledg\ConfigVirtual</argument>
         </arguments>
