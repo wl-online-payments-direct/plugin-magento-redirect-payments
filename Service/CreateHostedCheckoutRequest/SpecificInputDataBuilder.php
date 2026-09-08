@@ -5,6 +5,8 @@ namespace Worldline\RedirectPayment\Service\CreateHostedCheckoutRequest;
 
 use Magento\Framework\Locale\Resolver;
 use Magento\Quote\Api\Data\CartInterface;
+use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputForHostedCheckout;
+use OnlinePayments\Sdk\Domain\CardPaymentMethodSpecificInputForHostedCheckoutFactory;
 use OnlinePayments\Sdk\Domain\HostedCheckoutSpecificInput;
 use OnlinePayments\Sdk\Domain\HostedCheckoutSpecificInputFactory;
 use OnlinePayments\Sdk\Domain\PaymentProductFilter;
@@ -49,13 +51,19 @@ class SpecificInputDataBuilder
      */
     private $paymentProductFiltersHCFactory;
 
+    /**
+     * @var CardPaymentMethodSpecificInputForHostedCheckoutFactory
+     */
+    private $cardPaymentMethodDataFactory;
+
     public function __construct(
         Config $config,
         Resolver $store,
         GeneralSettingsConfigInterface $generalSettings,
         HostedCheckoutSpecificInputFactory $hostedCheckoutSpecificInputFactory,
         PaymentProductFilterFactory $paymentProductFilterFactory,
-        PaymentProductFiltersHostedCheckoutFactory $paymentProductFiltersHCFactory
+        PaymentProductFiltersHostedCheckoutFactory $paymentProductFiltersHCFactory,
+        CardPaymentMethodSpecificInputForHostedCheckoutFactory $cardPaymentMethodDataFactory
     ) {
         $this->config = $config;
         $this->store = $store;
@@ -63,6 +71,7 @@ class SpecificInputDataBuilder
         $this->hostedCheckoutSpecificInputFactory = $hostedCheckoutSpecificInputFactory;
         $this->paymentProductFilterFactory = $paymentProductFilterFactory;
         $this->paymentProductFiltersHCFactory = $paymentProductFiltersHCFactory;
+        $this->cardPaymentMethodDataFactory = $cardPaymentMethodDataFactory;
     }
 
     public function build(CartInterface $quote): HostedCheckoutSpecificInput
@@ -84,6 +93,15 @@ class SpecificInputDataBuilder
         }
 
         $hostedCheckoutSpecificInput->setShowResultPage($this->config->isShowResultPageEnabled($storeId));
+
+        if (!$this->config->isVaultActive($storeId) || !$quote->getCustomerId()) {
+            /** @var CardPaymentMethodSpecificInputForHostedCheckout $cardPaymentMethodSpecificInputForHC */
+            $cardPaymentMethodSpecificInputForHC = $this->cardPaymentMethodDataFactory->create();
+            $cardPaymentMethodSpecificInputForHC->setTokenizationMode(
+                HCSpecificInputDataBuilder::NO_TOKENIZATION
+            );
+            $hostedCheckoutSpecificInput->setCardPaymentMethodSpecificInput($cardPaymentMethodSpecificInputForHC);
+        }
 
         $payProductId = (int)$quote->getPayment()->getAdditionalInformation(RedirectManagement::PAYMENT_PRODUCT_ID);
         if ($payProductId && $payProductId === PaymentProductsDetailsInterface::INTERSOLVE_PRODUCT_ID) {

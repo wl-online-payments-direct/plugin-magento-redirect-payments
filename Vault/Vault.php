@@ -77,7 +77,7 @@ class Vault extends MagentoVault
             return false;
         }
 
-        if (!$this->configProvider->isVaultActive()) {
+        if (!$this->configProvider->isVaultActive((int) $quote->getStoreId())) {
             return false;
         }
 
