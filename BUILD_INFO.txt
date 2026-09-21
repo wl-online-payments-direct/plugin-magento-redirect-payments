@@ -1,1 +1,1 @@
-Built from Worldline-Plugins/plugin-magento-redirect-payments-PRE-RELEASE@1.56.0 on Tue Sep  8 14:49:26 UTC 2026
+Built from Worldline-Plugins/plugin-magento-redirect-payments-PRE-RELEASE@1.57.0 on Mon Sep 21 07:34:02 UTC 2026
