@@ -9,7 +9,6 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Quote\Model\Quote;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
-use Worldline\HostedCheckout\Model\Config\Source\MealvouchersProductTypes;
 use Worldline\PaymentCore\Api\Data\PaymentProductsDetailsInterface;
 use Worldline\PaymentCore\Api\Ui\PaymentIconsProviderInterface;
 use Worldline\RedirectPayment\Gateway\Config\Config;
@@ -134,9 +133,10 @@ class ConfigProvider implements ConfigProviderInterface
             return $this->isCustomerValid($quote);
         }
 
-        if ($payProductId === PaymentProductsDetailsInterface::MEALVOUCHERS_PRODUCT_ID) {
-            return $this->canActivateMealVoucher($quote);
-        }
+        // Mealvouchers is deliberately absent from this list. Its rules depend on the billing
+        // address, which is empty while this runs, so they are applied by
+        // Worldline\RedirectPayment\Observer\PaymentMethodIsActive instead. All this method
+        // decides for it is whether the renderer gets registered at all.
 
         if ($payProductId === PaymentProductsDetailsInterface::SEPA_DIRECT_DEBIT_PRODUCT_ID) {
             return (float)$quote->getGrandTotal() >= 0.00001;
@@ -187,58 +187,15 @@ class ConfigProvider implements ConfigProviderInterface
     /**
      * Check if customer data is valid (logged in and has email).
      *
+     * Used by Cheque Vacances Connect only. Mealvouchers deliberately does not use this, because
+     * it is offered to guests as well - see Service\MealvouchersAvailability.
+     *
      * @param Quote $quote
      * @return bool
      */
     private function isCustomerValid(Quote $quote): bool
     {
         return (bool)$quote->getCustomerId() && (bool)$quote->getCustomerEmail();
-    }
-
-    /**
-     * Check if any visible items are eligible for mealvouchers.
-     *
-     * @param Quote $quote
-     *
-     * @return bool
-     */
-    private function isEligibleForMealVoucher(Quote $quote): bool
-    {
-        $eligibleTypes = [
-            MealvouchersProductTypes::FOOD_AND_DRINK,
-            MealvouchersProductTypes::HOME_AND_GARDEN,
-            MealvouchersProductTypes::GIFT_AND_FLOWERS
-        ];
-
-        foreach ($quote->getAllVisibleItems() as $item) {
-            if (in_array($item->getProduct()->getData(self::PRODUCT_TYPE), $eligibleTypes, true)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Mealvoucher is only offered for EUR quotes billed to FR or BE,
-     * and only when at least one cart item has an eligible product type.
-     */
-    private function canActivateMealVoucher(Quote $quote): bool
-    {
-        if (!$this->isCustomerValid($quote) || !$this->isEligibleForMealVoucher($quote)) {
-            return false;
-        }
-
-        if ($quote->getQuoteCurrencyCode() !== 'EUR') {
-            return false;
-        }
-
-        $billing = $quote->getBillingAddress();
-        if (!$billing || !in_array($billing->getCountryId(), ['FR', 'BE'], true)) {
-            return false;
-        }
-
-        return true;
     }
 
     /**

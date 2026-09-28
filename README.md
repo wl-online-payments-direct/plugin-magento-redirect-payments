@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.58.0
+- Changed: Remove constraint to be logged in for Mealvouchers
+
 ### 1.57.0
 - Fixed: Adjust tax amounts rounding and prevent a validation amount failure
 
