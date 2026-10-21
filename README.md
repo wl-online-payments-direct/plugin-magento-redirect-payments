@@ -15,6 +15,10 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.59.0
+- Fixed: Validate checkout addresses before the payment redirect to prevent paid payments without an order
+- Fixed: Checkout page breaking when the address could not be saved to the address book
+
 ### 1.58.0
 - Changed: Remove constraint to be logged in for Mealvouchers
 
