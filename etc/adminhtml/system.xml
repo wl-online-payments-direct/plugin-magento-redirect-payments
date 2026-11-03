@@ -157,6 +157,7 @@
                 <include path="Worldline_RedirectPayment::system/union_pay_int.xml"/>
                 <include path="Worldline_RedirectPayment::system/visa.xml"/>
                 <include path="Worldline_RedirectPayment::system/wechat_pay.xml"/>
+                <include path="Worldline_RedirectPayment::system/wero.xml"/>
             </group>
         </section>
     </system>

@@ -352,6 +352,14 @@
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_5404>
+            <worldline_redirect_payment_900>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterWero\Virtual</model>
+                <active>0</active>
+                <title>Wero</title>
+                <sort_order>380</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
+            </worldline_redirect_payment_900>
         </payment>
     </default>
 </config>
