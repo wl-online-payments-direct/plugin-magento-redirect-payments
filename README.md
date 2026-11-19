@@ -15,6 +15,9 @@ This solution is also included into [main plugin for adobe commerce](https://git
 
 ### Change log:
 
+### 1.61.0
+- Added: PostFinance Pay payment method
+
 ### 1.60.0
 - Changed: Add Wero payment method
 

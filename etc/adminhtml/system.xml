@@ -151,6 +151,7 @@
                 <include path="Worldline_RedirectPayment::system/pledg.xml"/>
                 <include path="Worldline_RedirectPayment::system/oneybrandedgiftcard.xml"/>
                 <include path="Worldline_RedirectPayment::system/paypal.xml"/>
+                <include path="Worldline_RedirectPayment::system/postfinance_pay.xml"/>
                 <include path="Worldline_RedirectPayment::system/przelewy24.xml"/>
                 <include path="Worldline_RedirectPayment::system/sepa_direct_debit.xml"/>
                 <include path="Worldline_RedirectPayment::system/twint.xml"/>

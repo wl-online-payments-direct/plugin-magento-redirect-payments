@@ -289,6 +289,14 @@
                 <allowspecific>0</allowspecific>
                 <allow_specific_currency>0</allow_specific_currency>
             </worldline_redirect_payment_840>
+            <worldline_redirect_payment_3203>
+                <model>Worldline\RedirectPayment\Model\Method\AdapterPostFinancePay\Virtual</model>
+                <active>0</active>
+                <title>PostFinance Pay</title>
+                <sort_order>315</sort_order>
+                <allowspecific>0</allowspecific>
+                <allow_specific_currency>0</allow_specific_currency>
+            </worldline_redirect_payment_3203>
             <worldline_redirect_payment_3124>
                 <model>Worldline\RedirectPayment\Model\Method\AdapterPrzelewy24\Virtual</model>
                 <title>Przelewy24</title>
